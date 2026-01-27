@@ -41,5 +41,8 @@
   },
   "bugs": {
     "url": "https://github.com/wb-mirta/chatbot/issues"
-  }
+  },
+  "dependencies": {
+    "@mirta/store": "0.4.8"
+  } 
 }

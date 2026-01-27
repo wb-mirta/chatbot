@@ -72,7 +72,11 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))
 
-  packages/chatbot: {}
+  packages/chatbot:
+    dependencies:
+      '@mirta/store':
+        specifier: 0.4.8
+        version: 0.4.8(@mirta/basics@0.4.8)(@mirta/polyfills@0.4.8)
 
   projects/chatbot-demo:
     dependencies:
@@ -877,6 +881,12 @@ packages:
   '@mirta/staged-args@0.4.8':
     resolution: {integrity: sha512-dfyTg9RNJdu2hCh/wxTA7lq7eQMhhAsB5zYrpd6w9hdtHvX1g07BKezcrve7PQnWSuVCj/8gMCd8DzCXV66hvg==}
     engines: {node: '>=24.12.0'}
+
+  '@mirta/store@0.4.8':
+    resolution: {integrity: sha512-LuMab5RV+T1IF95upYgIKQYfAYj0GVygjOCLyI4rdRuJRFerk58HKEVhUPhCmSmxf4Np/PQAIabrcFOOOTdJjw==}
+    peerDependencies:
+      '@mirta/basics': 0.4.8
+      '@mirta/polyfills': 0.4.8
 
   '@mirta/testing@0.4.8':
     resolution: {integrity: sha512-FoeYLQRaL6KwMMp8qypMIv0Qw4cYZY/abMIBMgmBp57LXhINiJCSdjUuz7RTwi6plRWFAJRprksAoTNRhRT97Q==}
@@ -3414,6 +3424,11 @@ snapshots:
       - tslib
 
   '@mirta/staged-args@0.4.8': {}
+
+  '@mirta/store@0.4.8(@mirta/basics@0.4.8)(@mirta/polyfills@0.4.8)':
+    dependencies:
+      '@mirta/basics': 0.4.8
+      '@mirta/polyfills': 0.4.8
 
   '@mirta/testing@0.4.8(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))':
     dependencies:
