@@ -1,0 +1,45 @@
+{
+  "name": "@mirta/chatbot",
+  "description": "Chat-based control for your automation scripts",
+  "license": "Unlicense",
+  "version": "0.0.0",
+  "keywords": [
+    "mirta",
+    "wb-rules",
+    "chatbot",
+    "telegram"
+  ],
+  "type": "module",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "imports": {
+    "#*": [
+      "./src/*.js",
+      "./src/*/index.js"
+    ]
+  },
+  "scripts": {
+    "build:mono": "rollup -c node:@mirta/rollup/config-package"
+  },
+  "homepage": "https://github.com/wb-mirta/chatbot/tree/latest/packages/chatbot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wb-mirta/chatbot.git",
+    "directory": "packages/chatbot"
+  },
+  "bugs": {
+    "url": "https://github.com/wb-mirta/chatbot/issues"
+  }
+}

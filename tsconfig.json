@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "types": [
+      "vitest/globals",
+      "@mirta/globals",
+      "node"
+    ],
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@mirta/chatbot": [
+        "packages/chatbot/src"
+      ]
+    }
+  },
+  "extends": "@mirta/tsconfig",
+  "include": [
+    "*.ts",
+    "*.mts",
+    "types/*.d.ts",
+    // === JS ===
+    "packages/*/src/**/*.js",
+    "packages/*/tests/**/*.js",
+    "projects/*/src/**/*.js",
+    "projects/*/tests/**/*.js",
+    // === TS ===
+    "packages/*/src/**/*.ts",
+    "packages/*/tests/**/*.ts",
+    "projects/*/src/**/*.ts",
+    "projects/*/tests/**/*.ts"
+  ]
+}
