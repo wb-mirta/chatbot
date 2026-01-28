@@ -1,5 +1,5 @@
 import type { OutgoingRegular } from '#types'
-import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard'
+import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard/index'
 import type { KeyboardReplyBuilder } from './types'
 
 /**

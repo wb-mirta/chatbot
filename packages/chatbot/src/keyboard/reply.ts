@@ -159,13 +159,13 @@ export function replyKeyboard(
 
             // Билдер для настройки действий кнопки
             const buttonBuilder: ReplyButtonBuilder = {
-              requestContact: (value) => {
+              requestContact: (value = true) => {
 
                 button.request_contact = value
                 return buttonBuilder
 
               },
-              requestLocation: (value) => {
+              requestLocation: (value = true) => {
 
                 button.request_location = value
                 return buttonBuilder
