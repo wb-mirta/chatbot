@@ -79,9 +79,6 @@ export interface InlineKeyboardBuilder {
  *     .text('Свет', t => t.callback('light_on'))
  *     .text('Сайт', t => t.url('https://example.com'))
  *   )
- *   .row(r => r
- *     .text('Контакт', t => t.requestContact())
- *   )
  * )
  * ```
  * @since 0.4.8

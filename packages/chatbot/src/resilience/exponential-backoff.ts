@@ -62,6 +62,8 @@ export function createExponentialBackoff(options: ExponentialBackoffOptions): Ba
 
   return (attempts: number): number => {
 
+    attempts = Math.max(0, Math.floor(attempts))
+
     // Ограничиваем количество попыток, чтобы задержка не росла бесконечно
     if (attempts > maxAttempts)
       attempts = maxAttempts

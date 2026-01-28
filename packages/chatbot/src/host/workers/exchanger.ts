@@ -172,7 +172,7 @@ export function setupExchanger(
     store.sendSuccess()
 
     if (hasErrors)
-      log.debug('Errors gone. Poll delay restored to {} ms', sendInterval)
+      log.debug('Errors gone. Send delay restored to {} ms', sendInterval)
 
     store.isSending = false
 
@@ -247,7 +247,19 @@ export function setupExchanger(
       if (!isString(newValue))
         return
 
-      const outgoing = JSON.parse(newValue) as Outgoing
+      let outgoing: Outgoing
+
+      try {
+
+        outgoing = JSON.parse(newValue) as Outgoing
+
+      }
+      catch (e: unknown) {
+
+        log.error('[Bot] Invalid outgoing payload: {}', e)
+        return
+
+      }
 
       store.enqueueOutgoing(outgoing)
 

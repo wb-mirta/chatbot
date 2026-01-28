@@ -1,5 +1,15 @@
 import { defineTelegramBot, defineAuthorization } from '@mirta/chatbot'
 
+const token = process.env.APP_TELEGRAM_TOKEN
+
+if (!token)
+  throw new Error('APP_TELEGRAM_TOKEN is required')
+
+const allowedUserId = process.env.APP_TELEGRAM_USER
+
+if (!allowedUserId)
+  throw new Error('APP_TELEGRAM_USER is required')
+
 /**
  * Конфигурация системы авторизации для Telegram-бота.
  *
@@ -20,7 +30,7 @@ const auth = defineAuthorization(a => a
   .addPolicy('admin', p => p
     // Разрешить, если: пользователь указан и находится в нужном чате
     .allow(r => r
-      .userId(process.env.APP_TELEGRAM_USER)
+      .userId(allowedUserId)
       .chatId('123123123')
     )
     // Или: любой пользователь из чата-админки
@@ -57,7 +67,7 @@ const auth = defineAuthorization(a => a
 export const useTelegramBot = defineTelegramBot(auth, {
   deviceName: 'telegram',
   deviceTitle: 'Telegram Bot',
-  token: process.env.APP_TELEGRAM_TOKEN,
+  token: token,
   commands: {
     start: { policy: 'admin' },
     show_keyboard: { policy: 'admin' },
