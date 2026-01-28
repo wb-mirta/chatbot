@@ -3,6 +3,22 @@
 import type { InlineKeyboardBuilder, ReplyKeyboardBuilder } from '#keyboard'
 import type { Outgoing, IncomingCommand, IncomingCallback } from '#types'
 
+export interface ReplyBuilder {
+
+  /**
+   * Устанавливает режим разметки текста.
+   *
+   * Поддерживаемые режимы:
+   * - `'HTML'` — разметка в стиле HTML
+   * - `'MarkdownV2'` — разметка в стиле Markdown (Telegram)
+   *
+   * @param mode - Режим разметки
+   * @returns Текущий экземпляр билдера
+   **/
+  parseMode(mode: 'HTML' | 'MarkdownV2'): this
+
+}
+
 /**
  * Интерфейс построителя ответа.
  *
@@ -16,19 +32,24 @@ import type { Outgoing, IncomingCommand, IncomingCallback } from '#types'
  *
  * @example
  * ```ts
- * reply('Выберите действие:', builder => {
- *   builder.inlineKeyboard(k => {
- *     k.row(r => r.text('Включить свет', t => t.callback('light_on')));
- *   });
- * });
+ * reply('Выберите действие:', b => b
+ *   .inlineKeyboard(k => {
+ *     k.row(r => r
+ *       .text('Включить свет', t => t
+ *         .callback('light_on')
+ *       )
+ *     )
+ *   })
+ * })
  * ```
  * @since 0.4.8
  *
  **/
-export interface ReplyBuilder {
+export interface KeyboardReplyBuilder extends ReplyBuilder {
 
   /**
-   * Добавляет инлайн-клавиатуру к сообщению.
+   * Добавляет inline-клавиатуру, которая отображается в чате
+   * под сообщением бота.
    *
    * @param setup - Функция для настройки структуры клавиатуры
    * @returns Текущий экземпляр билдера (для цепочки вызовов)
@@ -37,16 +58,14 @@ export interface ReplyBuilder {
   inlineKeyboard(setup: (k: InlineKeyboardBuilder) => void): ReplyBuilder
 
   /**
-   * Добавляет reply-клавиатуру к сообщению.
+   * Добавляет reply-клавиатуру, которая предлагает пользователю
+   * готовые варианты ответа.
    *
    * @param setup - Функция для настройки кнопок клавиатуры
-   * @param options - Дополнительные параметры:
-   * - `resize` — подстраивать размер под количество кнопок
-   * - `oneTime` — скрывать клавиатуру после нажатия
    * @returns Текущий экземпляр билдера
    *
    **/
-  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void, options?: { resize?: boolean, oneTime?: boolean }): ReplyBuilder
+  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void): ReplyBuilder
 
   /**
    * Добавляет команду удаления текущей клавиатуры.
@@ -57,18 +76,6 @@ export interface ReplyBuilder {
    *
    **/
   removeKeyboard(): ReplyBuilder
-
-  /**
-   * Устанавливает режим разметки текста.
-   *
-   * Поддерживаемые режимы:
-   * - `'HTML'` — разметка в стиле HTML
-   * - `'MarkdownV2'` — разметка в стиле Markdown (Telegram)
-   *
-   * @param mode - Режим разметки
-   * @returns Текущий экземпляр билдера
-   **/
-  parseMode(mode: 'HTML' | 'MarkdownV2'): ReplyBuilder
 
 }
 
@@ -102,7 +109,7 @@ export interface ReplyFunc {
    * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  (text: string, setup: (builder: ReplyBuilder) => void): void
+  (text: string, setup: (builder: KeyboardReplyBuilder) => void): void
 
   /**
    * Отправляет готовое исходящее сообщение.

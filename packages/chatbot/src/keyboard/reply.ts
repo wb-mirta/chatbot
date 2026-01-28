@@ -4,6 +4,8 @@ import type {
   ReplyKeyboardRemove
 } from '#types'
 
+type MinimalButtonBuilder = object
+
 /**
  * Билдер для настройки reply-кнопки.
  *
@@ -12,14 +14,18 @@ import type {
  **/
 interface ReplyButtonBuilder {
   /**
-   * Настраивает запрос контакта.
+   * Настраивает кнопку для запроса контакта.
+   * @param value - Флаг включения запроса контакта.
+   *
    **/
-  requestContact(): ReplyButtonBuilder
+  requestContact(value?: boolean): MinimalButtonBuilder
 
-  /**
-   * Настраивает запрос геолокации.
+  /** Настраивает кнопку для запроса геолокации.
+   * @param value - Флаг включения запроса геолокации.
+   *
    **/
-  requestLocation(): ReplyButtonBuilder
+  requestLocation(value?: boolean): MinimalButtonBuilder
+
 }
 
 /**
@@ -45,8 +51,37 @@ interface ReplyRowBuilder {
  *
  **/
 export interface ReplyKeyboardBuilder {
+
   /**
-   * Добавляет строку.
+   * Устанавливает, будет ли клавиатура скрыта после первого нажатия.
+   *
+   * @param value - Опциональный флаг. По умолчанию `true`.
+   *                Если не передан — включает режим one-time.
+   * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
+   *
+   **/
+  oneTime(value?: boolean): ReplyKeyboardBuilder
+
+  /**
+   * Устанавливает, должен ли размер клавиатуры подстраиваться под количество кнопок.
+   *
+   * При включении этот режим делает клавиатуру компактнее.
+   *
+   * @param value - Опциональный флаг. По умолчанию `true`.
+   *                Если не передан — включает режим изменения размера.
+   * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
+   *
+   **/
+  resize(value?: boolean): ReplyKeyboardBuilder
+
+  /**
+   * Добавляет строку кнопок к клавиатуре.
+   *
+   * Внутри строки можно добавить одну или несколько кнопок с текстом.
+   *
+   * @param setupRow - Функция для настройки кнопок в строке.
+   * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
+   *
    **/
   row(setup: (r: ReplyRowBuilder) => void): ReplyKeyboardBuilder
 }
@@ -59,14 +94,12 @@ export interface ReplyKeyboardBuilder {
  * - Запрашивать геолокацию
  *
  * @param setup - Функция для построения строк и кнопок
- * @param options - Опции отображения клавиатуры
- * @param options.resize - Автоматически подбирать размер (по умолчанию: true)
- * @param options.oneTime - Спрятать клавиатуру после первого использования (по умолчанию: false)
  * @returns Объект клавиатуры в формате Telegram API
  *
  * @example
  * ```ts
  * replyKeyboard(k => k
+ *   .oneTime()
  *   .row(r => r
  *     .text('Отправить контакт', t => t.requestContact())
  *   )
@@ -76,21 +109,32 @@ export interface ReplyKeyboardBuilder {
  *
  **/
 export function replyKeyboard(
-  setup: (builder: ReplyKeyboardBuilder) => void,
-  options?: { resize?: boolean, oneTime?: boolean }
+  setup: (builder: ReplyKeyboardBuilder) => void
 ): ReplyKeyboardMarkup {
+
+  let oneTime = false
+  let resize = true
 
   // Массив строк кнопок
   const rows: ReplyKeyboardButton[][] = []
 
   // Билдер клавиатуры
   const builder: ReplyKeyboardBuilder = {
-    /**
-     * Добавляет строку кнопок.
-     *
-     * @param setupRow - Функция для настройки кнопок в строке
-     * @returns Билдер клавиатуры (для чейнинга)
-     **/
+
+    oneTime(value) {
+
+      oneTime = value !== false
+      return this
+
+    },
+
+    resize(value) {
+
+      resize = value !== false
+      return this
+
+    },
+
     row: (setupRow) => {
 
       // Кнопки текущей строки
@@ -115,29 +159,20 @@ export function replyKeyboard(
 
             // Билдер для настройки действий кнопки
             const buttonBuilder: ReplyButtonBuilder = {
-              /**
-               * Настраивает кнопку для запроса контакта.
-               *
-               * @returns Билдер кнопки (для чейнинга)
-               **/
-              requestContact: () => {
+              requestContact: (value) => {
 
-                button.request_contact = true
+                button.request_contact = value
                 return buttonBuilder
 
               },
-              /**
-               * Настраивает кнопку для запроса геолокации.
-               *
-               * @returns Билдер кнопки (для чейнинга)
-               **/
-              requestLocation: () => {
+              requestLocation: (value) => {
 
-                button.request_location = true
+                button.request_location = value
                 return buttonBuilder
 
               },
             }
+
             setupButton(buttonBuilder)
 
           }
@@ -169,8 +204,8 @@ export function replyKeyboard(
   // Возвращаем результат
   return {
     keyboard: rows,
-    resize_keyboard: options?.resize ?? true,
-    one_time_keyboard: options?.oneTime ?? false,
+    resize_keyboard: resize,
+    one_time_keyboard: oneTime,
   }
 
 }

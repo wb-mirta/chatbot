@@ -1,6 +1,6 @@
 import type { OutgoingRegular } from '#types'
 import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard'
-import type { ReplyBuilder } from './types'
+import type { KeyboardReplyBuilder } from './types'
 
 /**
  * Создаёт построитель ответа, привязанный к конкретному исходящему сообщению.
@@ -29,9 +29,9 @@ import type { ReplyBuilder } from './types'
  * @since 0.4.8
  *
  **/
-export function createReplyBuilder(message: Partial<OutgoingRegular>): ReplyBuilder {
+export function createReplyBuilder(message: Partial<OutgoingRegular>): KeyboardReplyBuilder {
 
-  return {
+  const builder: KeyboardReplyBuilder = {
 
     /**
      * Добавляет инлайн-клавиатуру к сообщению.
@@ -52,14 +52,12 @@ export function createReplyBuilder(message: Partial<OutgoingRegular>): ReplyBuil
      *
      * @param setup - Функция для настройки кнопок
      * @param options - Параметры отображения:
-     * - `resize` — подстраивать размер под контент
-     * - `oneTime` — скрыть клавиатуру после нажатия
      * @returns Текущий экземпляр билдера
      *
      **/
-    replyKeyboard(setup, options) {
+    replyKeyboard(setup) {
 
-      message.keyboard = replyKeyboard(setup, options)
+      message.keyboard = replyKeyboard(setup)
       return this
 
     },
@@ -100,5 +98,7 @@ export function createReplyBuilder(message: Partial<OutgoingRegular>): ReplyBuil
     },
 
   }
+
+  return builder
 
 }

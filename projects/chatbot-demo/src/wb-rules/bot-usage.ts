@@ -33,9 +33,25 @@ bot.onCommand('start', (_context, reply) => {
 
 })
 
-bot.onCallback('hello', (_context, done) => {
+bot.onCommand('show_keyboard', (_context, reply) => {
+
+  log.debug('Preparing answer')
+
+  reply('Выберите вариант', b => b
+    .replyKeyboard(k => k
+      .oneTime()
+      // Строка клавиатуры
+      .row(r => r
+        .text('Привет!')
+        .text('Как дела?')
+      ))
+  )
+
+})
+
+bot.onCallback('hello', (context, done) => {
 
   done('Hello!')
-  bot.sendMessage(_context.chatId, 'Hello again.')
+  bot.sendMessage(context.chatId, 'Hello again.')
 
 })

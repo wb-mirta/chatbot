@@ -183,6 +183,8 @@ function toSubject(update: MaxUpdate): Subject {
     case 'message_callback':
       return {
         username: update.callback.user.username,
+        // TODO: Verify chatId semantics when MAX bot API becomes available
+        // Using user_id as chatId - may need to use message?.recipient.chat_id
         chatId: update.callback.user.user_id,
       }
 
@@ -267,8 +269,7 @@ function isMessageCallback(update: MaxUpdate): update is MaxMessageCallbackUpdat
 
   return (
     update.update_type === 'message_callback'
-    && !!update.callback.payload
-    && !!update.callback.user.username
+    && typeof update.callback.payload === 'string'
   )
 
 }
@@ -476,7 +477,7 @@ export function createMaxAdapter<
     if (!config) {
 
       log.warning(
-        '[Telegram] Access to not existing callback "{}" by {}',
+        '[Max] Access to not existing callback "{}" by {}',
         payload,
         JSON.stringify(subject)
       )
@@ -491,7 +492,7 @@ export function createMaxAdapter<
     if (!isAllowed) {
 
       log.warning(
-        '[Telegram] Access denied to callback "{}" by {}',
+        '[Max] Access denied to callback "{}" by {}',
         payload,
         JSON.stringify(subject)
       )
@@ -619,7 +620,7 @@ export function createMaxAdapter<
       else {
 
         log.debug(
-          '[Telegram] Send failed: exitCode={}, output={}, errorOutput={}',
+          '[Max] Send failed: exitCode={}, output={}, errorOutput={}',
           exitCode,
           output,
           errorOutput

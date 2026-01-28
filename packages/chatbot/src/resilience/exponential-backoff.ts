@@ -33,10 +33,6 @@ interface ExponentialBackoffOptions {
 /**
  * Создаёт функцию экспоненциальной задержки.
  *
- * Возвращает функцию, которая вычисляет интервал задержки по формуле:
- * `delay = 2^attempts * initialDelay`, что обеспечивает экспоненциальный рост паузы
- * между попытками (например: 1с, 2с, 4с, 8с и т.д.).
- *
  * После достижения `maxAttempts` задержка стабилизируется и больше не растёт.
  *
  * Используется для повышения устойчивости системы при сбоях:
@@ -49,7 +45,7 @@ interface ExponentialBackoffOptions {
  *
  * @example
  * ```ts
- * const backoff = createExponentialBackoff({ initialDelay: 1000, maxAttempts: 6 });
+ * const backoff = createExponentialBackoff({ delay: 1000, maxAttempts: 6 });
  *
  * log(backoff(0)); // 1000
  * log(backoff(1)); // 2000

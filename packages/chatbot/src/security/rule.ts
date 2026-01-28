@@ -13,7 +13,7 @@ type NonEmptyArray<TValue> = [TValue, ...TValue[]]
  * @since 0.4.8
  *
  **/
-export type Rule<TMethod = SubjectField> = Record<SubjectField, (...values: NonEmptyArray<string>) => Rule<TMethod>>
+export type Rule = Record<SubjectField, (...values: NonEmptyArray<string>) => Rule>
 
 /**
  * Фабрика для создания функции проверки доступа.
@@ -38,51 +38,26 @@ export function createRule(
 
   const config: RuleConfig<AccessMap> = {}
 
+  function addValues(field: SubjectField, values: NonEmptyArray<string>) {
+
+    config[field] ??= {}
+
+    for (const value of values)
+      config[field][value] = isAllow
+
+    return rule
+
+  }
+
   const rule: Rule = {
 
-    userId(...values) {
+    userId: (...values) => addValues('userId', values),
 
-      config.userId ??= {}
+    username: (...values) => addValues('username', values),
 
-      for (const value of values)
-        config.userId[value] = isAllow
+    chatId: (...values) => addValues('chatId', values),
 
-      return rule
-
-    },
-
-    username(...values) {
-
-      config.username ??= {}
-
-      for (const value of values)
-        config.username[value] = isAllow
-
-      return rule
-
-    },
-
-    chatId(...values) {
-
-      config.chatId ??= {}
-
-      for (const value of values)
-        config.chatId[value] = isAllow
-
-      return rule
-
-    },
-
-    chatType(...values) {
-
-      config.chatType ??= {}
-
-      for (const value of values)
-        config.chatType[value] = isAllow
-
-      return rule
-
-    },
+    chatType: (...values) => addValues('chatType', values),
 
   }
 

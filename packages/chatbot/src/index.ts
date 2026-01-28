@@ -14,7 +14,7 @@ export { defineAuthorization } from '#security/authorization'
  * @since 0.4.8
  *
  **/
-let instance: object | undefined
+const instances: Record<string, object | undefined> = {}
 
 // Polyfill для Object.entries (в случае отсутствия в среде)
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -84,7 +84,7 @@ export function defineTelegramBot<
 
   return function useTelegramBot() {
 
-    return (instance ??= createBot(host)) as Bot<TCommand, TCallback>
+    return (instances[options.deviceName] ??= createBot(host)) as Bot<TCommand, TCallback>
 
   }
 

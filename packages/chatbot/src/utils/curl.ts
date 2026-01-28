@@ -256,7 +256,7 @@ function appendData(
       if (typeof value === 'object')
         throw new Error('[post] Multipart format required')
 
-      args.push('-d', `${name}=${value}`)
+      args.push('-d', `${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
 
     }
 

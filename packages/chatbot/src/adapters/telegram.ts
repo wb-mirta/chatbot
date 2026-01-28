@@ -94,7 +94,7 @@ interface TelegramCallbackQuery {
   /** Пользователь, нажавший кнопку */
   from: TelegramFrom
   /** Сообщение, к которому привязана кнопка */
-  message: { chat: Chat, message_id: number }
+  message?: { chat: Chat, message_id: number }
   /** Данные, привязанные к кнопке (callback_data) */
   data: string
 }
@@ -207,7 +207,8 @@ export function telegramAdapter<
 
     const { text, from, chat, message_id } = message
 
-    const [command, ...args] = text.slice(1).split(' ')
+    const [rawCommand, ...args] = text.slice(1).split(' ')
+    const command = rawCommand.split('@')[0]
 
     const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined
 
@@ -273,14 +274,26 @@ export function telegramAdapter<
 
     const config = callbacks[data as TCallback] as ActionConfig<TPolicy> | undefined
 
+    if (!message) {
+
+      log.warning(
+        '[Telegram] Rejected callback "{}" from {}: no message context (inline mode)',
+        data,
+        JSON.stringify({ userId: from.id, username: from.username })
+      )
+
+      return
+
+    }
+
     const subject: Subject = {
       userId: from.id,
       username: from.username,
-      // chatId: chat.id,
-      // chatType: chat.type,
+      chatId: message.chat.id,
+      chatType: message.chat.type,
     }
 
-    // Если команда не существует - игнорируем
+    // Если callback не существует - игнорируем
     if (!config) {
 
       log.warning(
@@ -531,13 +544,13 @@ export function telegramAdapter<
 
       body.text = text
 
-      if (parseMode)
-        body.parse_mode = parseMode === 'HTML' ? 'HTML' : 'MarkdownV2'
-
-      if (keyboard)
-        body.reply_markup = JSON.stringify(keyboard)
-
     }
+
+    if (parseMode)
+      body.parse_mode = parseMode === 'HTML' ? 'HTML' : 'MarkdownV2'
+
+    if (keyboard)
+      body.reply_markup = JSON.stringify(keyboard)
 
     runCurlPost(url, {
       mode,

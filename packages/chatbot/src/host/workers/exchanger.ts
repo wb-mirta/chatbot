@@ -1,7 +1,7 @@
 import { isString } from '@mirta/basics'
 import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants'
 import { TOPICS } from '#host/device'
-import { createExponentialBackoff } from '#resilence/exponential-backoff'
+import { createExponentialBackoff } from '#resilience/exponential-backoff'
 import { useBotStore } from '#store'
 import type { BotAdapter, Outgoing } from '#types'
 
@@ -280,7 +280,7 @@ export function setupExchanger(
         store.isEnabled = true
 
         startTicker(pollTimerName, pollBackoffInterval(store.stats.pollErrors))
-        startTicker(sendTimerName, pollBackoffInterval(store.stats.sendErrors))
+        startTicker(sendTimerName, sendBackoffInterval(store.stats.sendErrors))
         startTicker(mqttTimerName, mqttInterval)
 
       }

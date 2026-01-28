@@ -21,16 +21,6 @@ interface InlineButtonBuilder {
   url(url: string): InlineButtonBuilder
 
   /**
-   * Настраивает запрос контакта.
-   **/
-  requestContact(): InlineButtonBuilder
-
-  /**
-   * Настраивает запрос геолокации.
-   **/
-  requestLocation(): InlineButtonBuilder
-
-  /**
    * Переключает на инлайн-поиск с начальным запросом.
    **/
   switchInlineQuery(query: string): InlineButtonBuilder
@@ -157,28 +147,6 @@ export function inlineKeyboard(
               url: (url) => {
 
                 button.url = url
-                return buttonBuilder
-
-              },
-              /**
-               * Настраивает кнопку для запроса контакта.
-               *
-               * @returns Билдер кнопки (для чейнинга)
-               **/
-              requestContact: () => {
-
-                button.request_contact = true
-                return buttonBuilder
-
-              },
-              /**
-               * Настраивает кнопку для запроса геолокации.
-               *
-               * @returns Билдер кнопки (для чейнинга)
-               **/
-              requestLocation: () => {
-
-                button.request_location = true
                 return buttonBuilder
 
               },

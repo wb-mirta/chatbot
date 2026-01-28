@@ -31,7 +31,7 @@ pnpm add @mirta/chatbot
 ## 🛠️ Быстрый старт
 
 1. **Создайте Telegram-бота** через [@BotFather](https://t.me/BotFather) → получите токен
-2. **Добавьте токен в `.env.local`** вашего проекта:
+2. **Добавьте токен в `.env.local`** вашего проекта
 
 ```env
 # Токен доступа бота
@@ -39,7 +39,7 @@ APP_TELEGRAM_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
 # Ваш ID в Telegram
 APP_TELEGRAM_USER=123456789
 ```
-3. **Настройте бота** в модуле:
+3. **Настройте бота** в модуле
 
 ```ts
 // src/wb-rules-modules/bot-telegram.ts
@@ -60,7 +60,7 @@ export const useTelegramBot = defineTelegramBot(auth, {
   }
 })
 ```
-4. **Используйте бота в скриптах**:
+4. **Используйте бота в скриптах**
 
 ```ts
 // src/wb-rules/bot-usage.ts

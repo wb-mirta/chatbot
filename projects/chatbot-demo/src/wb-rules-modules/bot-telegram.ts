@@ -60,6 +60,7 @@ export const useTelegramBot = defineTelegramBot(auth, {
   token: process.env.APP_TELEGRAM_TOKEN,
   commands: {
     start: { policy: 'admin' },
+    show_keyboard: { policy: 'admin' },
     reboot: { policy: 'subscriber' },
   },
   callbacks: {
