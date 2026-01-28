@@ -1,88 +1,9 @@
 import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants'
 import type { AuthorizationBuilder } from '#security/types'
 import { useBotStore, useAuthStore } from '#store'
-import type { BotAdapter, BotHost, Outgoing } from '#types'
+import type { BotAdapter, BotHost, HostOptions, Outgoing } from '#types'
 import { setupDevice, TOPICS } from './device'
 import { setupExchanger } from './workers/exchanger'
-
-/**
- * Параметры конфигурации хоста бота.
- *
- * Определяет основные настройки виртуального устройства, токен, интервалы опроса
- * и дополнительные параметры безопасности и производительности.
- *
- * @since 0.4.8
- *
- **/
-export interface BotOptions {
-
-  /**
-   * Уникальное имя виртуального устройства.
-   * Используется как идентификатор в MQTT-топиках и хранилище.
-   *
-   **/
-  deviceName: string
-
-  /**
-   * Отображаемое название устройства в интерфейсе Wiren Board.
-   *
-   **/
-  deviceTitle: WbRules.Title
-
-  /**
-   * Токен доступа к API бота (например, Telegram Bot API).
-   **/
-  token: string
-
-  /**
-   * Интервал опроса входящих обновлений (в миллисекундах).
-   *
-   * По умолчанию — {@link DEFAULT_POLL_INTERVAL}
-   *
-   **/
-  pollInterval?: number
-
-  /**
-   * Интервал отправки исходящих сообщений (в миллисекундах).
-   *
-   * По умолчанию — {@link DEFAULT_SEND_INTERVAL}
-   *
-   **/
-  sendInterval?: number
-
-  /**
-   * Интервал публикации входящих сообщений в MQTT (в миллисекундах).
-   *
-   * По умолчанию — {@link DEFAULT_MQTT_INTERVAL}
-   *
-   **/
-  mqttInterval?: number
-
-  /**
-   * Таймаут ожидания ответа при опросе (в секундах).
-   *
-   * По умолчанию — {@link DEFAULT_POLL_TIMEOUT}
-   *
-   **/
-  pollTimeout?: number
-
-  /**
-   * Таймаут ожидания отправки сообщения (в секундах).
-   *
-   * По умолчанию — {@link DEFAULT_SEND_TIMEOUT}
-   *
-   **/
-  sendTimeout?: number
-
-  /**
-   * Максимальное количество обновлений, получаемых за один запрос.
-   *
-   * По умолчанию — {@link DEFAULT_INCOMING_LIMIT}
-   *
-   **/
-  incomingLimit?: number
-
-}
 
 /**
  * Глобальный флаг, указывающий, была ли уже инициализирована система бота.
@@ -128,7 +49,7 @@ let isInitialized = false
 export function defineBotHost(
   auth: AuthorizationBuilder,
   adapter: BotAdapter,
-  options: BotOptions
+  options: HostOptions
 ): BotHost {
 
   const {

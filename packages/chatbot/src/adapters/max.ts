@@ -1,5 +1,5 @@
 import { useBotStore } from '#store'
-import type { ActionConfig, BotAdapter, BotOptions } from '#types'
+import type { ActionConfig, AdapterOptions, BotAdapter } from '#types'
 import { runCurlGet, runCurlPost } from '#utils/curl'
 import { DEFAULT_INCOMING_LIMIT, DEFAULT_POLL_TIMEOUT } from '#constants'
 import type { Subject } from '#security/types'
@@ -305,7 +305,7 @@ export function createMaxAdapter<
   TCallback extends string
 >(
 
-  options: BotOptions<TPolicy, TCommand, TCallback>
+  options: AdapterOptions<TPolicy, TCommand, TCallback>
 
 ): BotAdapter {
 

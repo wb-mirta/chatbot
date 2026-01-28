@@ -145,6 +145,40 @@ export interface ActionConfig<TPolicy> {
 export type Config<TPolicy extends string, TValue extends string>
   = Record<TValue, ActionConfig<TPolicy>>
 
+export interface HostOptions {
+
+  /** Имя виртуального устройства */
+  deviceName: string
+
+  /** Название устройства в интерфейсе Wiren Board. */
+  deviceTitle: WbRules.Title
+
+  /**
+   * Интервал опроса входящих обновлений (в миллисекундах).
+   *
+   * По умолчанию — {@link DEFAULT_POLL_INTERVAL}
+   *
+   **/
+  pollInterval?: number
+
+  /**
+   * Интервал отправки исходящих сообщений (в миллисекундах).
+   *
+   * По умолчанию — {@link DEFAULT_SEND_INTERVAL}
+   *
+   **/
+  sendInterval?: number
+
+  /**
+   * Интервал публикации входящих сообщений в MQTT (в миллисекундах).
+   *
+   * По умолчанию — {@link DEFAULT_MQTT_INTERVAL}
+   *
+   **/
+  mqttInterval?: number
+
+}
+
 /**
  * Параметры бота: общая конфигурация для создания экземпляра.
  *
@@ -155,7 +189,7 @@ export type Config<TPolicy extends string, TValue extends string>
  * @since 0.4.8
  *
  **/
-export interface BotOptions<
+export interface AdapterOptions<
   TPolicy extends string,
   TCommand extends string,
   TCallback extends string
@@ -163,45 +197,37 @@ export interface BotOptions<
 
   /** Имя виртуального устройства */
   deviceName: string
-  /** Отображаемое название в интерфейсе */
-  deviceTitle: WbRules.Title
+
   /** Токен авторизации в API мессенджера */
   token: string
-  /** Интервал опроса обновлений (мс) */
-  pollInterval?: number
-  /** Интервал публикации в MQTT (мс) */
-  mqttInterval?: number
+
   /** Таймаут опроса (сек) */
   pollTimeout?: number
+
   /** Таймаут отправки (сек) */
   sendTimeout?: number
-  /** Макс. кол-во обновлений за раз */
+
+  /**
+   * Максимальное количество обновлений, получаемых за один запрос.
+   *
+   * По умолчанию — {@link DEFAULT_INCOMING_LIMIT}
+   *
+   **/
   incomingLimit?: number
+
   /** Конфигурация команд */
   commands?: Config<TPolicy, TCommand>
+
   /** Конфигурация колбэков */
   callbacks?: Config<TPolicy, TCallback>
 
 }
 
-// =============================================================================
-// 🧩 Интерфейсы для адаптеров
-// =============================================================================
-
-/**
- * Общие параметры для адаптера мессенджера.
- *
- * @since 0.4.8
- *
- **/
-export interface AdapterOptions {
-  /** Лимит обновлений */
-  incomingLimit?: number
-  /** Таймаут опроса */
-  pollTimeout?: number
-  /** Таймаут отправки */
-  sendTimeout?: number
-}
+export type BotOptions<
+  TPolicy extends string,
+  TCommand extends string,
+  TCallback extends string
+> = AdapterOptions<TPolicy, TCommand, TCallback> & HostOptions
 
 /**
  * Фабрика создания адаптера.
