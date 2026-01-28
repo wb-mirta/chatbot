@@ -71,7 +71,7 @@ export interface OutgoingContext {
 export interface OutgoingRegular extends OutgoingContext {
   type: 'regular'
   /** ID чата, куда отправлять */
-  chatId: number
+  chatId: number | string
   /** Текст сообщения */
   text?: string
   /** Встроенная клавиатура */
