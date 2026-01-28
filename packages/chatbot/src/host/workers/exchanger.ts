@@ -4,6 +4,7 @@ import { TOPICS } from '#host/device'
 import { createExponentialBackoff } from '#resilience/exponential-backoff'
 import { useBotStore } from '#store'
 import type { BotAdapter, Outgoing } from '#types'
+import { assertValueIsOutgoing } from '#assertions/outgoing'
 
 /**
  * Параметры настройки обмена данными между ботом и внешним API.
@@ -261,7 +262,17 @@ export function setupExchanger(
 
       }
 
-      store.enqueueOutgoing(outgoing)
+      try {
+
+        assertValueIsOutgoing(outgoing)
+        store.enqueueOutgoing(outgoing)
+
+      }
+      catch (e: unknown) {
+
+        log.error('[Bot] Invalid outgoing structure: {}', e)
+
+      }
 
     },
   })
