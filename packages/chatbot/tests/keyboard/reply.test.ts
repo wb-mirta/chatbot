@@ -47,6 +47,15 @@ describe('Keyboard: Reply', () => {
 
     })
 
+    it('should disable oneTime when passed false', () => {
+
+      const keyboard = replyKeyboard(b => b
+        .oneTime(false)
+      )
+      expect(keyboard.one_time_keyboard).toBe(false)
+
+    })
+
     it('should set resize keyboard flag', () => {
 
       const keyboard = replyKeyboard(b => b
@@ -54,6 +63,15 @@ describe('Keyboard: Reply', () => {
       )
 
       expect(keyboard.resize_keyboard).toBe(true)
+
+    })
+
+    it('should disable resize when passed false', () => {
+
+      const keyboard = replyKeyboard(b => b
+        .resize(false)
+      )
+      expect(keyboard.resize_keyboard).toBe(false)
 
     })
 

@@ -1,10 +1,9 @@
 import type {
+  ButtonBuilder,
   ReplyKeyboardButton,
   ReplyKeyboardMarkup,
   ReplyKeyboardRemove
-} from '#types'
-
-type MinimalButtonBuilder = object
+} from './types'
 
 /**
  * Билдер для настройки reply-кнопки.
@@ -18,13 +17,13 @@ interface ReplyButtonBuilder {
    * @param value - Флаг включения запроса контакта.
    *
    **/
-  requestContact(value?: boolean): MinimalButtonBuilder
+  requestContact(value?: boolean): ButtonBuilder
 
   /** Настраивает кнопку для запроса геолокации.
    * @param value - Флаг включения запроса геолокации.
    *
    **/
-  requestLocation(value?: boolean): MinimalButtonBuilder
+  requestLocation(value?: boolean): ButtonBuilder
 
 }
 

@@ -102,25 +102,6 @@ describe('Keyboard: Inline', () => {
 
     })
 
-    it('should support chaining button configurations', () => {
-
-      const keyboard = inlineKeyboard(b =>
-        b.row(r =>
-          r.text('Button', (btn) => {
-
-            btn.callback('data')
-            btn.url('https://example.com')
-
-          })
-        )
-      )
-
-      const button = keyboard.inline_keyboard[0][0]
-      expect(button.callback_data).toBe('data')
-      expect(button.url).toBe('https://example.com')
-
-    })
-
     it('should ignore empty rows', () => {
 
       const keyboard = inlineKeyboard((b) => {

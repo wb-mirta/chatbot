@@ -52,13 +52,11 @@ describe('Security: Rule', () => {
 
     it('should support chaining multiple field setters', () => {
 
-      const rule = createRule('allow', (r) => {
-
-        r.userId('123')
-        r.chatType('private')
-        r.username('admin')
-
-      })
+      const rule = createRule('allow', r => r
+        .userId('123')
+        .chatType('private')
+        .username('admin')
+      )
 
       expect(rule).toHaveProperty('userId')
       expect(rule).toHaveProperty('chatType')

@@ -1,7 +1,8 @@
 import type {
+  ButtonBuilder,
   InlineKeyboardButton,
   InlineKeyboardMarkup
-} from '#types'
+} from './types'
 
 /**
  * Билдер для настройки inline-кнопки.
@@ -13,22 +14,22 @@ interface InlineButtonBuilder {
   /**
    * Устанавливает callback-данные.
    **/
-  callback(data: string): InlineButtonBuilder
+  callback(data: string): ButtonBuilder
 
   /**
    * Устанавливает URL для перехода.
    **/
-  url(url: string): InlineButtonBuilder
+  url(url: string): ButtonBuilder
 
   /**
    * Переключает на инлайн-поиск с начальным запросом.
    **/
-  switchInlineQuery(query: string): InlineButtonBuilder
+  switchInlineQuery(query: string): ButtonBuilder
 
   /**
    * Переключает на инлайн-поиск в текущем чате.
    **/
-  switchInlineQueryCurrentChat(query: string): InlineButtonBuilder
+  switchInlineQueryCurrentChat(query: string): ButtonBuilder
 }
 
 /**
