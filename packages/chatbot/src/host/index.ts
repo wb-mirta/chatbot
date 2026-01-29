@@ -3,7 +3,7 @@ import type { AuthorizationBuilder } from '#security/types'
 import { useBotStore, useAuthStore } from '#store'
 import type { BotAdapter, BotHost, HostOptions, Outgoing } from '#types'
 import { setupDevice, TOPICS } from './device'
-import { setupExchanger } from './workers/exchanger'
+import { setupExchanger } from './exchanger'
 
 /**
  * Глобальный флаг, указывающий, была ли уже инициализирована система бота.

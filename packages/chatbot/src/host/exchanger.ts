@@ -2,7 +2,7 @@ import { isString } from '@mirta/basics'
 import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants'
 import { TOPICS } from '#host/device'
 import { createExponentialBackoff } from '#resilience/exponential-backoff'
-import { useBotStore } from '#store'
+import { useBotStore } from '#store/index'
 import type { BotAdapter, Outgoing } from '#types'
 import { assertValueIsOutgoing } from '#assertions/outgoing'
 
