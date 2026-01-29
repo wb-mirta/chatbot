@@ -10,7 +10,7 @@
 
 Примеры реализованы в:
 - [src/wb-rules-modules/bot-telegram.ts](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/src/wb-rules-modules/bot-telegram.ts) — настройка бота и политик
-- [src/wb-rules/bot-usage.ts](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/src/wb-rules/bot-usage.ts) — обработка команд и колбэков
+- [src/wb-rules/01-bot-usage.ts](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/src/wb-rules/01-bot-usage.ts) — обработка команд и колбэков
 
 > 💡 Вы можете собрать и задеплоить этот проект на свой контроллер Wiren Board — он полностью рабочий.
 

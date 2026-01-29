@@ -30,13 +30,13 @@ pnpm add @mirta/chatbot
 
 Это **монорепозиторий** — он содержит несколько проектов:
 
-#### 1. [`packages/chatbot`](https://github.com/wb-mirta/chatbot/blob/latest/packages/chatbot/README.md) — ядро бота
+#### 1. [`packages/chatbot`](https://github.com/wb-mirta/chatbot/blob/latest/packages/chatbot/README.ru.md) — ядро бота
 - Готовый модуль для подключения
 - Работает только внутри проектов Mirta
 - Публикуется в npm как [`@mirta/chatbot`](https://www.npmjs.com/package/@mirta/chatbot)
 - Включает авторизацию, обработку команд, защиту от флуда
 
-#### 2. [`projects/chatbot-demo`](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/README.md) — живой пример
+#### 2. [`projects/chatbot-demo`](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/README.ru.md) — живой пример
 - Полностью рабочий проект Mirta
 - Показывает, как использовать бота в реальных условиях
 - Подходит для тестирования и отладки новых функций
@@ -48,7 +48,7 @@ pnpm add @mirta/chatbot
 
 Клонируйте, запустите `chatbot-demo`, проверьте изменения — и отправьте Pull Request.
 
-Подробная инструкция по настройке тестового стенда — в [руководстве по запуску примера](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/README.md).
+Подробная инструкция по настройке тестового стенда — в [руководстве по запуску примера](https://github.com/wb-mirta/chatbot/blob/latest/projects/chatbot-demo/README.ru.md).
 
 ### 🌐 Будут ли другие мессенджеры?
 
