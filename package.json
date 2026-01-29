@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "0.4.8",
   "license": "Unlicense",
   "type": "module",
   "scripts": {
@@ -36,9 +37,9 @@
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "globals": "^17.0.0",
-    "lint-staged": "^16.2.7",    
+    "lint-staged": "^16.2.7",
     "rollup": "^4.55.1",
-    "simple-git-hooks": "^2.13.1",    
+    "simple-git-hooks": "^2.13.1",
     "tslib": "^2.8.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.53.1",

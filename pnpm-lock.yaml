@@ -74,6 +74,9 @@ importers:
 
   packages/chatbot:
     dependencies:
+      '@mirta/basics':
+        specifier: 0.4.8
+        version: 0.4.8
       '@mirta/store':
         specifier: 0.4.8
         version: 0.4.8(@mirta/basics@0.4.8)(@mirta/polyfills@0.4.8)
