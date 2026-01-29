@@ -16,8 +16,6 @@ export interface InlineKeyboardButton {
   text: string
   callback_data?: string
   url?: string
-  request_contact?: boolean
-  request_location?: boolean
   switch_inline_query?: string
   switch_inline_query_current_chat?: string
   login_url?: {
