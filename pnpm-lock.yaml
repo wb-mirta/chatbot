@@ -12,20 +12,20 @@ importers:
         specifier: ^9.39.2
         version: 9.39.2
       '@mirta/cli':
-        specifier: 0.4.8
-        version: 0.4.8
+        specifier: 0.4.11
+        version: 0.4.11
       '@mirta/globals':
-        specifier: 0.4.8
-        version: 0.4.8
+        specifier: 0.4.11
+        version: 0.4.11
       '@mirta/rollup':
-        specifier: 0.4.8
-        version: 0.4.8(rollup@4.57.1)(tslib@2.8.1)(typescript@5.9.3)
+        specifier: 0.4.11
+        version: 0.4.11(rollup@4.57.1)(tslib@2.8.1)(typescript@5.9.3)
       '@mirta/testing':
-        specifier: 0.4.8
-        version: 0.4.8(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))
+        specifier: 0.4.11
+        version: 0.4.11(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))
       '@mirta/tsconfig':
-        specifier: 0.4.8
-        version: 0.4.8
+        specifier: 0.4.11
+        version: 0.4.11
       '@stylistic/eslint-plugin':
         specifier: ^5.7.0
         version: 5.7.1(eslint@9.39.2)
@@ -75,11 +75,11 @@ importers:
   packages/chatbot:
     dependencies:
       '@mirta/basics':
-        specifier: 0.4.8
-        version: 0.4.8
+        specifier: 0.4.11
+        version: 0.4.11
       '@mirta/store':
-        specifier: 0.4.8
-        version: 0.4.8(@mirta/basics@0.4.8)(@mirta/polyfills@0.4.8)
+        specifier: 0.4.11
+        version: 0.4.11(@mirta/basics@0.4.11)(@mirta/polyfills@0.4.11)
 
   projects/chatbot-demo:
     dependencies:
@@ -849,56 +849,56 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mirta/basics@0.4.8':
-    resolution: {integrity: sha512-hMGchyAc/2jMBr6w+UucYhaOsv0+wdb/e2xHlmtTtCl/usuJuTgYIikzQ25Go2Lp0MyiOKV2TvmAXhOQ0MBDEg==}
+  '@mirta/basics@0.4.11':
+    resolution: {integrity: sha512-uwwHSMqNisbSpYwoWdBpt/OTZNtHkRh9zeOppQwWmex7MDCCKVewa8sJkaSQTCW/7UqXdi28UFv+xdWNP0be+A==}
 
-  '@mirta/cli@0.4.8':
-    resolution: {integrity: sha512-n58s0DQUv3quW2+dLapPlMCdukKBaWCRrbFCMCmw+mB2Tf7TnYA+1wtsD0I7pPqdBYBENGJHfzbEd0m4D1pE+Q==}
+  '@mirta/cli@0.4.11':
+    resolution: {integrity: sha512-FEWO89/KcYrPQdgwdG0/pwpsY6FAGCUp96RW6ye5gRrGNGEyVvwC9gzWzbFwZh0B9eNuE61D+NasYskHHasPKQ==}
     engines: {node: '>=24.12.0'}
     hasBin: true
 
-  '@mirta/env-loader@0.4.8':
-    resolution: {integrity: sha512-nYBc8uwoMXsTCxtKyIVTxsCBd+SPqFbqTm/gpjFq18zxurdV9OM1prCn4Vft+WErpofrhUQYUCDf9uFzzm8aYg==}
+  '@mirta/env-loader@0.4.11':
+    resolution: {integrity: sha512-UfPAM3BJsQGgt4LRmRNJJG5tLBxWUnpOTkqOICnMB2QyY7XkhWHHEsa6449vm9tX75enaKpvUUahPILcwSN8vA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/globals@0.4.8':
-    resolution: {integrity: sha512-iTOgARNYLmIkIobG94xmlqM80UE7ynmyUKtz8Ql3PFIOnbXljKlG0mZWc4IyuZhMxjvYDSLzmuJ7KtmHRX079g==}
+  '@mirta/globals@0.4.11':
+    resolution: {integrity: sha512-4iF6j7b5VoU3MP3pVJd7xaoEYudfSAXxh5oyXG4MpjvfBENoMZpX4mAoCkB7nQbC06iHg58mvYYMj4v+1jd4KQ==}
 
-  '@mirta/i18n@0.4.8':
-    resolution: {integrity: sha512-mtKC1q8GCQ7Z5sLfni+YnzqFk5Des8JX/rl1wt4In7rcaAE3tPhRmg8ncDexA5pIT6wjSpVORCnDDalO1GJb6g==}
+  '@mirta/i18n@0.4.11':
+    resolution: {integrity: sha512-GYBpxeebS1qIP/cu7fSuLTuELmT4m4+tGhVp7r8hzPrU4DmfDds03J3+F8R+BKIXtqvrFqSCllOQSzfir/Jd5A==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/package@0.4.8':
-    resolution: {integrity: sha512-WxWsJAmSLQwLjRtX2jgVGLgQXiCXFbBZ9ShiC+UwZOITNf9zFAkROwC+N0MNpWg2i6hpa9Xq8aOnIQKPsBqEQA==}
+  '@mirta/package@0.4.11':
+    resolution: {integrity: sha512-de6nc20wIU8Fydc7pFPZlU3AIFlx3o6yoLU6cYL9++vyQCEv23UinmFUI4dGTd5OhyVhpVYCb3zhIOvL5BbyLA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/polyfills@0.4.8':
-    resolution: {integrity: sha512-v8Moa9sne70xldhATyNRGNDHmqoAcfZF+K8OZq73sk3YR3FMRyU7OOwCtkm/rodmA7op0buQYSb/fm6rIZIkxQ==}
+  '@mirta/polyfills@0.4.11':
+    resolution: {integrity: sha512-YP0SWWXeg6xu59U0jejRdFVLWieTHNWmSyfwxX9hCutBvSg2wgoNFq6XxQz6179C5daKtA+hSuov9LO8zWGCGQ==}
 
-  '@mirta/rollup@0.4.8':
-    resolution: {integrity: sha512-tL4qbyg3/OVHIcx5z2OuSLDRqLlEyiUt+Di1QfwUY+oBFjNHSowZ6MaU0wIUjA77TyeWq1kFRHYhPxiyrR4HfA==}
+  '@mirta/rollup@0.4.11':
+    resolution: {integrity: sha512-dbWmLu7CScze4gujJ6cCIi/b2KG8Ug6wGzkN8uNiD+ENLMG05aJl0VntdBRaWbW0Yiuk8zrU1fOt2e3TAWANzg==}
     peerDependencies:
       rollup: '>= 4.52.5 < 5'
       typescript: '>= 5.8.3 < 6'
 
-  '@mirta/staged-args@0.4.8':
-    resolution: {integrity: sha512-dfyTg9RNJdu2hCh/wxTA7lq7eQMhhAsB5zYrpd6w9hdtHvX1g07BKezcrve7PQnWSuVCj/8gMCd8DzCXV66hvg==}
+  '@mirta/staged-args@0.4.11':
+    resolution: {integrity: sha512-JifEhzZwjy/lepgfrMkR0u4kkO1dXj19Fzu9iXQ7QCnfdzQoHoNMVSOO2XQOVe5PuA8xyU+ok/luQpRiBE31tw==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/store@0.4.8':
-    resolution: {integrity: sha512-LuMab5RV+T1IF95upYgIKQYfAYj0GVygjOCLyI4rdRuJRFerk58HKEVhUPhCmSmxf4Np/PQAIabrcFOOOTdJjw==}
+  '@mirta/store@0.4.11':
+    resolution: {integrity: sha512-9txFgcJ4l/REJpLhwlNoEmcc7Jel/922aKqMLiESU5fA/TmXi9eurvjNNkqMVhx6MRWRfC5wE8vnevFdYrJNNQ==}
     peerDependencies:
-      '@mirta/basics': 0.4.8
-      '@mirta/polyfills': 0.4.8
+      '@mirta/basics': 0.4.11
+      '@mirta/polyfills': 0.4.11
 
-  '@mirta/testing@0.4.8':
-    resolution: {integrity: sha512-FoeYLQRaL6KwMMp8qypMIv0Qw4cYZY/abMIBMgmBp57LXhINiJCSdjUuz7RTwi6plRWFAJRprksAoTNRhRT97Q==}
+  '@mirta/testing@0.4.11':
+    resolution: {integrity: sha512-F6fPhSAKfDcO1yYe3mRiruhZubZRwegZqtMS1WSQ8fOq6hB82knSJGQGM+v4rUW2nNWZNtv2vbTCbpBdkGRFGQ==}
 
-  '@mirta/tsconfig@0.4.8':
-    resolution: {integrity: sha512-0PaCN/YIu67sQBYGwy8cPs8wha42f3cyAgHpcwbNtkEoHEf/XPEcvc3ljmyDsbrPcVlx4B+/8rbftiYNGxbuEQ==}
+  '@mirta/tsconfig@0.4.11':
+    resolution: {integrity: sha512-I0Cki1p0dKMu8vTtBwvO0HXi6mIZ7h3AkTA6k9DP0R0alW8iNg5+vQSk6BHM5Sr14Bp2pjYL69LWcIPvyvCeLQ==}
 
-  '@mirta/workspace@0.4.8':
-    resolution: {integrity: sha512-lS6zuKeDek0774YtGgrik3a27MEdX/lHS9QUUAKCBEaR26VtCbpBlMTguuAnwrgZ4pUhGh+671vU8ppOt9ENFw==}
+  '@mirta/workspace@0.4.11':
+    resolution: {integrity: sha512-g2wY+QQw1rS+VAqXToFNFoWvLU6x4cPZd8XpwaZ2vDERyqJivHnYxrO1Ilugw3fRuG31Lx9o659jrIM4nIbdJw==}
     engines: {node: '>=24.12.0'}
 
   '@noble/ciphers@1.3.0':
@@ -1974,8 +1974,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  mirta@0.4.8:
-    resolution: {integrity: sha512-v6t+mdnPbdtt7LHcLbF1qHS/qbs94hY8Q2yGRZG1Rqn1598jT5jdtsp/ArC03X/YaNjSG6UgXsBtkseBNQ/FxA==}
+  mirta@0.4.11:
+    resolution: {integrity: sha512-2HOUH9+Bq80CuLSBXJAWpSQkO4vHUx9cTm4BAFnV0cxJsEky2JZhYMwzztVG0GvQuPRx+bilfsyq2oXjCG517g==}
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -3380,46 +3380,46 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mirta/basics@0.4.8': {}
+  '@mirta/basics@0.4.11': {}
 
-  '@mirta/cli@0.4.8':
+  '@mirta/cli@0.4.11':
     dependencies:
       '@clack/prompts': 0.11.0
-      '@mirta/basics': 0.4.8
-      '@mirta/env-loader': 0.4.8
-      '@mirta/i18n': 0.4.8
-      '@mirta/package': 0.4.8
-      '@mirta/staged-args': 0.4.8
-      '@mirta/workspace': 0.4.8
+      '@mirta/basics': 0.4.11
+      '@mirta/env-loader': 0.4.11
+      '@mirta/i18n': 0.4.11
+      '@mirta/package': 0.4.11
+      '@mirta/staged-args': 0.4.11
+      '@mirta/workspace': 0.4.11
       chalk: 5.6.2
       jsonc-parser: 3.3.1
       p-map: 7.0.4
       prompts: 2.4.2
       semver: 7.7.3
 
-  '@mirta/env-loader@0.4.8':
+  '@mirta/env-loader@0.4.11':
     dependencies:
       '@dotenvx/dotenvx': 1.52.0
-      '@mirta/basics': 0.4.8
+      '@mirta/basics': 0.4.11
 
-  '@mirta/globals@0.4.8': {}
+  '@mirta/globals@0.4.11': {}
 
-  '@mirta/i18n@0.4.8': {}
+  '@mirta/i18n@0.4.11': {}
 
-  '@mirta/package@0.4.8': {}
+  '@mirta/package@0.4.11': {}
 
-  '@mirta/polyfills@0.4.8': {}
+  '@mirta/polyfills@0.4.11': {}
 
-  '@mirta/rollup@0.4.8(rollup@4.57.1)(tslib@2.8.1)(typescript@5.9.3)':
+  '@mirta/rollup@0.4.11(rollup@4.57.1)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.28.6
       '@babel/plugin-transform-spread': 7.28.6(@babel/core@7.28.6)
       '@babel/preset-env': 7.28.6(@babel/core@7.28.6)
       '@dotenvx/dotenvx': 1.52.0
-      '@mirta/basics': 0.4.8
-      '@mirta/env-loader': 0.4.8
-      '@mirta/package': 0.4.8
-      '@mirta/workspace': 0.4.8
+      '@mirta/basics': 0.4.11
+      '@mirta/env-loader': 0.4.11
+      '@mirta/package': 0.4.11
+      '@mirta/workspace': 0.4.11
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.28.6)(rollup@4.57.1)
       '@rollup/plugin-commonjs': 29.0.0(rollup@4.57.1)
       '@rollup/plugin-multi-entry': 7.1.0(rollup@4.57.1)
@@ -3439,28 +3439,28 @@ snapshots:
       - supports-color
       - tslib
 
-  '@mirta/staged-args@0.4.8': {}
+  '@mirta/staged-args@0.4.11': {}
 
-  '@mirta/store@0.4.8(@mirta/basics@0.4.8)(@mirta/polyfills@0.4.8)':
+  '@mirta/store@0.4.11(@mirta/basics@0.4.11)(@mirta/polyfills@0.4.11)':
     dependencies:
-      '@mirta/basics': 0.4.8
-      '@mirta/polyfills': 0.4.8
+      '@mirta/basics': 0.4.11
+      '@mirta/polyfills': 0.4.11
 
-  '@mirta/testing@0.4.8(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))':
+  '@mirta/testing@0.4.11(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))':
     dependencies:
-      '@mirta/env-loader': 0.4.8
-      '@mirta/workspace': 0.4.8
-      mirta: 0.4.8
+      '@mirta/env-loader': 0.4.11
+      '@mirta/workspace': 0.4.11
+      mirta: 0.4.11
       vitest-mock-extended: 3.1.0(typescript@5.9.3)(vitest@4.0.18(@types/node@24.10.9)(yaml@2.8.2))
     transitivePeerDependencies:
       - typescript
       - vitest
 
-  '@mirta/tsconfig@0.4.8': {}
+  '@mirta/tsconfig@0.4.11': {}
 
-  '@mirta/workspace@0.4.8':
+  '@mirta/workspace@0.4.11':
     dependencies:
-      '@mirta/package': 0.4.8
+      '@mirta/package': 0.4.11
       find-up: 8.0.0
 
   '@noble/ciphers@1.3.0': {}
@@ -4520,11 +4520,11 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  mirta@0.4.8:
+  mirta@0.4.11:
     dependencies:
-      '@mirta/basics': 0.4.8
-      '@mirta/globals': 0.4.8
-      '@mirta/polyfills': 0.4.8
+      '@mirta/basics': 0.4.11
+      '@mirta/globals': 0.4.11
+      '@mirta/polyfills': 0.4.11
 
   ms@2.1.3: {}
 
