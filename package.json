@@ -31,12 +31,12 @@
     "@mirta/testing": "0.4.11",
     "@mirta/tsconfig": "0.4.11",
     "@stylistic/eslint-plugin": "^5.7.0",
-    "@types/node": "^24.10.9",
+    "@types/node": "^24.10.13",
     "@vitest/eslint-plugin": "^1.6.4",
     "conventional-changelog-cli": "^5.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
-    "globals": "^17.0.0",
+    "globals": "^17.3.0",
     "lint-staged": "^16.2.7",
     "rollup": "^4.57.1",
     "simple-git-hooks": "^2.13.1",
@@ -53,5 +53,5 @@
     "packages/*",
     "projects/*"
   ],
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.29.3"
 }
