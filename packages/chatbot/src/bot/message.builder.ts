@@ -1,24 +1,22 @@
 import type { OutgoingRegular } from '#types'
 import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard/index'
-import type { KeyboardReplyBuilder } from './types'
+import type { MessageBuilder } from './types'
 
 /**
- * Создаёт построитель ответа, привязанный к конкретному исходящему сообщению.
+ * Создаёт построитель сообщения, привязанный к конкретному исходящему сообщению.
  *
  * Позволяет пошагово форматировать сообщение: добавлять клавиатуры, устанавливать разметку,
  * удалять текущую клавиатуру. Все изменения применяются непосредственно к переданному объекту `message`.
  *
- * Используется внутри `createBot` для реализации функции `reply`.
- *
  * @param message - Объект исходящего сообщения (частично заполненный)
- * @returns Объект `ReplyBuilder`, позволяющий модифицировать сообщение
+ * @returns Объект `MessageBuilder`, позволяющий модифицировать сообщение
  *
  * @internal Функция предназначена для внутреннего использования в ядре бота
  *
  * @example
  * ```ts
  * const message: OutgoingRegular = { text: 'Привет', chatId: 123456 };
- * const builder = createReplyBuilder(message);
+ * const builder = createMessageBuilder(message);
  *
  * builder.inlineKeyboard(k => {
  *   k.row(r => r.text('Нажми меня', t => t.callback('click')));
@@ -26,12 +24,12 @@ import type { KeyboardReplyBuilder } from './types'
  *
  * // Теперь message содержит клавиатуру
  * ```
- * @since 0.4.8
+ * @since 0.4.12
  *
  **/
-export function createReplyBuilder(message: Partial<OutgoingRegular>): KeyboardReplyBuilder {
+export function createMessageBuilder(message: Partial<OutgoingRegular>): MessageBuilder {
 
-  const builder: KeyboardReplyBuilder = {
+  const builder: MessageBuilder = {
 
     /**
      * Добавляет инлайн-клавиатуру к сообщению.

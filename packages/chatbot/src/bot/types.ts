@@ -3,7 +3,13 @@
 import type { InlineKeyboardBuilder, ReplyKeyboardBuilder } from '#keyboard'
 import type { Outgoing, IncomingCommand, IncomingCallback } from '#types'
 
-export interface ReplyBuilder {
+/**
+ * Минимальный интерфейс построителя сообщения.
+ *
+ * @since 0.4.12
+ *
+ **/
+export interface MinimalMessageBuilder {
 
   /**
    * Устанавливает режим разметки текста.
@@ -13,22 +19,20 @@ export interface ReplyBuilder {
    * - `'MarkdownV2'` — разметка в стиле Markdown (Telegram)
    *
    * @param mode - Режим разметки
-   * @returns Текущий экземпляр билдера
+   * @returns Текущий экземпляр билдера для построения цепочки вызовов
    **/
   parseMode(mode: 'HTML' | 'MarkdownV2'): this
 
 }
 
 /**
- * Интерфейс построителя ответа.
+ * Интерфейс построителя сообщения.
  *
  * Позволяет форматировать исходящее сообщение с использованием:
  * - Инлайн-клавиатур
  * - Reply-клавиатур
  * - Специального режима разметки (HTML, MarkdownV2)
  * - Удаления текущей клавиатуры
- *
- * Используется в функции `reply` внутри обработчиков команд.
  *
  * @example
  * ```ts
@@ -42,40 +46,52 @@ export interface ReplyBuilder {
  *   })
  * })
  * ```
- * @since 0.4.8
+ * @since 0.4.12
  *
  **/
-export interface KeyboardReplyBuilder extends ReplyBuilder {
+export interface MessageBuilder extends MinimalMessageBuilder {
 
   /**
    * Добавляет inline-клавиатуру, которая отображается в чате
    * под сообщением бота.
    *
+   * После вызова этого метода другие методы установки клавиатуры
+   * становятся недоступны, так как Telegram не поддерживает
+   * их одновременное использование.
+   *
    * @param setup - Функция для настройки структуры клавиатуры
-   * @returns Текущий экземпляр билдера (для цепочки вызовов)
+   * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  inlineKeyboard(setup: (k: InlineKeyboardBuilder) => void): ReplyBuilder
+  inlineKeyboard(setup: (k: InlineKeyboardBuilder) => void): MinimalMessageBuilder
 
   /**
    * Добавляет reply-клавиатуру, которая предлагает пользователю
    * готовые варианты ответа.
    *
+   * После вызова этого метода другие методы установки клавиатуры
+   * становятся недоступны, так как Telegram не поддерживает
+   * их одновременное использование.
+   *
    * @param setup - Функция для настройки кнопок клавиатуры
-   * @returns Текущий экземпляр билдера
+   * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void): ReplyBuilder
+  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void): MinimalMessageBuilder
 
   /**
    * Добавляет команду удаления текущей клавиатуры.
    *
    * Полезно для очистки интерфейса после действий.
    *
-   * @returns Текущий экземпляр билдера
+   * После вызова этого метода другие методы установки клавиатуры
+   * становятся недоступны, так как Telegram не поддерживает
+   * их одновременное использование.
+   *
+   * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  removeKeyboard(): ReplyBuilder
+  removeKeyboard(): MinimalMessageBuilder
 
 }
 
@@ -109,7 +125,7 @@ export interface ReplyFunc {
    * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  (text: string, setup: (builder: KeyboardReplyBuilder) => void): void
+  (text: string, setup: (builder: MessageBuilder) => void): void
 
   /**
    * Отправляет готовое исходящее сообщение.
@@ -306,17 +322,19 @@ export interface Bot<
    *
    * @param chatId - Идентификатор чата
    * @param text - Текст сообщения
+   * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  sendMessage(chatId: number, text: string): void
+  sendMessage(chatId: number, text: string, setup?: (builder: MessageBuilder) => void): void
 
   /**
    * Отправляет текстовое сообщение пользователю по username.
    *
    * @param username - Имя пользователя (например, '@username')
    * @param text - Текст сообщения
+   * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  sendMessage(username: string, text: string): void
+  sendMessage(username: string, text: string, setup?: (builder: MessageBuilder) => void): void
 
 }

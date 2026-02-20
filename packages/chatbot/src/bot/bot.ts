@@ -1,8 +1,8 @@
 import { isString, useEvent, type EventRaiser } from '@mirta/basics'
 import type { BotHost, Outgoing, Incoming } from '#types'
 import { TOPICS } from '#host/device'
-import { createReplyBuilder } from './reply.builder'
-import type { CommandHandler, CallbackHandler, ReplyBuilder, Bot, DoneOptions } from './types'
+import { createMessageBuilder } from './message.builder'
+import type { CommandHandler, CallbackHandler, Bot, DoneOptions, MessageBuilder } from './types'
 
 /**
  * Создаёт функцию ответа для конкретного чата.
@@ -14,14 +14,14 @@ import type { CommandHandler, CallbackHandler, ReplyBuilder, Bot, DoneOptions } 
  *
  * @param host - Хост бота, отвечающий за отправку сообщений
  * @param chatId - Идентификатор чата, в который будут отправляться ответы
- * @returns Функция `reply`, которую можно использовать в обработчиках
+ * @returns Функция `send`, которую можно использовать в обработчиках
  *
  * @internal Используется внутри `createBot` для привязки контекста чата
  *
- * @since 0.4.8
+ * @since 0.4.12
  *
  **/
-const createReplyFunc = (host: BotHost, chatId: number) => (textOrMessage: string | Outgoing, setup?: (b: ReplyBuilder) => void) => {
+const createSendFunc = (host: BotHost, chatId: number | string) => (textOrMessage: string | Outgoing, setup?: (b: MessageBuilder) => void) => {
 
   // Перегрузка: передано готовое сообщение (не строка)
   if (typeof textOrMessage !== 'string') {
@@ -56,7 +56,7 @@ const createReplyFunc = (host: BotHost, chatId: number) => (textOrMessage: strin
   log.debug('[Bot] Creating message')
 
   // Перегрузка: (text, setup)
-  const builder = createReplyBuilder(message)
+  const builder = createMessageBuilder(message)
 
   // Устанавливаем MarkdownV2 по умолчанию
   builder.parseMode('MarkdownV2')
@@ -130,7 +130,7 @@ export function createBot<
         if (context.command in commandEvents)
           commandEvents[context.command].raise(
             context,
-            createReplyFunc(host, context.chatId)
+            createSendFunc(host, context.chatId)
           )
 
       }
@@ -168,7 +168,10 @@ export function createBot<
 
   return {
 
-    onCommand(name: TCommand, handler: CommandHandler) {
+    onCommand(
+      name: TCommand,
+      handler: CommandHandler
+    ) {
 
       // Лениво создаём событие
       if (!(name in commandEvents))
@@ -180,7 +183,10 @@ export function createBot<
 
     },
 
-    onCallback(name: TCallback, handler: CallbackHandler) {
+    onCallback(
+      name: TCallback,
+      handler: CallbackHandler
+    ) {
 
       if (!(name in callbackEvents))
         callbackEvents[name] = useEvent<CallbackHandler>()
@@ -191,14 +197,14 @@ export function createBot<
 
     },
 
-    sendMessage(chatId: number | string, text: string) {
+    sendMessage(
+      chatId: number | string,
+      text: string,
+      setup?: (builder: MessageBuilder) => void
+    ) {
 
-      host.send({
-        type: 'raw',
-        method: 'sendMessage',
-        payload: { chat_id: chatId, text },
-        timestamp: Date.now(),
-      })
+      const send = createSendFunc(host, chatId)
+      send(text, setup)
 
     },
   }

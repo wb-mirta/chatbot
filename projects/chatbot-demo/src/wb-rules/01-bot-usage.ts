@@ -52,6 +52,14 @@ bot.onCommand('show_keyboard', (_context, reply) => {
 bot.onCallback('hello', (context, done) => {
 
   done('Hello!')
-  bot.sendMessage(context.chatId, 'Hello again.')
+
+  bot.sendMessage(context.chatId, 'Hello _again_', b => b
+    .inlineKeyboard(k => k
+      .row(r => r
+        .text('Повтор', t => t
+          .callback('hello')
+        )
+      )
+    ))
 
 })
