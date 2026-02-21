@@ -1,8 +1,8 @@
 import { createMessageBuilder } from '#bot/message.builder'
 
-describe('Bot: Reply Builder', () => {
+describe('Bot: Message Builder', () => {
 
-  describe('createReplyBuilder', () => {
+  describe('createMessageBuilder', () => {
 
     it('should mutate message in place', () => {
 
