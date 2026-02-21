@@ -1,2 +1,2 @@
 export { createBot } from './bot'
-export type { Bot } from './types'
+export type { Bot, MessageBuilder } from './types'
