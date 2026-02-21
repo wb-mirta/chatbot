@@ -163,4 +163,104 @@ describe('Keyboard: Reply', () => {
 
   })
 
+  describe('Button styles', () => {
+
+    it('should apply primary style to button', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', btn => btn.style('primary'))
+        )
+      )
+
+      expect(keyboard.keyboard[0][0].style).toBe('primary')
+
+    })
+
+    it('should apply success style to button', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', btn => btn.style('success'))
+        )
+      )
+
+      expect(keyboard.keyboard[0][0].style).toBe('success')
+
+    })
+
+    it('should apply danger style to button', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', btn => btn.style('danger'))
+        )
+      )
+
+      expect(keyboard.keyboard[0][0].style).toBe('danger')
+
+    })
+
+    it('should remove style when enabled is false', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', (btn) => {
+
+            btn.style('primary')
+            btn.style('primary', false)
+
+          })
+        )
+      )
+
+      expect(keyboard.keyboard[0][0]).not.toHaveProperty('style')
+
+    })
+
+    it('should not remove style when enabled is false but style differs', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', (btn) => {
+
+            btn.style('primary')
+            btn.style('danger', false)
+
+          })
+        )
+      )
+
+      expect(keyboard.keyboard[0][0].style).toBe('primary')
+
+    })
+
+    it('should not include style property when not set', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button')
+        )
+      )
+
+      expect(keyboard.keyboard[0][0]).not.toHaveProperty('style')
+
+    })
+
+    it('should not include undefined values in button object', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Plain button')
+        )
+      )
+
+      const button = keyboard.keyboard[0][0]
+      expect(button).toEqual({ text: 'Plain button' })
+      expect(Object.keys(button)).toEqual(['text'])
+
+    })
+
+  })
+
 })
