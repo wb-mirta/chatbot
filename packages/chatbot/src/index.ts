@@ -6,6 +6,8 @@ import type { AuthorizationBuilder } from '#security/types'
 import type { BotOptions } from '#types'
 
 export { defineAuthorization } from '#security/authorization'
+export type { MessageBuilder } from '#bot'
+export type { ButtonStyle } from '#keyboard/types'
 
 /**
  * Кэш экземпляра бота для обеспечения синглтона.

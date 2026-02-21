@@ -6,6 +6,8 @@
  **/
 export type ButtonBuilder = object
 
+export type ButtonStyle = 'primary' | 'success' | 'danger'
+
 /**
  * Кнопка инлайн-клавиатуры.
  *
@@ -14,6 +16,7 @@ export type ButtonBuilder = object
  **/
 export interface InlineKeyboardButton {
   text: string
+  style?: ButtonStyle
   callback_data?: string
   url?: string
   switch_inline_query?: string
@@ -46,6 +49,7 @@ export interface InlineKeyboardMarkup {
  **/
 export interface ReplyKeyboardButton {
   text: string
+  style?: ButtonStyle
   request_contact?: boolean
   request_location?: boolean
 }

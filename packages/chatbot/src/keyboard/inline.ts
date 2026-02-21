@@ -1,5 +1,6 @@
 import type {
   ButtonBuilder,
+  ButtonStyle,
   InlineKeyboardButton,
   InlineKeyboardMarkup
 } from './types'
@@ -11,6 +12,24 @@ import type {
  *
  **/
 interface InlineButtonBuilder {
+
+  /**
+   * Применяет указанный стиль к кнопке.
+   *
+   * @param style - Стиль кнопки: 'primary', 'success' или 'danger'.
+   * @param enabled - Флаг, определяющий, должен ли стиль быть активирован.
+   *                  Если не указан, считается равным `true`.
+   *                  Если `false`, и текущий стиль совпадает с указанным — стиль будет снят.
+   * @example
+   * ```ts
+   * button.style('primary'); // Устанавливает основной стиль
+   * button.style('danger', false); // Снимает стиль 'danger', если он был установлен
+   * ```
+   * @since 0.4.12
+   *
+   **/
+  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>
+
   /**
    * Устанавливает callback-данные.
    **/
@@ -124,6 +143,24 @@ export function inlineKeyboard(
 
             // Создаём билдер кнопки с методами для настройки
             const buttonBuilder: InlineButtonBuilder = {
+
+              style: (style, enabled = true) => {
+
+                if (enabled) {
+
+                  button.style = style
+
+                }
+                else if (button.style === style) {
+
+                  delete button.style
+
+                }
+
+                return buttonBuilder
+
+              },
+
               /**
                * Устанавливает callback-данные для кнопки.
                *

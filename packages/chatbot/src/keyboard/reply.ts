@@ -1,5 +1,6 @@
 import type {
   ButtonBuilder,
+  ButtonStyle,
   ReplyKeyboardButton,
   ReplyKeyboardMarkup,
   ReplyKeyboardRemove
@@ -12,6 +13,24 @@ import type {
  *
  **/
 interface ReplyButtonBuilder {
+
+  /**
+   * Применяет указанный стиль к кнопке.
+   *
+   * @param style - Стиль кнопки: 'primary', 'success' или 'danger'.
+   * @param enabled - Флаг, определяющий, должен ли стиль быть активирован.
+   *                  Если не указан, считается равным `true`.
+   *                  Если `false`, и текущий стиль совпадает с указанным — стиль будет снят.
+   * @example
+   * ```ts
+   * button.style('primary'); // Устанавливает основной стиль
+   * button.style('danger', false); // Снимает стиль 'danger', если он был установлен
+   * ```
+   * @since 0.4.12
+   *
+   **/
+  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>
+
   /**
    * Настраивает кнопку для запроса контакта.
    * @param value - Флаг включения запроса контакта.
@@ -83,6 +102,7 @@ export interface ReplyKeyboardBuilder {
    *
    **/
   row(setup: (r: ReplyRowBuilder) => void): ReplyKeyboardBuilder
+
 }
 
 /**
@@ -158,18 +178,38 @@ export function replyKeyboard(
 
             // Билдер для настройки действий кнопки
             const buttonBuilder: ReplyButtonBuilder = {
+
+              style: (style, enabled = true) => {
+
+                if (enabled) {
+
+                  button.style = style
+
+                }
+                else if (button.style === style) {
+
+                  delete button.style
+
+                }
+
+                return buttonBuilder
+
+              },
+
               requestContact: (value = true) => {
 
                 button.request_contact = value
                 return buttonBuilder
 
               },
+
               requestLocation: (value = true) => {
 
                 button.request_location = value
                 return buttonBuilder
 
               },
+
             }
 
             setupButton(buttonBuilder)
@@ -185,6 +225,7 @@ export function replyKeyboard(
 
       // Применяем настройку строки
       setupRow(rowBuilder)
+
       // Сохраняем строку, если есть кнопки
       if (buttons.length > 0) {
 

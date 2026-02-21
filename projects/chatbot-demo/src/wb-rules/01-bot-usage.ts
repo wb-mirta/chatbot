@@ -20,6 +20,7 @@ bot.onCommand('start', (_context, reply) => {
       // Строка клавиатуры
       .row(r => r
         .text('Официальный чат Wiren Board', t => t
+          .style('primary')
           .url('https://t.me/wirenboard')
         )
       )
@@ -43,7 +44,7 @@ bot.onCommand('show_keyboard', (_context, reply) => {
       // Строка клавиатуры
       .row(r => r
         .text('Привет!')
-        .text('Как дела?')
+        .text('Как дела?', t => t.style('danger'))
       ))
   )
 
