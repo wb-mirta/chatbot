@@ -1,24 +1,26 @@
-import { createReplyBuilder } from '#bot/reply.builder'
+import { createMessageBuilder } from '#bot/message.builder'
+import type { OutgoingRegular } from '#types'
 
-describe('Bot: Reply Builder', () => {
+describe('Bot: Message Builder', () => {
 
-  describe('createReplyBuilder', () => {
+  describe('createMessageBuilder', () => {
 
     it('should mutate message in place', () => {
 
-      const message: Record<string, string> = { text: 'Hello' }
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = { text: 'Hello' }
+      const builder = createMessageBuilder(message)
 
       builder.parseMode('HTML')
 
       expect(message.parseMode).toBe('HTML')
+      expect(message.text).toBe('Hello')
 
     })
 
     it('should set parse mode to HTML', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder.parseMode('HTML')
 
@@ -28,8 +30,8 @@ describe('Bot: Reply Builder', () => {
 
     it('should set parse mode to MarkdownV2', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder.parseMode('MarkdownV2')
 
@@ -39,8 +41,8 @@ describe('Bot: Reply Builder', () => {
 
     it('should add inline keyboard', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder.inlineKeyboard(k => k
         .row(r => r
@@ -55,8 +57,8 @@ describe('Bot: Reply Builder', () => {
 
     it('should add reply keyboard', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder.replyKeyboard(k => k
         .row(r => r
@@ -72,7 +74,7 @@ describe('Bot: Reply Builder', () => {
     it('should remove keyboard', () => {
 
       const message = { keyboard: { inline_keyboard: [] } }
-      const builder = createReplyBuilder(message)
+      const builder = createMessageBuilder(message)
 
       builder.removeKeyboard()
 
@@ -82,8 +84,8 @@ describe('Bot: Reply Builder', () => {
 
     it('should support method chaining', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder
         .parseMode('HTML')
@@ -100,8 +102,8 @@ describe('Bot: Reply Builder', () => {
 
     it('should allow keyboard replacement', () => {
 
-      const message: Record<string, string> = {}
-      const builder = createReplyBuilder(message)
+      const message: Partial<OutgoingRegular> = {}
+      const builder = createMessageBuilder(message)
 
       builder.inlineKeyboard(k => k
         .row(r => r

@@ -75,10 +75,10 @@ importers:
   packages/chatbot:
     dependencies:
       '@mirta/basics':
-        specifier: 0.4.11
+        specifier: ~0.4.11
         version: 0.4.11
       '@mirta/store':
-        specifier: 0.4.11
+        specifier: ~0.4.11
         version: 0.4.11(@mirta/basics@0.4.11)(@mirta/polyfills@0.4.11)
 
   projects/chatbot-demo:
