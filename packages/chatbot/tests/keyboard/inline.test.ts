@@ -128,7 +128,6 @@ describe('Keyboard: Inline', () => {
         b.row(r =>
           r.text('Button', btn => btn
             .style('primary')
-            .callback('action')
           )
         )
       )
@@ -143,7 +142,6 @@ describe('Keyboard: Inline', () => {
         b.row(r =>
           r.text('Button', btn => btn
             .style('success')
-            .callback('action')
           )
         )
       )
@@ -158,12 +156,24 @@ describe('Keyboard: Inline', () => {
         b.row(r =>
           r.text('Button', btn => btn
             .style('danger')
-            .callback('action')
           )
         )
       )
 
       expect(keyboard.inline_keyboard[0][0].style).toBe('danger')
+
+    })
+
+    it('should not throw when removing style that was never set', () => {
+
+      const keyboard = inlineKeyboard(b =>
+        b.row(r =>
+          r.text('Button', btn => btn
+            .style('primary', false))
+        )
+      )
+
+      expect(keyboard.inline_keyboard[0][0]).not.toHaveProperty('style')
 
     })
 

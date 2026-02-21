@@ -201,6 +201,20 @@ describe('Keyboard: Reply', () => {
 
     })
 
+    it('should not throw when removing style that was never set', () => {
+
+      const keyboard = replyKeyboard(b =>
+        b.row(r =>
+          r.text('Button', btn => btn
+            .style('primary', false)
+          )
+        )
+      )
+
+      expect(keyboard.keyboard[0][0]).not.toHaveProperty('style')
+
+    })
+
     it('should remove style when enabled is false', () => {
 
       const keyboard = replyKeyboard(b =>
