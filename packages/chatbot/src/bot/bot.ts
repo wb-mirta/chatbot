@@ -58,9 +58,6 @@ const createSendFunc = (host: BotHost, chatId: number | string) => (textOrMessag
   // Перегрузка: (text, setup)
   const builder = createMessageBuilder(message)
 
-  // Устанавливаем MarkdownV2 по умолчанию
-  builder.parseMode('MarkdownV2')
-
   // Применяем пользовательские настройки
   setup(builder)
 
