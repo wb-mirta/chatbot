@@ -2,7 +2,7 @@
   "name": "@mirta/chatbot",
   "description": "Chat-based control for your automation scripts",
   "license": "Unlicense",
-  "version": "0.4.8",
+  "version": "0.4.12",
   "keywords": [
     "mirta",
     "wb-rules",
