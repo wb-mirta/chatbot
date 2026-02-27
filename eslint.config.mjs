@@ -1,10 +1,10 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import globalsMirta from '@mirta/globals/eslint'
-import tseslint from 'typescript-eslint'
-import stylistic from '@stylistic/eslint-plugin'
-import vitest from '@vitest/eslint-plugin'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import js from '@eslint/js';
+import globals from 'globals';
+import globalsMirta from '@mirta/globals/eslint';
+import tseslint from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
+import vitest from '@vitest/eslint-plugin';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
   {
@@ -81,6 +81,7 @@ export default defineConfig([
       quotes: 'single',
       quoteProps: 'consistent',
       indent: 2,
+      semi: true,
     }),
   },
   // Stylistic Overrides
@@ -119,4 +120,4 @@ export default defineConfig([
     'packages/*/dist/',
     'projects/*/dist/',
   ]),
-])
+]);

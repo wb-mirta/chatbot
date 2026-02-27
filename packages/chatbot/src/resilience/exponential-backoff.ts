@@ -6,7 +6,7 @@
  * @since 0.4.8
  *
  **/
-type BackoffFunction = (attempts: number) => number
+type BackoffFunction = (attempts: number) => number;
 
 /**
  * Параметры настройки экспоненциальной задержки.
@@ -20,13 +20,13 @@ interface ExponentialBackoffOptions {
    * Начальная задержка в миллисекундах.
    *
    **/
-  delay: number
+  delay: number;
 
   /**
    * Максимальное количество попыток перед установкой постоянного интервала.
    *
    **/
-  maxAttempts: number
+  maxAttempts: number;
 
 }
 
@@ -58,19 +58,19 @@ interface ExponentialBackoffOptions {
  **/
 export function createExponentialBackoff(options: ExponentialBackoffOptions): BackoffFunction {
 
-  const { delay, maxAttempts } = options
+  const { delay, maxAttempts } = options;
 
   return (attempts: number): number => {
 
-    attempts = Math.max(0, Math.floor(attempts))
+    attempts = Math.max(0, Math.floor(attempts));
 
     // Ограничиваем количество попыток, чтобы задержка не росла бесконечно
     if (attempts > maxAttempts)
-      attempts = maxAttempts
+      attempts = maxAttempts;
 
     // Рассчитываем экспоненциальную задержку
-    return Math.pow(2, attempts) * delay
+    return Math.pow(2, attempts) * delay;
 
-  }
+  };
 
 }

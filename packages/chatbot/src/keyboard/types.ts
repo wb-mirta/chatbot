@@ -4,9 +4,9 @@
  * @since 0.4.8
  *
  **/
-export type ButtonBuilder = object
+export type ButtonBuilder = object;
 
-export type ButtonStyle = 'primary' | 'success' | 'danger'
+export type ButtonStyle = 'primary' | 'success' | 'danger';
 
 /**
  * Кнопка инлайн-клавиатуры.
@@ -15,20 +15,20 @@ export type ButtonStyle = 'primary' | 'success' | 'danger'
  *
  **/
 export interface InlineKeyboardButton {
-  text: string
-  style?: ButtonStyle
-  callback_data?: string
-  url?: string
-  switch_inline_query?: string
-  switch_inline_query_current_chat?: string
+  text: string;
+  style?: ButtonStyle;
+  callback_data?: string;
+  url?: string;
+  switch_inline_query?: string;
+  switch_inline_query_current_chat?: string;
   login_url?: {
-    url: string
-    forward_text?: string
-    bot_username?: string
-    request_write_access?: boolean
-  }
-  callback_game?: Record<string, unknown>
-  pay?: boolean
+    url: string;
+    forward_text?: string;
+    bot_username?: string;
+    request_write_access?: boolean;
+  };
+  callback_game?: Record<string, unknown>;
+  pay?: boolean;
 }
 
 /**
@@ -38,7 +38,7 @@ export interface InlineKeyboardButton {
  *
  **/
 export interface InlineKeyboardMarkup {
-  inline_keyboard: InlineKeyboardButton[][]
+  inline_keyboard: InlineKeyboardButton[][];
 }
 
 /**
@@ -48,10 +48,10 @@ export interface InlineKeyboardMarkup {
  *
  **/
 export interface ReplyKeyboardButton {
-  text: string
-  style?: ButtonStyle
-  request_contact?: boolean
-  request_location?: boolean
+  text: string;
+  style?: ButtonStyle;
+  request_contact?: boolean;
+  request_location?: boolean;
 }
 
 /**
@@ -61,10 +61,10 @@ export interface ReplyKeyboardButton {
  *
  **/
 export interface ReplyKeyboardMarkup {
-  keyboard: ReplyKeyboardButton[][]
-  resize_keyboard?: boolean
-  one_time_keyboard?: boolean
-  selective?: boolean
+  keyboard: ReplyKeyboardButton[][];
+  resize_keyboard?: boolean;
+  one_time_keyboard?: boolean;
+  selective?: boolean;
 }
 
 /**
@@ -74,8 +74,8 @@ export interface ReplyKeyboardMarkup {
  *
  **/
 export interface ReplyKeyboardRemove {
-  remove_keyboard: true
-  selective?: boolean
+  remove_keyboard: true;
+  selective?: boolean;
 }
 
 /**
@@ -84,4 +84,4 @@ export interface ReplyKeyboardRemove {
  * @since 0.4.8
  *
  **/
-export type KeyboardMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove
+export type KeyboardMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove;

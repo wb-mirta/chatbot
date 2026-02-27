@@ -6,11 +6,11 @@
  **/
 interface FileField {
   /** Путь к файлу на диске */
-  file: string
+  file: string;
   /** Имя файла (опционально) */
-  filename?: string
+  filename?: string;
   /** MIME-тип (опционально) */
-  contentType?: string
+  contentType?: string;
 }
 
 /**
@@ -21,7 +21,7 @@ interface FileField {
  * @since 0.4.8
  *
  **/
-export type PostMode = 'data' | 'multipart'
+export type PostMode = 'data' | 'multipart';
 
 /**
  * Тело POST-запроса: строка, массив строк или объект с данными/файлами.
@@ -29,7 +29,7 @@ export type PostMode = 'data' | 'multipart'
  * @since 0.4.8
  *
  **/
-export type PostBody = string | string[] | Record<string, string | FileField>
+export type PostBody = string | string[] | Record<string, string | FileField>;
 
 /**
  * Параметры для GET-запроса.
@@ -40,13 +40,13 @@ export type PostBody = string | string[] | Record<string, string | FileField>
 interface GetOptions {
 
   /** HTTP-заголовки */
-  headers?: Record<string, string>
+  headers?: Record<string, string>;
 
   /** Таймаут в секундах */
-  timeout?: number
+  timeout?: number;
 
   /** Колбэк завершения процесса */
-  exitCallback?: WbRules.ExitCallback
+  exitCallback?: WbRules.ExitCallback;
 
 }
 
@@ -58,9 +58,9 @@ interface GetOptions {
  **/
 interface PostOptions extends GetOptions {
   /** Режим отправки */
-  mode?: PostMode
+  mode?: PostMode;
   /** Тело запроса */
-  body?: PostBody
+  body?: PostBody;
 }
 
 /**
@@ -76,21 +76,21 @@ interface PostOptions extends GetOptions {
  **/
 function createArgs(mode: 'GET' | 'POST', url: string, options: GetOptions | undefined): string[] {
 
-  const { timeout, headers } = options ?? {}
+  const { timeout, headers } = options ?? {};
 
-  const args = [url, '-X', mode, '-sL'] // , '--fail-with-body'] // Требует версии curl 7.76.0
+  const args = [url, '-X', mode, '-sL']; // , '--fail-with-body'] // Требует версии curl 7.76.0
 
   if (timeout)
-    args.push('-m', timeout.toString())
+    args.push('-m', timeout.toString());
 
   if (headers) {
 
     for (const [name, value] of Object.entries(headers))
-      args.push('-H', `${name}: ${value}`)
+      args.push('-H', `${name}: ${value}`);
 
   }
 
-  return args
+  return args;
 
 }
 
@@ -108,9 +108,9 @@ export function runCurlGet(
   options?: GetOptions
 ): void {
 
-  const args = createArgs('GET', url, options)
+  const args = createArgs('GET', url, options);
 
-  curl(args, options?.exitCallback)
+  curl(args, options?.exitCallback);
 
 }
 
@@ -128,26 +128,26 @@ export function runCurlPost(
   options?: PostOptions
 ): void {
 
-  const { mode = 'data', body, exitCallback } = options ?? {}
+  const { mode = 'data', body, exitCallback } = options ?? {};
 
-  const args = createArgs('POST', url, options)
+  const args = createArgs('POST', url, options);
 
   if (body) {
 
     if (mode === 'multipart') {
 
-      appendMultipart(args, body)
+      appendMultipart(args, body);
 
     }
     else {
 
-      appendData(args, body)
+      appendData(args, body);
 
     }
 
   }
 
-  curl(args, exitCallback)
+  curl(args, exitCallback);
 
 }
 
@@ -166,9 +166,9 @@ function curl(args: string[], exitCallback?: WbRules.ExitCallback) {
     captureOutput: true,
     captureErrorOutput: true,
     exitCallback: exitCallback,
-  }
+  };
 
-  spawn('curl', args, spawnOptions)
+  spawn('curl', args, spawnOptions);
 
 }
 
@@ -188,12 +188,12 @@ function appendMultipart(
 
   if (typeof body === 'string') {
 
-    args.push('-F', body)
+    args.push('-F', body);
 
   }
   else if (Array.isArray(body)) {
 
-    body.forEach(x => args.push('-F', x))
+    body.forEach(x => args.push('-F', x));
 
   }
   else {
@@ -202,20 +202,20 @@ function appendMultipart(
 
       if (typeof value === 'object' && 'file' in value) {
 
-        let part = `${name}=@${value.file}`
+        let part = `${name}=@${value.file}`;
 
         if (value.filename)
-          part += `;filename=${value.filename}`
+          part += `;filename=${value.filename}`;
 
         if (value.contentType)
-          part += `;type=${value.contentType}`
+          part += `;type=${value.contentType}`;
 
-        args.push('-F', part)
+        args.push('-F', part);
 
       }
       else {
 
-        args.push('-F', `${name}=${value}`)
+        args.push('-F', `${name}=${value}`);
 
       }
 
@@ -241,12 +241,12 @@ function appendData(
 
   if (typeof body === 'string') {
 
-    args.push('-d', body)
+    args.push('-d', body);
 
   }
   else if (Array.isArray(body)) {
 
-    body.forEach(x => args.push('-d', x))
+    body.forEach(x => args.push('-d', x));
 
   }
   else {
@@ -254,9 +254,9 @@ function appendData(
     for (const [name, value] of Object.entries(body)) {
 
       if (typeof value === 'object')
-        throw new Error('[post] Multipart format required')
+        throw new Error('[post] Multipart format required');
 
-      args.push('-d', `${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
+      args.push('-d', `${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
 
     }
 

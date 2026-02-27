@@ -1,5 +1,5 @@
-import type { AuthorizationBuilder, RuleConfig } from './types'
-import { createPolicy, type Policy } from './policy'
+import type { AuthorizationBuilder, RuleConfig } from './types';
+import { createPolicy, type Policy } from './policy';
 
 /**
  * Интерфейс конфигуратора системы авторизации.
@@ -38,7 +38,7 @@ export interface Authorization<TPolicy extends string = never> {
   addPolicy<TName extends string>(
     name: TName,
     setup: (p: Policy) => Policy
-  ): Authorization<TPolicy | TName>
+  ): Authorization<TPolicy | TName>;
 
 }
 
@@ -80,28 +80,28 @@ export function defineAuthorization<
 
     build() {
 
-      const policies: Record<string, readonly RuleConfig[]> = {}
+      const policies: Record<string, readonly RuleConfig[]> = {};
 
       const authorization: Authorization<string> = {
 
         addPolicy(name, setupPolicy) {
 
-          policies[name] = createPolicy(setupPolicy)
+          policies[name] = createPolicy(setupPolicy);
 
-          return this
+          return this;
 
         },
 
-      }
+      };
 
-      setup(authorization)
+      setup(authorization);
 
-      return policies
+      return policies;
 
     },
 
-  }
+  };
 
-  return definition
+  return definition;
 
 }

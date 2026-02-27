@@ -1,10 +1,10 @@
-import { useTelegramBot } from '#wbm/bot-telegram'
+import { useTelegramBot } from '#wbm/bot-telegram';
 
-const bot = useTelegramBot()
+const bot = useTelegramBot();
 
 bot.onCommand('start', (_context, reply) => {
 
-  log.debug('Preparing answer')
+  log.debug('Preparing answer');
 
   reply('Выберите вариант', b => b
     .inlineKeyboard(k => k
@@ -30,13 +30,13 @@ bot.onCommand('start', (_context, reply) => {
         )
       )
     )
-  )
+  );
 
-})
+});
 
 bot.onCommand('show_keyboard', (_context, reply) => {
 
-  log.debug('Preparing answer')
+  log.debug('Preparing answer');
 
   reply('Выберите вариант', b => b
     .replyKeyboard(k => k
@@ -46,21 +46,22 @@ bot.onCommand('show_keyboard', (_context, reply) => {
         .text('Привет!')
         .text('Как дела?', t => t.style('danger'))
       ))
-  )
+  );
 
-})
+});
 
 bot.onCallback('hello', (context, done) => {
 
-  done('Hello!')
+  done('Hello!');
 
-  bot.sendMessage(context.chatId, 'Hello _again_', b => b
+  bot.sendMessage(context.chatId, 'Hello <i>again</i>', b => b
+    .parseMode('HTML')
     .inlineKeyboard(k => k
       .row(r => r
         .text('Повтор', t => t
           .callback('hello')
         )
       )
-    ))
+    ));
 
-})
+});

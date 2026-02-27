@@ -1,9 +1,9 @@
-import { useBotStore } from '#store'
-import type { ActionConfig, AdapterOptions, BotAdapter } from '#types'
-import { runCurlGet, runCurlPost } from '#utils/curl'
-import { DEFAULT_INCOMING_LIMIT, DEFAULT_POLL_TIMEOUT } from '#constants'
-import type { Subject } from '#security/types'
-import { useAuthStore } from '#store/auth'
+import { useBotStore } from '#store';
+import type { ActionConfig, AdapterOptions, BotAdapter } from '#types';
+import { runCurlGet, runCurlPost } from '#utils/curl';
+import { DEFAULT_INCOMING_LIMIT, DEFAULT_POLL_TIMEOUT } from '#constants';
+import type { Subject } from '#security/types';
+import { useAuthStore } from '#store/auth';
 
 /**
  * Пользователь в MAX.
@@ -13,15 +13,15 @@ import { useAuthStore } from '#store/auth'
  **/
 interface MaxUser {
   /** Уникальный идентификатор пользователя */
-  user_id: number
+  user_id: number;
   /** Имя пользователя */
-  first_name: string
+  first_name: string;
   /** Фамилия (опционально) */
-  last_name?: string
+  last_name?: string;
   /** Username (опционально) */
-  username?: string
+  username?: string;
   /** Признак бота */
-  is_bot: boolean
+  is_bot: boolean;
 }
 
 /**
@@ -32,16 +32,16 @@ interface MaxUser {
  **/
 interface MaxMessageBody {
   /** Уникальный идентификатор сообщения */
-  mid: string
+  mid: string;
   /** Текст сообщения (может отсутствовать) */
-  text?: string
+  text?: string;
   /** Вложения (картинки, файлы, кнопки и др.) */
   attachments?: {
     /** Тип вложения */
-    type: string
+    type: string;
     /** Данные вложения */
-    payload: Record<string, unknown>
-  }[]
+    payload: Record<string, unknown>;
+  }[];
 }
 
 /**
@@ -52,15 +52,15 @@ interface MaxMessageBody {
  **/
 interface MaxMessage {
   /** Отправитель */
-  sender: MaxUser
+  sender: MaxUser;
   /** Получатель (чат) */
   recipient: {
-    chat_id: number
-  }
+    chat_id: number;
+  };
   /** Тело сообщения */
-  body: MaxMessageBody
+  body: MaxMessageBody;
   /** Временная метка */
-  timestamp: number
+  timestamp: number;
 }
 
 /**
@@ -71,13 +71,13 @@ interface MaxMessage {
  **/
 interface MaxCallback {
   /** Временная метка */
-  timestamp: number
+  timestamp: number;
   /** Уникальный идентификатор колбэка */
-  callback_id: string
+  callback_id: string;
   /** Полезная нагрузка (данные кнопки) */
-  payload: string
+  payload: string;
   /** Пользователь, нажавший кнопку */
-  user: MaxUser
+  user: MaxUser;
 }
 
 /**
@@ -88,11 +88,11 @@ interface MaxCallback {
  **/
 interface MaxMessageCreatedUpdate {
   /** Тип обновления */
-  update_type: 'message_created'
+  update_type: 'message_created';
   /** Сообщение */
-  message: MaxMessage
+  message: MaxMessage;
   /** Локаль пользователя (опционально) */
-  user_locale?: string
+  user_locale?: string;
 }
 
 /**
@@ -103,13 +103,13 @@ interface MaxMessageCreatedUpdate {
  **/
 interface MaxMessageCallbackUpdate {
   /** Тип обновления */
-  update_type: 'message_callback'
+  update_type: 'message_callback';
   /** Данные колбэка */
-  callback: MaxCallback
+  callback: MaxCallback;
   /** Сообщение, к которому привязана кнопка (опционально) */
-  message?: MaxMessage
+  message?: MaxMessage;
   /** Локаль пользователя (опционально) */
-  user_locale?: string
+  user_locale?: string;
 }
 
 /**
@@ -120,15 +120,15 @@ interface MaxMessageCallbackUpdate {
  **/
 interface MaxBotStartedUpdate {
   /** Тип обновления */
-  update_type: 'bot_started'
+  update_type: 'bot_started';
   /** Идентификатор чата */
-  chat_id: number
+  chat_id: number;
   /** Пользователь, запустивший бота */
-  user: MaxUser
+  user: MaxUser;
   /** Дополнительные данные (payload) */
-  payload?: string
+  payload?: string;
   /** Локаль пользователя (опционально) */
-  user_locale?: string
+  user_locale?: string;
 }
 
 /**
@@ -140,7 +140,7 @@ interface MaxBotStartedUpdate {
 type MaxUpdate
   = | MaxMessageCreatedUpdate
     | MaxMessageCallbackUpdate
-    | MaxBotStartedUpdate
+    | MaxBotStartedUpdate;
 
 /**
  * Ответ от метода получения обновлений.
@@ -150,9 +150,9 @@ type MaxUpdate
  **/
 interface MaxUpdatesResponse {
   /** Массив обновлений */
-  updates: MaxUpdate[]
+  updates: MaxUpdate[];
   /** Маркер для следующего запроса (пагинация) */
-  marker?: number
+  marker?: number;
 }
 
 /**
@@ -172,13 +172,13 @@ function toSubject(update: MaxUpdate): Subject {
       return {
         username: update.user.username,
         chatId: update.chat_id,
-      }
+      };
 
     case 'message_created':
       return {
         username: update.message.sender.username,
         chatId: update.message.recipient.chat_id,
-      }
+      };
 
     case 'message_callback':
       return {
@@ -186,7 +186,7 @@ function toSubject(update: MaxUpdate): Subject {
         // TODO: Verify chatId semantics when MAX bot API becomes available
         // Using user_id as chatId - may need to use message?.recipient.chat_id
         chatId: update.callback.user.user_id,
-      }
+      };
 
   }
 
@@ -203,7 +203,7 @@ function toSubject(update: MaxUpdate): Subject {
  **/
 function isRecord(value: unknown): value is Record<string, unknown> {
 
-  return typeof value === 'object' && value !== null
+  return typeof value === 'object' && value !== null;
 
 }
 
@@ -222,7 +222,7 @@ function isMaxUpdatesResponse(data: unknown): data is MaxUpdatesResponse {
     isRecord(data)
     && 'updates' in data
     && Array.isArray(data.updates)
-  )
+  );
 
 }
 
@@ -237,7 +237,7 @@ function isMaxUpdatesResponse(data: unknown): data is MaxUpdatesResponse {
  **/
 function isMessageCreated(update: MaxUpdate): update is MaxMessageCreatedUpdate {
 
-  return update.update_type === 'message_created'
+  return update.update_type === 'message_created';
 
 }
 
@@ -252,7 +252,7 @@ function isMessageCreated(update: MaxUpdate): update is MaxMessageCreatedUpdate 
  **/
 function isTextCommand(text?: string): text is string {
 
-  return !!text?.startsWith('/')
+  return !!text?.startsWith('/');
 
 }
 
@@ -270,7 +270,7 @@ function isMessageCallback(update: MaxUpdate): update is MaxMessageCallbackUpdat
   return (
     update.update_type === 'message_callback'
     && typeof update.callback.payload === 'string'
-  )
+  );
 
 }
 
@@ -317,10 +317,10 @@ export function createMaxAdapter<
     // sendTimeout = DEFAULT_SEND_TIMEOUT,
     commands,
     callbacks,
-  } = options
+  } = options;
 
-  const store = useBotStore(deviceName)
-  const authStore = useAuthStore(deviceName)
+  const store = useBotStore(deviceName);
+  const authStore = useAuthStore(deviceName);
 
   /**
    * Обрабатывает событие "пользователь запустил бота".
@@ -336,12 +336,12 @@ export function createMaxAdapter<
 
     // Если команды не используются - игнорируем
     if (!commands)
-      return
+      return;
 
-    const command = 'start'
+    const command = 'start';
 
-    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined
-    const subject: Subject = toSubject(update)
+    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined;
+    const subject: Subject = toSubject(update);
 
     // Если команда не существует - игнорируем
     if (!config) {
@@ -350,13 +350,13 @@ export function createMaxAdapter<
         '[Max] Access to not existing "/{}" by {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const isAllowed = authStore.isAllowed(config.policy, subject)
+    const isAllowed = authStore.isAllowed(config.policy, subject);
 
     // Если у субъекта нет доступа - игнорируем
     if (!isAllowed) {
@@ -365,13 +365,13 @@ export function createMaxAdapter<
         '[Max] Access denied to "/{}" by {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const username = update.user.username
+    const username = update.user.username;
 
     store.enqueueIncoming({
       type: 'command',
@@ -381,7 +381,7 @@ export function createMaxAdapter<
       args: update.payload ?? '',
       messageId: '0',
       timestamp: Date.now(),
-    })
+    });
 
   }
 
@@ -397,18 +397,18 @@ export function createMaxAdapter<
 
     // Если команды не используются - игнорируем
     if (!commands)
-      return
+      return;
 
     if (!isTextCommand(update.message.body.text))
-      return
+      return;
 
-    const { message } = update
-    const { sender: from, recipient: { chat_id: chatId } } = message
+    const { message } = update;
+    const { sender: from, recipient: { chat_id: chatId } } = message;
 
-    const [command, ...args] = update.message.body.text.slice(1).split(' ')
+    const [command, ...args] = update.message.body.text.slice(1).split(' ');
 
-    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined
-    const subject: Subject = toSubject(update)
+    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined;
+    const subject: Subject = toSubject(update);
 
     // Если команда не существует - игнорируем
     if (!config) {
@@ -417,13 +417,13 @@ export function createMaxAdapter<
         '[Max] Access to not existing "/{}" by {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const isAllowed = authStore.isAllowed(config.policy, subject)
+    const isAllowed = authStore.isAllowed(config.policy, subject);
 
     // Если у субъекта нет доступа - игнорируем
     if (!isAllowed) {
@@ -432,9 +432,9 @@ export function createMaxAdapter<
         '[Max] Access denied to "/{}" by {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
@@ -446,7 +446,7 @@ export function createMaxAdapter<
       args: args.join(' '),
       messageId: message.body.mid,
       timestamp: Date.now(),
-    })
+    });
 
   }
 
@@ -462,16 +462,16 @@ export function createMaxAdapter<
 
     // Если команды не используются - игнорируем
     if (!callbacks)
-      return
+      return;
 
-    const { callback, message } = update
-    const { user: from, payload } = callback
+    const { callback, message } = update;
+    const { user: from, payload } = callback;
 
     if (!message)
-      return
+      return;
 
-    const config = callbacks[payload as TCallback] as ActionConfig<TPolicy> | undefined
-    const subject: Subject = toSubject(update)
+    const config = callbacks[payload as TCallback] as ActionConfig<TPolicy> | undefined;
+    const subject: Subject = toSubject(update);
 
     // Если команда не существует - игнорируем
     if (!config) {
@@ -480,13 +480,13 @@ export function createMaxAdapter<
         '[Max] Access to not existing callback "{}" by {}',
         payload,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const isAllowed = authStore.isAllowed(config.policy, subject)
+    const isAllowed = authStore.isAllowed(config.policy, subject);
 
     // Если у субъекта нет доступа - игнорируем
     if (!isAllowed) {
@@ -495,9 +495,9 @@ export function createMaxAdapter<
         '[Max] Access denied to callback "{}" by {}',
         payload,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
@@ -509,7 +509,7 @@ export function createMaxAdapter<
       messageId: message.body.mid,
       timestamp: Date.now(),
       username: from.username,
-    })
+    });
 
   }
 
@@ -527,7 +527,7 @@ export function createMaxAdapter<
   const poll: BotAdapter['poll'] = (resolve, reject) => {
 
     const url = 'https://platform-api.max.ru/updates?limit={}&timeout={}'
-      .format(incomingLimit, pollTimeout)
+      .format(incomingLimit, pollTimeout);
 
     runCurlGet(url, {
       headers: {
@@ -537,35 +537,35 @@ export function createMaxAdapter<
 
         if (exitCode !== 0 || !output) {
 
-          log.debug(`[MAX] poll failed: exitCode=${exitCode}`)
+          log.debug(`[MAX] poll failed: exitCode=${exitCode}`);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
-        let data: unknown
+        let data: unknown;
 
         try {
 
-          data = JSON.parse(output)
+          data = JSON.parse(output);
 
         }
         catch (e) {
 
-          log.debug('[MAX] Failed to parse JSON: {}', e)
+          log.debug('[MAX] Failed to parse JSON: {}', e);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
         if (!isMaxUpdatesResponse(data)) {
 
-          log.debug(`[MAX] Invalid response format`)
+          log.debug(`[MAX] Invalid response format`);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
@@ -574,30 +574,30 @@ export function createMaxAdapter<
           // --- Команда: /start, /help и т.д. ---
           if (isMessageCreated(update)) {
 
-            handleCommand(update)
+            handleCommand(update);
 
           }
           // --- Нажатие кнопки ---
           else if (isMessageCallback(update)) {
 
-            handleCallback(update)
+            handleCallback(update);
 
           }
           // --- Пользователь запустил бота ---
           else {
 
-            handleStart(update)
+            handleStart(update);
 
           }
 
         }
 
-        resolve()
+        resolve();
 
       },
-    })
+    });
 
-  }
+  };
 
   /**
    * Создаёт exitCallback для POST-запросов к MAX API.
@@ -614,7 +614,7 @@ export function createMaxAdapter<
 
       if (exitCode === 0 && output?.includes('"success":true')) {
 
-        resolve()
+        resolve();
 
       }
       else {
@@ -624,13 +624,13 @@ export function createMaxAdapter<
           exitCode,
           output,
           errorOutput
-        )
+        );
 
-        reject()
+        reject();
 
       }
 
-    }
+    };
 
   /**
    * Отправляет сообщение через MAX Bot API.
@@ -649,53 +649,53 @@ export function createMaxAdapter<
    **/
   const send: BotAdapter['send'] = (outgoing, { resolve, reject }) => {
 
-    const { chatId, text = '', keyboard, photo, document, caption, parseMode } = outgoing
+    const { chatId, text = '', keyboard, photo, document, caption, parseMode } = outgoing;
 
     const url = 'https://platform-api.max.ru/messages?chat_id={}'
-      .format(chatId)
+      .format(chatId);
 
-    const body: { text: string, format?: 'html' | 'markdown', attachments?: unknown[] } = { text }
+    const body: { text: string; format?: 'html' | 'markdown'; attachments?: unknown[] } = { text };
 
     if (parseMode) {
 
-      body.format = parseMode === 'HTML' ? 'html' : 'markdown'
+      body.format = parseMode === 'HTML' ? 'html' : 'markdown';
 
     }
 
     if (keyboard) {
 
-      body.attachments = body.attachments ?? []
+      body.attachments = body.attachments ?? [];
 
       body.attachments.push({
         type: 'inline_keyboard',
         payload: keyboard,
-      })
+      });
 
     }
 
     if (photo) {
 
-      body.attachments = body.attachments ?? []
+      body.attachments = body.attachments ?? [];
       body.attachments.push({
         type: 'image',
         payload: { url: photo },
-      })
+      });
 
       if (caption)
-        body.text = caption
+        body.text = caption;
 
     }
 
     if (document) {
 
-      body.attachments = body.attachments ?? []
+      body.attachments = body.attachments ?? [];
       body.attachments.push({
         type: 'file',
         payload: { url: document },
-      })
+      });
 
       if (caption)
-        body.text = caption
+        body.text = caption;
 
     }
 
@@ -707,9 +707,9 @@ export function createMaxAdapter<
       },
       exitCallback: exitCallback(resolve, reject),
 
-    })
+    });
 
-  }
+  };
 
   /**
    * Отправляет "сырой" запрос к MAX Bot API.
@@ -725,10 +725,10 @@ export function createMaxAdapter<
    **/
   const sendRaw: BotAdapter['sendRaw'] = (outgoing, { resolve, reject }) => {
 
-    const { method, payload: { ...params } } = outgoing
+    const { method, payload: { ...params } } = outgoing;
 
     const url = 'https://platform-api.max.ru/{}'
-      .format(method)
+      .format(method);
 
     runCurlPost(url, {
       body: JSON.stringify(params),
@@ -738,10 +738,10 @@ export function createMaxAdapter<
       },
       exitCallback: exitCallback(resolve, reject),
 
-    })
+    });
 
-  }
+  };
 
-  return { poll, send, sendRaw }
+  return { poll, send, sendRaw };
 
 }

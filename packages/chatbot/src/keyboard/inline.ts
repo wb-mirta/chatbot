@@ -3,7 +3,7 @@ import type {
   ButtonStyle,
   InlineKeyboardButton,
   InlineKeyboardMarkup
-} from './types'
+} from './types';
 
 /**
  * Билдер для настройки inline-кнопки.
@@ -28,27 +28,27 @@ interface InlineButtonBuilder {
    * @since 0.4.12
    *
    **/
-  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>
+  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>;
 
   /**
    * Устанавливает callback-данные.
    **/
-  callback(data: string): ButtonBuilder
+  callback(data: string): ButtonBuilder;
 
   /**
    * Устанавливает URL для перехода.
    **/
-  url(url: string): ButtonBuilder
+  url(url: string): ButtonBuilder;
 
   /**
    * Переключает на инлайн-поиск с начальным запросом.
    **/
-  switchInlineQuery(query: string): ButtonBuilder
+  switchInlineQuery(query: string): ButtonBuilder;
 
   /**
    * Переключает на инлайн-поиск в текущем чате.
    **/
-  switchInlineQueryCurrentChat(query: string): ButtonBuilder
+  switchInlineQueryCurrentChat(query: string): ButtonBuilder;
 }
 
 /**
@@ -64,7 +64,7 @@ interface InlineRowBuilder {
   text(
     label: string,
     setup?: (b: InlineButtonBuilder) => void
-  ): InlineRowBuilder
+  ): InlineRowBuilder;
 }
 
 /**
@@ -77,7 +77,7 @@ export interface InlineKeyboardBuilder {
   /**
    * Добавляет строку.
    **/
-  row(setup: (r: InlineRowBuilder) => void): InlineKeyboardBuilder
+  row(setup: (r: InlineRowBuilder) => void): InlineKeyboardBuilder;
 }
 
 /**
@@ -109,7 +109,7 @@ export function inlineKeyboard(
 ): InlineKeyboardMarkup {
 
   // Массив строк кнопок (каждая строка — массив кнопок)
-  const rows: InlineKeyboardButton[][] = []
+  const rows: InlineKeyboardButton[][] = [];
 
   // Основной билдер для построения клавиатуры
   const builder: InlineKeyboardBuilder = {
@@ -122,7 +122,7 @@ export function inlineKeyboard(
     row: (setupRow) => {
 
       // Кнопки текущей строки
-      const buttons: InlineKeyboardButton[] = []
+      const buttons: InlineKeyboardButton[] = [];
 
       // Билдер строки
       const rowBuilder: InlineRowBuilder = {
@@ -136,7 +136,7 @@ export function inlineKeyboard(
         text: (label, setupButton) => {
 
           // Создаём кнопку с текстом
-          const button: InlineKeyboardButton = { text: label }
+          const button: InlineKeyboardButton = { text: label };
 
           // Если передана функция настройки — применяем её
           if (setupButton) {
@@ -148,16 +148,16 @@ export function inlineKeyboard(
 
                 if (enabled) {
 
-                  button.style = style
+                  button.style = style;
 
                 }
                 else if (button.style === style) {
 
-                  delete button.style
+                  delete button.style;
 
                 }
 
-                return buttonBuilder
+                return buttonBuilder;
 
               },
 
@@ -169,8 +169,8 @@ export function inlineKeyboard(
                **/
               callback: (data) => {
 
-                button.callback_data = data
-                return buttonBuilder
+                button.callback_data = data;
+                return buttonBuilder;
 
               },
               /**
@@ -181,8 +181,8 @@ export function inlineKeyboard(
                **/
               url: (url) => {
 
-                button.url = url
-                return buttonBuilder
+                button.url = url;
+                return buttonBuilder;
 
               },
               /**
@@ -193,8 +193,8 @@ export function inlineKeyboard(
                **/
               switchInlineQuery: (query) => {
 
-                button.switch_inline_query = query
-                return buttonBuilder
+                button.switch_inline_query = query;
+                return buttonBuilder;
 
               },
               /**
@@ -205,41 +205,41 @@ export function inlineKeyboard(
                **/
               switchInlineQueryCurrentChat: (query) => {
 
-                button.switch_inline_query_current_chat = query
-                return buttonBuilder
+                button.switch_inline_query_current_chat = query;
+                return buttonBuilder;
 
               },
-            }
+            };
             // Применяем настройки к кнопке
-            setupButton(buttonBuilder)
+            setupButton(buttonBuilder);
 
           }
 
           // Добавляем кнопку в строку
-          buttons.push(button)
-          return rowBuilder
+          buttons.push(button);
+          return rowBuilder;
 
         },
-      }
+      };
 
       // Применяем настройку строки
-      setupRow(rowBuilder)
+      setupRow(rowBuilder);
       // Если в строке есть кнопки — добавляем её в общую сетку
       if (buttons.length > 0) {
 
-        rows.push(buttons)
+        rows.push(buttons);
 
       }
 
-      return builder
+      return builder;
 
     },
-  }
+  };
 
   // Запускаем процесс построения
-  setup(builder)
+  setup(builder);
 
   // Возвращаем результат в формате Telegram API
-  return { inline_keyboard: rows }
+  return { inline_keyboard: rows };
 
 }

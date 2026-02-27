@@ -1,10 +1,10 @@
-import { isString } from '@mirta/basics'
-import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants'
-import { TOPICS } from '#host/device'
-import { createExponentialBackoff } from '#resilience/exponential-backoff'
-import { useBotStore } from '#store/index'
-import type { BotAdapter, Outgoing } from '#types'
-import { assertValueIsOutgoing } from '#assertions/outgoing'
+import { isString } from '@mirta/basics';
+import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants';
+import { TOPICS } from '#host/device';
+import { createExponentialBackoff } from '#resilience/exponential-backoff';
+import { useBotStore } from '#store/index';
+import type { BotAdapter, Outgoing } from '#types';
+import { assertValueIsOutgoing } from '#assertions/outgoing';
 
 /**
  * Параметры настройки обмена данными между ботом и внешним API.
@@ -20,7 +20,7 @@ export interface ExchangeOptions {
    * Значение по умолчанию — {@link DEFAULT_POLL_INTERVAL}
    *
    **/
-  pollInterval?: number
+  pollInterval?: number;
 
   /**
    * Интервал отправки исходящих сообщений (в миллисекундах).
@@ -28,7 +28,7 @@ export interface ExchangeOptions {
    * Значение по умолчанию — {@link DEFAULT_SEND_INTERVAL}
    *
    */
-  sendInterval?: number
+  sendInterval?: number;
 
   /**
    * Интервал публикации входящих сообщений в MQTT (в миллисекундах).
@@ -36,7 +36,7 @@ export interface ExchangeOptions {
    * Значение по умолчанию — {@link DEFAULT_MQTT_INTERVAL}
    *
    **/
-  mqttInterval?: number
+  mqttInterval?: number;
 
 }
 
@@ -77,33 +77,33 @@ export function setupExchanger(
   options: ExchangeOptions
 ): void {
 
-  const store = useBotStore(deviceName)
+  const store = useBotStore(deviceName);
 
   // Сброс флагов при повторной инициализации
-  store.isPolling = false
-  store.isSending = false
+  store.isPolling = false;
+  store.isSending = false;
 
   const {
     pollInterval = DEFAULT_POLL_INTERVAL,
     sendInterval = DEFAULT_SEND_INTERVAL,
     mqttInterval = DEFAULT_MQTT_INTERVAL,
-  } = options
+  } = options;
 
-  const pollTimerName = `${deviceName}_poll`
-  const sendTimerName = `${deviceName}_send`
-  const mqttTimerName = `${deviceName}_mqtt`
+  const pollTimerName = `${deviceName}_poll`;
+  const sendTimerName = `${deviceName}_send`;
+  const mqttTimerName = `${deviceName}_mqtt`;
 
   // Экспоненциальная задержка при ошибках (до 6 попыток)
   const pollBackoffInterval = createExponentialBackoff({
     delay: pollInterval,
     maxAttempts: 6,
-  })
+  });
 
   // Экспоненциальная задержка при ошибках (до 6 попыток)
   const sendBackoffInterval = createExponentialBackoff({
     delay: sendInterval,
     maxAttempts: 6,
-  })
+  });
 
   /**
    * Вызывается при успешном опросе обновлений.
@@ -111,17 +111,17 @@ export function setupExchanger(
    **/
   function pollResolved() {
 
-    const hasErrors = store.stats.pollErrors > 0
+    const hasErrors = store.stats.pollErrors > 0;
 
-    store.pollSuccess()
+    store.pollSuccess();
 
     if (hasErrors)
-      log.debug('Errors gone. Poll delay restored to {} ms', pollInterval)
+      log.debug('Errors gone. Poll delay restored to {} ms', pollInterval);
 
-    store.isPolling = false
+    store.isPolling = false;
 
     if (store.isEnabled)
-      startTicker(pollTimerName, pollInterval)
+      startTicker(pollTimerName, pollInterval);
 
   }
 
@@ -132,15 +132,15 @@ export function setupExchanger(
    **/
   function pollRejected() {
 
-    store.pollFail()
+    store.pollFail();
 
-    const pollDelay = pollBackoffInterval(store.stats.pollErrors)
-    log.debug('Error detected. Poll delay increased to {} ms', pollDelay)
+    const pollDelay = pollBackoffInterval(store.stats.pollErrors);
+    log.debug('Error detected. Poll delay increased to {} ms', pollDelay);
 
-    store.isPolling = false
+    store.isPolling = false;
 
     if (store.isEnabled)
-      startTicker(pollTimerName, pollDelay)
+      startTicker(pollTimerName, pollDelay);
 
   }
 
@@ -150,17 +150,17 @@ export function setupExchanger(
     then: () => {
 
       if (store.isDebug)
-        log.debug('[Bot] Polling')
+        log.debug('[Bot] Polling');
 
-      store.isPolling = true
+      store.isPolling = true;
 
       adapter.poll(
         pollResolved,
         pollRejected
-      )
+      );
 
     },
-  })
+  });
 
   /**
    * Вызывается при успешной отправке сообщения.
@@ -168,17 +168,17 @@ export function setupExchanger(
    **/
   function sendResolved() {
 
-    const hasErrors = store.stats.sendErrors > 0
+    const hasErrors = store.stats.sendErrors > 0;
 
-    store.sendSuccess()
+    store.sendSuccess();
 
     if (hasErrors)
-      log.debug('Errors gone. Send delay restored to {} ms', sendInterval)
+      log.debug('Errors gone. Send delay restored to {} ms', sendInterval);
 
-    store.isSending = false
+    store.isSending = false;
 
     if (store.isEnabled)
-      startTicker(sendTimerName, sendInterval)
+      startTicker(sendTimerName, sendInterval);
 
   }
 
@@ -189,15 +189,15 @@ export function setupExchanger(
    **/
   function sendRejected() {
 
-    store.sendFail()
+    store.sendFail();
 
-    const sendDelay = sendBackoffInterval(store.stats.sendErrors)
-    log.debug('Error detected. Send delay increased to {} ms', sendDelay)
+    const sendDelay = sendBackoffInterval(store.stats.sendErrors);
+    log.debug('Error detected. Send delay increased to {} ms', sendDelay);
 
-    store.isSending = false
+    store.isSending = false;
 
     if (store.isEnabled)
-      startTicker(sendTimerName, sendDelay)
+      startTicker(sendTimerName, sendDelay);
 
   }
 
@@ -206,15 +206,15 @@ export function setupExchanger(
     when: () => timers[sendTimerName].firing && !store.isSending,
     then: () => {
 
-      const outgoing = store.dequeueOutgoing()
+      const outgoing = store.dequeueOutgoing();
 
       if (!outgoing)
-        return
+        return;
 
-      store.isSending = true
+      store.isSending = true;
 
       if (store.isDebug)
-        log.debug('[Bot] Sending')
+        log.debug('[Bot] Sending');
 
       switch (outgoing.type) {
 
@@ -222,20 +222,20 @@ export function setupExchanger(
           adapter.sendRaw(outgoing, {
             resolve: sendResolved,
             reject: sendRejected,
-          })
-          break
+          });
+          break;
 
         case 'regular':
           adapter.send(outgoing, {
             resolve: sendResolved,
             reject: sendRejected,
-          })
-          break
+          });
+          break;
 
       }
 
     },
-  })
+  });
 
   // === Правило: Приём нового исходящего сообщения через MQTT ===
   defineRule(`${deviceName}_outgoing`, {
@@ -243,52 +243,52 @@ export function setupExchanger(
     then: (newValue) => {
 
       if (!store.isEnabled)
-        return
+        return;
 
       if (!isString(newValue))
-        return
+        return;
 
-      let outgoing: Outgoing
+      let outgoing: Outgoing;
 
       try {
 
-        outgoing = JSON.parse(newValue) as Outgoing
+        outgoing = JSON.parse(newValue) as Outgoing;
 
       }
       catch (e: unknown) {
 
-        log.error('[Bot] Invalid outgoing payload: {}', e)
-        return
+        log.error('[Bot] Invalid outgoing payload: {}', e);
+        return;
 
       }
 
       try {
 
-        assertValueIsOutgoing(outgoing)
-        store.enqueueOutgoing(outgoing)
+        assertValueIsOutgoing(outgoing);
+        store.enqueueOutgoing(outgoing);
 
       }
       catch (e: unknown) {
 
-        log.error('[Bot] Invalid outgoing structure: {}', e)
+        log.error('[Bot] Invalid outgoing structure: {}', e);
 
       }
 
     },
-  })
+  });
 
   // === Правило: Публикация входящих сообщений в MQTT ===
   defineRule(mqttTimerName, {
     when: () => timers[mqttTimerName].firing,
     then: () => {
 
-      const incoming = store.dequeueIncoming()
+      const incoming = store.dequeueIncoming();
 
       if (incoming)
-        dev[`${deviceName}/${TOPICS.incoming}`] = JSON.stringify(incoming)
+        dev[`${deviceName}/${TOPICS.incoming}`] = JSON.stringify(incoming);
 
     },
-  })
+  });
 
   // === Правило: Обработка включения/выключения бота ===
   defineRule(`${deviceName}_enable`, {
@@ -298,39 +298,39 @@ export function setupExchanger(
       if (newValue) {
 
         if (store.isDebug)
-          log.debug('[Bot] Enabled')
+          log.debug('[Bot] Enabled');
 
-        store.isEnabled = true
+        store.isEnabled = true;
 
-        startTicker(pollTimerName, pollBackoffInterval(store.stats.pollErrors))
-        startTicker(sendTimerName, sendBackoffInterval(store.stats.sendErrors))
-        startTicker(mqttTimerName, mqttInterval)
+        startTicker(pollTimerName, pollBackoffInterval(store.stats.pollErrors));
+        startTicker(sendTimerName, sendBackoffInterval(store.stats.sendErrors));
+        startTicker(mqttTimerName, mqttInterval);
 
       }
       else {
 
-        store.isEnabled = false
+        store.isEnabled = false;
 
-        timers[pollTimerName].stop()
-        timers[sendTimerName].stop()
-        timers[mqttTimerName].stop()
+        timers[pollTimerName].stop();
+        timers[sendTimerName].stop();
+        timers[mqttTimerName].stop();
 
         // Очищаем входящую очередь при остановке бота.
-        store.resetQueues()
+        store.resetQueues();
 
         if (store.isDebug)
-          log.debug('[Bot] Disabled')
+          log.debug('[Bot] Disabled');
 
       }
 
     },
-  })
+  });
 
   // Инициализация режима отладки
   if (dev[`${deviceName}/${TOPICS.debug}`]) {
 
-    log.debug(`[Bot] ${deviceName} initialized`)
-    store.isDebug = true
+    log.debug(`[Bot] ${deviceName} initialized`);
+    store.isDebug = true;
 
   }
 
@@ -339,10 +339,10 @@ export function setupExchanger(
   //
   if (dev[`${deviceName}/${TOPICS.enabled}`]) {
 
-    store.isEnabled = true
-    startTicker(pollTimerName, pollInterval)
-    startTicker(sendTimerName, sendInterval)
-    startTicker(mqttTimerName, mqttInterval)
+    store.isEnabled = true;
+    startTicker(pollTimerName, pollInterval);
+    startTicker(sendTimerName, sendInterval);
+    startTicker(mqttTimerName, mqttInterval);
 
   }
 

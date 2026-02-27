@@ -1,6 +1,6 @@
-import type { OutgoingRegular } from '#types'
-import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard/index'
-import type { MessageBuilder } from './types'
+import type { OutgoingRegular } from '#types';
+import { inlineKeyboard, replyKeyboard, removeKeyboard } from '#keyboard/index';
+import type { MessageBuilder } from './types';
 
 /**
  * Создаёт построитель сообщения, привязанный к конкретному исходящему сообщению.
@@ -40,8 +40,8 @@ export function createMessageBuilder(message: Partial<OutgoingRegular>): Message
      **/
     inlineKeyboard(setup) {
 
-      message.keyboard = inlineKeyboard(setup)
-      return this
+      message.keyboard = inlineKeyboard(setup);
+      return this;
 
     },
 
@@ -55,8 +55,8 @@ export function createMessageBuilder(message: Partial<OutgoingRegular>): Message
      **/
     replyKeyboard(setup) {
 
-      message.keyboard = replyKeyboard(setup)
-      return this
+      message.keyboard = replyKeyboard(setup);
+      return this;
 
     },
 
@@ -70,9 +70,9 @@ export function createMessageBuilder(message: Partial<OutgoingRegular>): Message
      **/
     removeKeyboard() {
 
-      message.keyboard = removeKeyboard()
+      message.keyboard = removeKeyboard();
 
-      return this
+      return this;
 
     },
 
@@ -89,14 +89,14 @@ export function createMessageBuilder(message: Partial<OutgoingRegular>): Message
      **/
     parseMode(mode) {
 
-      message.parseMode = mode
+      message.parseMode = mode;
 
-      return this
+      return this;
 
     },
 
-  }
+  };
 
-  return builder
+  return builder;
 
 }

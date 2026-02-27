@@ -1,9 +1,9 @@
-import { useBotStore } from '#store/index'
-import type { ActionConfig, AdapterOptions, BotAdapter, Config } from '#types'
-import { runCurlGet, runCurlPost, type PostBody, type PostMode } from '#utils/curl'
-import { DEFAULT_INCOMING_LIMIT, DEFAULT_POLL_TIMEOUT, DEFAULT_SEND_TIMEOUT } from '#constants'
-import type { Subject } from '#security/types'
-import { useAuthStore } from '#store/auth'
+import { useBotStore } from '#store/index';
+import type { ActionConfig, AdapterOptions, BotAdapter, Config } from '#types';
+import { runCurlGet, runCurlPost, type PostBody, type PostMode } from '#utils/curl';
+import { DEFAULT_INCOMING_LIMIT, DEFAULT_POLL_TIMEOUT, DEFAULT_SEND_TIMEOUT } from '#constants';
+import type { Subject } from '#security/types';
+import { useAuthStore } from '#store/auth';
 
 /**
  * Тип чата в Telegram.
@@ -11,7 +11,7 @@ import { useAuthStore } from '#store/auth'
  * @since 0.4.8
  *
  **/
-type ChatType = 'private' | 'group' | 'supergroup' | 'channel'
+type ChatType = 'private' | 'group' | 'supergroup' | 'channel';
 
 /**
  * Описывает чат в Telegram.
@@ -21,9 +21,9 @@ type ChatType = 'private' | 'group' | 'supergroup' | 'channel'
  **/
 interface Chat {
   /** Уникальный идентификатор чата */
-  id: number
+  id: number;
   /** Тип чата */
-  type: ChatType
+  type: ChatType;
 }
 
 /**
@@ -34,11 +34,11 @@ interface Chat {
  **/
 interface TelegramUpdate {
   /** Уникальный идентификатор обновления */
-  update_id: number
+  update_id: number;
   /** Сообщение, если присутствует */
-  message?: TelegramMessage
+  message?: TelegramMessage;
   /** Данные о нажатии кнопки (callback_query), если есть */
-  callback_query?: TelegramCallbackQuery
+  callback_query?: TelegramCallbackQuery;
 }
 
 /**
@@ -49,9 +49,9 @@ interface TelegramUpdate {
  **/
 interface TelegramFrom {
   /** Уникальный идентификатор пользователя */
-  id: number
+  id: number;
   /** Имя пользователя (если указано) */
-  username?: string
+  username?: string;
 }
 
 /**
@@ -62,13 +62,13 @@ interface TelegramFrom {
  **/
 interface TelegramMessage {
   /** Идентификатор сообщения */
-  message_id: number
+  message_id: number;
   /** Отправитель сообщения */
-  from?: TelegramFrom
+  from?: TelegramFrom;
   /** Чат, в котором отправлено сообщение */
-  chat: Chat
+  chat: Chat;
   /** Текст сообщения (может отсутствовать) */
-  text?: string
+  text?: string;
 }
 
 /**
@@ -79,7 +79,7 @@ interface TelegramMessage {
  **/
 interface TelegramTextCommand extends TelegramMessage {
   /** Текст сообщения */
-  text: string
+  text: string;
 }
 
 /**
@@ -90,13 +90,13 @@ interface TelegramTextCommand extends TelegramMessage {
  **/
 interface TelegramCallbackQuery {
   /** Уникальный идентификатор запроса */
-  id: string
+  id: string;
   /** Пользователь, нажавший кнопку */
-  from: TelegramFrom
+  from: TelegramFrom;
   /** Сообщение, к которому привязана кнопка */
-  message?: { chat: Chat, message_id: number }
+  message?: { chat: Chat; message_id: number };
   /** Данные, привязанные к кнопке (callback_data) */
-  data: string
+  data: string;
 }
 
 /**
@@ -107,9 +107,9 @@ interface TelegramCallbackQuery {
  **/
 interface GetUpdatesResponse {
   /** Флаг успешности запроса */
-  ok: boolean
+  ok: boolean;
   /** Массив обновлений */
-  result: TelegramUpdate[]
+  result: TelegramUpdate[];
 }
 
 /**
@@ -130,7 +130,7 @@ function isGetUpdatesResponse(data: unknown): data is GetUpdatesResponse {
     && typeof data.ok === 'boolean'
     && 'result' in data
     && Array.isArray(data.result)
-  )
+  );
 
 }
 
@@ -145,7 +145,7 @@ function isGetUpdatesResponse(data: unknown): data is GetUpdatesResponse {
  **/
 function isTextCommand(message?: TelegramMessage): message is TelegramTextCommand {
 
-  return message?.text?.indexOf('/') === 0
+  return message?.text?.indexOf('/') === 0;
 
 }
 
@@ -190,10 +190,10 @@ export function telegramAdapter<
     sendTimeout = DEFAULT_SEND_TIMEOUT,
     commands = {} as Config<TPolicy, TCommand>,
     callbacks = {} as Config<TPolicy, TCallback>,
-  } = options
+  } = options;
 
-  const store = useBotStore(deviceName)
-  const authStore = useAuthStore(deviceName)
+  const store = useBotStore(deviceName);
+  const authStore = useAuthStore(deviceName);
 
   /**
    * Обрабатывает текстовую команду, начинающуюся с "/".
@@ -205,19 +205,19 @@ export function telegramAdapter<
    **/
   function handleCommand(message: TelegramTextCommand) {
 
-    const { text, from, chat, message_id } = message
+    const { text, from, chat, message_id } = message;
 
-    const [rawCommand, ...args] = text.slice(1).split(' ')
-    const command = rawCommand.split('@')[0]
+    const [rawCommand, ...args] = text.slice(1).split(' ');
+    const command = rawCommand.split('@')[0];
 
-    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined
+    const config = commands[command as TCommand] as ActionConfig<TPolicy> | undefined;
 
     const subject: Subject = {
       userId: from?.id,
       username: from?.username,
       chatId: chat.id,
       chatType: chat.type,
-    }
+    };
 
     // Если команда не существует - игнорируем
     if (!config) {
@@ -226,13 +226,13 @@ export function telegramAdapter<
         '[Telegram] Rejected unknown "/{}" from {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const isAllowed = authStore.isAllowed(config.policy, subject)
+    const isAllowed = authStore.isAllowed(config.policy, subject);
 
     // Если у субъекта нет доступа - игнорируем
     if (!isAllowed) {
@@ -241,9 +241,9 @@ export function telegramAdapter<
         '[Telegram] Access denied to "/{}" from {}',
         command,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
@@ -256,7 +256,7 @@ export function telegramAdapter<
       args: args.join(' '),
       messageId: message_id.toString(),
       timestamp: Date.now(),
-    })
+    });
 
   }
 
@@ -270,9 +270,9 @@ export function telegramAdapter<
    **/
   function handleCallback(query: TelegramCallbackQuery) {
 
-    const { message, data, from } = query
+    const { message, data, from } = query;
 
-    const config = callbacks[data as TCallback] as ActionConfig<TPolicy> | undefined
+    const config = callbacks[data as TCallback] as ActionConfig<TPolicy> | undefined;
 
     if (!message) {
 
@@ -280,9 +280,9 @@ export function telegramAdapter<
         '[Telegram] Rejected callback "{}" from {}: no message context (inline mode)',
         data,
         JSON.stringify({ userId: from.id, username: from.username })
-      )
+      );
 
-      return
+      return;
 
     }
 
@@ -291,7 +291,7 @@ export function telegramAdapter<
       username: from.username,
       chatId: message.chat.id,
       chatType: message.chat.type,
-    }
+    };
 
     // Если callback не существует - игнорируем
     if (!config) {
@@ -300,13 +300,13 @@ export function telegramAdapter<
         '[Telegram] Rejected unknown "{}" from {}',
         data,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
-    const isAllowed = authStore.isAllowed(config.policy, subject)
+    const isAllowed = authStore.isAllowed(config.policy, subject);
 
     // Если у субъекта нет доступа - игнорируем
     if (!isAllowed) {
@@ -315,9 +315,9 @@ export function telegramAdapter<
         '[Telegram] Access denied to "{}" by {}',
         data,
         JSON.stringify(subject)
-      )
+      );
 
-      return
+      return;
 
     }
 
@@ -330,7 +330,7 @@ export function telegramAdapter<
       messageId: message.message_id.toString(),
       timestamp: Date.now(),
       username: from.username,
-    })
+    });
 
   }
 
@@ -348,15 +348,15 @@ export function telegramAdapter<
    **/
   const poll: BotAdapter['poll'] = (resolve, reject) => {
 
-    const nextUpdateId = store.lastUpdateId + 1
+    const nextUpdateId = store.lastUpdateId + 1;
 
     const url = 'https://api.telegram.org/bot{}/getUpdates?limit={}&timeout={}&offset={}'
-      .format(token, incomingLimit, pollTimeout, nextUpdateId)
+      .format(token, incomingLimit, pollTimeout, nextUpdateId);
 
-    store.isPolling = true
+    store.isPolling = true;
 
     if (store.isDebug)
-      log.debug('[Telegram] Polling: timeout={}', pollTimeout)
+      log.debug('[Telegram] Polling: timeout={}', pollTimeout);
 
     runCurlGet(url, {
 
@@ -366,86 +366,86 @@ export function telegramAdapter<
 
         if (exitCode !== 0 || !output) {
 
-          log.debug('[Telegram] Poll failed: exitCode={}, output={}, error={}', exitCode, output, errorOutput)
+          log.debug('[Telegram] Poll failed: exitCode={}, output={}, error={}', exitCode, output, errorOutput);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
-        let data: unknown
+        let data: unknown;
 
         try {
 
-          data = JSON.parse(output)
+          data = JSON.parse(output);
 
         }
         catch (e: unknown) {
 
-          log.debug('[Telegram] Failed to parse JSON: {}', e)
+          log.debug('[Telegram] Failed to parse JSON: {}', e);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
         if (!isGetUpdatesResponse(data)) {
 
-          log.debug(`[Telegram] Invalid response format from getUpdates`)
-          log.debug(JSON.stringify(data))
+          log.debug(`[Telegram] Invalid response format from getUpdates`);
+          log.debug(JSON.stringify(data));
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
         if (!data.ok) {
 
-          log.debug('[Telegram] API error: {}', output)
+          log.debug('[Telegram] API error: {}', output);
 
-          reject()
-          return
+          reject();
+          return;
 
         }
 
         if (!store.isEnabled) {
 
-          resolve()
-          return
+          resolve();
+          return;
 
         }
 
-        let lastUpdateId: number | undefined
+        let lastUpdateId: number | undefined;
 
         for (const update of data.result) {
 
           if (isTextCommand(update.message)) {
 
             // Обработка команды: /command args
-            handleCommand(update.message)
+            handleCommand(update.message);
 
           }
           else if (update.callback_query) {
 
             // Обработка нажатия кнопки (callback_query)
-            handleCallback(update.callback_query)
+            handleCallback(update.callback_query);
 
           }
 
-          lastUpdateId = update.update_id
+          lastUpdateId = update.update_id;
 
         }
 
         if (lastUpdateId)
-          store.lastUpdateId = lastUpdateId
+          store.lastUpdateId = lastUpdateId;
 
-        resolve()
+        resolve();
 
       },
 
-    })
+    });
 
-  }
+  };
 
   /**
    * Создаёт exitCallback для POST-запросов к Telegram API.
@@ -462,7 +462,7 @@ export function telegramAdapter<
 
       if (exitCode === 0 && output?.includes('"ok":true')) {
 
-        resolve()
+        resolve();
 
       }
       else {
@@ -472,13 +472,13 @@ export function telegramAdapter<
           exitCode,
           output,
           errorOutput
-        )
+        );
 
-        reject()
+        reject();
 
       }
 
-    }
+    };
 
   /**
    * Отправляет сообщение через Telegram Bot API.
@@ -498,68 +498,68 @@ export function telegramAdapter<
    **/
   const send: BotAdapter['send'] = (outgoing, { resolve, reject }) => {
 
-    const { chatId, text = '', keyboard, photo, document, caption, parseMode } = outgoing
+    const { chatId, text = '', keyboard, photo, document, caption, parseMode } = outgoing;
 
-    let url: string
-    let mode: PostMode | undefined
+    let url: string;
+    let mode: PostMode | undefined;
 
     const body: PostBody = {
       chat_id: chatId.toString(),
-    }
+    };
 
     if (photo) {
 
       if (store.isDebug)
-        log.debug('[Telegram] Sending photo')
+        log.debug('[Telegram] Sending photo');
 
-      mode = 'multipart'
-      url = 'https://api.telegram.org/bot{}/sendPhoto'.format(token)
+      mode = 'multipart';
+      url = 'https://api.telegram.org/bot{}/sendPhoto'.format(token);
 
-      body.photo = photo
+      body.photo = photo;
 
       if (caption)
-        body.caption = caption
+        body.caption = caption;
 
     }
     else if (document) {
 
       if (store.isDebug)
-        log.debug('[Telegram] Sending document')
+        log.debug('[Telegram] Sending document');
 
-      mode = 'multipart'
-      url = 'https://api.telegram.org/bot{}/sendDocument'.format(token)
+      mode = 'multipart';
+      url = 'https://api.telegram.org/bot{}/sendDocument'.format(token);
 
-      body.document = document
+      body.document = document;
 
       if (caption)
-        body.caption = caption
+        body.caption = caption;
 
     }
     else {
 
       if (store.isDebug)
-        log.debug('[Telegram] Sending text')
+        log.debug('[Telegram] Sending text');
 
-      url = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
+      url = 'https://api.telegram.org/bot{}/sendMessage'.format(token);
 
-      body.text = text
+      body.text = text;
 
     }
 
     if (parseMode)
-      body.parse_mode = parseMode === 'HTML' ? 'HTML' : 'MarkdownV2'
+      body.parse_mode = parseMode === 'HTML' ? 'HTML' : 'MarkdownV2';
 
     if (keyboard)
-      body.reply_markup = JSON.stringify(keyboard)
+      body.reply_markup = JSON.stringify(keyboard);
 
     runCurlPost(url, {
       mode,
       body,
       exitCallback: sendExitCallback(resolve, reject),
       timeout: sendTimeout,
-    })
+    });
 
-  }
+  };
 
   /**
    * Отправляет "сырой" запрос к Telegram Bot API.
@@ -573,7 +573,7 @@ export function telegramAdapter<
    **/
   const sendRaw: BotAdapter['sendRaw'] = (outgoing, { resolve, reject }) => {
 
-    const { method, payload: { ...params } } = outgoing
+    const { method, payload: { ...params } } = outgoing;
 
     runCurlPost(
       'https://api.telegram.org/bot{}/{}'.format(token, method),
@@ -585,10 +585,10 @@ export function telegramAdapter<
         exitCallback: sendExitCallback(resolve, reject),
         timeout: sendTimeout,
       }
-    )
+    );
 
-  }
+  };
 
-  return { poll, send, sendRaw }
+  return { poll, send, sendRaw };
 
 }

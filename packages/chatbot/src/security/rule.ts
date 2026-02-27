@@ -1,6 +1,6 @@
-import type { AccessMap, RuleConfig, SubjectField } from '#security/types'
+import type { AccessMap, RuleConfig, SubjectField } from '#security/types';
 
-type NonEmptyArray<TValue> = [TValue, ...TValue[]]
+type NonEmptyArray<TValue> = [TValue, ...TValue[]];
 
 /**
  * Билдер для построения условия доступа.
@@ -13,7 +13,7 @@ type NonEmptyArray<TValue> = [TValue, ...TValue[]]
  * @since 0.4.8
  *
  **/
-export type Rule = Record<SubjectField, (...values: NonEmptyArray<string>) => Rule>
+export type Rule = Record<SubjectField, (...values: NonEmptyArray<string>) => Rule>;
 
 /**
  * Фабрика для создания функции проверки доступа.
@@ -34,18 +34,18 @@ export function createRule(
 
 ): RuleConfig {
 
-  const isAllow = type === 'allow'
+  const isAllow = type === 'allow';
 
-  const config: RuleConfig<AccessMap> = {}
+  const config: RuleConfig<AccessMap> = {};
 
   function addValues(field: SubjectField, values: NonEmptyArray<string>) {
 
-    config[field] ??= {}
+    config[field] ??= {};
 
     for (const value of values)
-      config[field][value] = isAllow
+      config[field][value] = isAllow;
 
-    return rule
+    return rule;
 
   }
 
@@ -59,12 +59,12 @@ export function createRule(
 
     chatType: (...values) => addValues('chatType', values),
 
-  }
+  };
 
   // Выполняем настройку
-  setup(rule)
+  setup(rule);
 
   // Возвращаем готовую конфигурацию
-  return config
+  return config;
 
 }

@@ -1,4 +1,4 @@
-import { assertValueIsOutgoing } from '#assertions/outgoing'
+import { assertValueIsOutgoing } from '#assertions/outgoing';
 
 describe('Assertions: Outgoing', () => {
 
@@ -10,15 +10,15 @@ describe('Assertions: Outgoing', () => {
         type: 'regular',
         chatId: 123,
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with text', () => {
 
@@ -27,15 +27,15 @@ describe('Assertions: Outgoing', () => {
         chatId: 123,
         text: 'Hello',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with photo', () => {
 
@@ -44,15 +44,15 @@ describe('Assertions: Outgoing', () => {
         chatId: 123,
         photo: 'https://example.com/photo.jpg',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with document', () => {
 
@@ -61,15 +61,15 @@ describe('Assertions: Outgoing', () => {
         chatId: 123,
         document: 'path/to/file.pdf',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with string chatId', () => {
 
@@ -78,15 +78,15 @@ describe('Assertions: Outgoing', () => {
         chatId: '@username',
         text: 'Hello',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with HTML parseMode', () => {
 
@@ -96,15 +96,15 @@ describe('Assertions: Outgoing', () => {
         text: '<b>Bold</b>',
         parseMode: 'HTML',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with MarkdownV2 parseMode', () => {
 
@@ -114,15 +114,15 @@ describe('Assertions: Outgoing', () => {
         text: '*Bold*',
         parseMode: 'MarkdownV2',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept OutgoingRegular with inline keyboard', () => {
 
@@ -134,15 +134,15 @@ describe('Assertions: Outgoing', () => {
           inline_keyboard: [[{ text: 'Button', callback_data: 'action' }]],
         },
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should accept valid OutgoingRaw', () => {
 
@@ -151,70 +151,70 @@ describe('Assertions: Outgoing', () => {
         method: 'sendMessage',
         payload: { chat_id: 123, text: 'Hello' },
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).not.toThrow()
+      }).not.toThrow();
 
-    })
+    });
 
     it('should throw on null', () => {
 
       expect(() => {
 
-        assertValueIsOutgoing(null)
+        assertValueIsOutgoing(null);
 
-      }).toThrow()
+      }).toThrow();
 
-    })
+    });
 
     it('should throw on undefined', () => {
 
       expect(() => {
 
-        assertValueIsOutgoing(undefined)
+        assertValueIsOutgoing(undefined);
 
-      }).toThrow()
+      }).toThrow();
 
-    })
+    });
 
     it('should throw on non-object', () => {
 
       expect(() => {
 
-        assertValueIsOutgoing('string')
+        assertValueIsOutgoing('string');
 
-      }).toThrow()
+      }).toThrow();
       expect(() => {
 
-        assertValueIsOutgoing(123)
+        assertValueIsOutgoing(123);
 
-      }).toThrow()
+      }).toThrow();
       expect(() => {
 
-        assertValueIsOutgoing(true)
+        assertValueIsOutgoing(true);
 
-      }).toThrow()
+      }).toThrow();
 
-    })
+    });
 
     it('should throw on missing type field', () => {
 
       const message = {
         chatId: 123,
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/type/)
+      }).toThrow(/type/);
 
-    })
+    });
 
     it('should throw on invalid type', () => {
 
@@ -222,15 +222,15 @@ describe('Assertions: Outgoing', () => {
         type: 'invalid',
         chatId: 123,
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow()
+      }).toThrow();
 
-    })
+    });
 
     it('should throw on OutgoingRegular with missing chatId', () => {
 
@@ -238,15 +238,15 @@ describe('Assertions: Outgoing', () => {
         type: 'regular',
         text: 'Hello',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/chatId/)
+      }).toThrow(/chatId/);
 
-    })
+    });
 
     it('should throw on OutgoingRegular with invalid chatId type', () => {
 
@@ -254,30 +254,30 @@ describe('Assertions: Outgoing', () => {
         type: 'regular',
         chatId: true,
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/chatId/)
+      }).toThrow(/chatId/);
 
-    })
+    });
 
     it('should throw on OutgoingRegular with missing timestamp', () => {
 
       const message = {
         type: 'regular',
         chatId: 123,
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/timestamp/)
+      }).toThrow(/timestamp/);
 
-    })
+    });
 
     it('should throw on OutgoingRegular with invalid parseMode', () => {
 
@@ -286,15 +286,15 @@ describe('Assertions: Outgoing', () => {
         chatId: 123,
         parseMode: 'Invalid',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/parseMode/)
+      }).toThrow(/parseMode/);
 
-    })
+    });
 
     it('should throw on OutgoingRaw with missing method', () => {
 
@@ -302,15 +302,15 @@ describe('Assertions: Outgoing', () => {
         type: 'raw',
         payload: {},
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/method/)
+      }).toThrow(/method/);
 
-    })
+    });
 
     it('should throw on OutgoingRaw with non-string method', () => {
 
@@ -319,15 +319,15 @@ describe('Assertions: Outgoing', () => {
         method: 123,
         payload: {},
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/method/)
+      }).toThrow(/method/);
 
-    })
+    });
 
     it('should throw on OutgoingRaw with missing payload', () => {
 
@@ -335,15 +335,15 @@ describe('Assertions: Outgoing', () => {
         type: 'raw',
         method: 'sendMessage',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/payload/)
+      }).toThrow(/payload/);
 
-    })
+    });
 
     it('should throw on OutgoingRaw with non-object payload', () => {
 
@@ -352,16 +352,16 @@ describe('Assertions: Outgoing', () => {
         method: 'sendMessage',
         payload: 'not an object',
         timestamp: Date.now(),
-      }
+      };
 
       expect(() => {
 
-        assertValueIsOutgoing(message)
+        assertValueIsOutgoing(message);
 
-      }).toThrow(/payload/)
+      }).toThrow(/payload/);
 
-    })
+    });
 
-  })
+  });
 
-})
+});

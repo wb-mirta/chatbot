@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
 
-import type { InlineKeyboardBuilder, ReplyKeyboardBuilder } from '#keyboard'
-import type { Outgoing, IncomingCommand, IncomingCallback } from '#types'
+import type { InlineKeyboardBuilder, ReplyKeyboardBuilder } from '#keyboard';
+import type { Outgoing, IncomingCommand, IncomingCallback } from '#types';
 
 /**
  * Минимальный интерфейс построителя сообщения.
@@ -21,7 +21,7 @@ export interface MinimalMessageBuilder {
    * @param mode - Режим разметки
    * @returns Текущий экземпляр билдера для построения цепочки вызовов
    **/
-  parseMode(mode: 'HTML' | 'MarkdownV2'): this
+  parseMode(mode: 'HTML' | 'MarkdownV2'): this;
 
 }
 
@@ -63,7 +63,7 @@ export interface MessageBuilder extends MinimalMessageBuilder {
    * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  inlineKeyboard(setup: (k: InlineKeyboardBuilder) => void): MinimalMessageBuilder
+  inlineKeyboard(setup: (k: InlineKeyboardBuilder) => void): MinimalMessageBuilder;
 
   /**
    * Добавляет reply-клавиатуру, которая предлагает пользователю
@@ -77,7 +77,7 @@ export interface MessageBuilder extends MinimalMessageBuilder {
    * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void): MinimalMessageBuilder
+  replyKeyboard(setup: (k: ReplyKeyboardBuilder) => void): MinimalMessageBuilder;
 
   /**
    * Добавляет команду удаления текущей клавиатуры.
@@ -91,7 +91,7 @@ export interface MessageBuilder extends MinimalMessageBuilder {
    * @returns Объект с ограниченным интерфейсом (только `parseMode`)
    *
    **/
-  removeKeyboard(): MinimalMessageBuilder
+  removeKeyboard(): MinimalMessageBuilder;
 
 }
 
@@ -116,7 +116,7 @@ export interface ReplyFunc {
    * @param text - Текст сообщения
    *
    **/
-  (text: string): void
+  (text: string): void;
 
   /**
    * Отправляет текстовое сообщение с дополнительными элементами интерфейса.
@@ -125,7 +125,7 @@ export interface ReplyFunc {
    * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  (text: string, setup: (builder: MessageBuilder) => void): void
+  (text: string, setup: (builder: MessageBuilder) => void): void;
 
   /**
    * Отправляет готовое исходящее сообщение.
@@ -135,7 +135,7 @@ export interface ReplyFunc {
    * @param outgoing - Объект исходящего сообщения
    *
    **/
-  (outgoing: Outgoing): void
+  (outgoing: Outgoing): void;
 
 }
 
@@ -159,7 +159,7 @@ export interface ReplyFunc {
 export type CommandHandler = (
   context: IncomingCommand,
   reply: ReplyFunc
-) => void
+) => void;
 
 /**
  * Параметры для подтверждения нажатия кнопки.
@@ -174,19 +174,19 @@ export interface DoneOptions {
    * @default false
    *
    **/
-  showAlert?: boolean
+  showAlert?: boolean;
 
   /**
    * URL для перехода после нажатия
    *
    **/
-  url?: string
+  url?: string;
 
   /**
    * Время кэширования результата (в секундах)
    *
    **/
-  cacheTime?: number
+  cacheTime?: number;
 
 }
 
@@ -212,7 +212,7 @@ export interface DoneCallbackFunc {
    * Подтверждает нажатие кнопки без дополнительного уведомления.
    *
    **/
-  (): void
+  (): void;
 
   /**
    * Подтверждает нажатие и показывает пользователю текстовое уведомление.
@@ -221,7 +221,7 @@ export interface DoneCallbackFunc {
    * @param options - Дополнительные параметры отображения
    *
    **/
-  (text: string, options?: DoneOptions): void
+  (text: string, options?: DoneOptions): void;
 
 }
 
@@ -246,7 +246,7 @@ export interface DoneCallbackFunc {
 export type CallbackHandler = (
   context: IncomingCallback,
   done: DoneCallbackFunc
-) => void
+) => void;
 
 /**
  * Основной интерфейс чат-бота.
@@ -295,7 +295,7 @@ export interface Bot<
   onCommand(
     name: TCommand,
     handler: CommandHandler
-  ): Bot<TCommand, TCallback>
+  ): Bot<TCommand, TCallback>;
 
   /**
    * Регистрирует обработчик callback-запроса (нажатие кнопки).
@@ -315,7 +315,7 @@ export interface Bot<
   onCallback(
     name: TCallback,
     handler: CallbackHandler
-  ): Bot<TCommand, TCallback>
+  ): Bot<TCommand, TCallback>;
 
   /**
    * Отправляет текстовое сообщение указанному пользователю.
@@ -325,7 +325,7 @@ export interface Bot<
    * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  sendMessage(chatId: number, text: string, setup?: (builder: MessageBuilder) => void): void
+  sendMessage(chatId: number, text: string, setup?: (builder: MessageBuilder) => void): void;
 
   /**
    * Отправляет текстовое сообщение пользователю по username.
@@ -335,6 +335,6 @@ export interface Bot<
    * @param setup - Функция для настройки клавиатуры, разметки и т.д.
    *
    **/
-  sendMessage(username: string, text: string, setup?: (builder: MessageBuilder) => void): void
+  sendMessage(username: string, text: string, setup?: (builder: MessageBuilder) => void): void;
 
 }
