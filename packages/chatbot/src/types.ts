@@ -1,4 +1,4 @@
-import type { KeyboardMarkup } from '#keyboard/types'
+import type { KeyboardMarkup } from '#keyboard/types';
 
 /**
  * Базовый интерфейс для входящих сообщений.
@@ -8,13 +8,13 @@ import type { KeyboardMarkup } from '#keyboard/types'
  **/
 export interface IncomingBase {
   /** ID чата */
-  chatId: number
+  chatId: number;
   /** Уникальный идентификатор сообщения */
-  messageId: string
+  messageId: string;
   /** Username пользователя (если есть) */
-  username?: string
+  username?: string;
   /** Время получения (метка времени) */
-  timestamp: number
+  timestamp: number;
 }
 
 /**
@@ -24,11 +24,11 @@ export interface IncomingBase {
  *
  **/
 export interface IncomingCommand extends IncomingBase {
-  type: 'command'
+  type: 'command';
   /** Имя команды без слеша */
-  command: string
+  command: string;
   /** Аргументы команды (оставшаяся часть строки) */
-  args: string
+  args: string;
 }
 
 /**
@@ -38,11 +38,11 @@ export interface IncomingCommand extends IncomingBase {
  *
  */
 export interface IncomingCallback extends IncomingBase {
-  type: 'callback'
+  type: 'callback';
   /** Уникальный ID запроса (для подтверждения) */
-  id: string
+  id: string;
   /** Данные, привязанные к кнопке */
-  data: string
+  data: string;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface IncomingCallback extends IncomingBase {
  * @since 0.4.8
  *
  **/
-export type Incoming = IncomingCommand | IncomingCallback
+export type Incoming = IncomingCommand | IncomingCallback;
 
 /**
  * Общий контекст исходящего сообщения.
@@ -61,7 +61,7 @@ export type Incoming = IncomingCommand | IncomingCallback
  **/
 export interface OutgoingContext {
   /** Время создания сообщения */
-  timestamp: number
+  timestamp: number;
 }
 
 /**
@@ -71,21 +71,21 @@ export interface OutgoingContext {
  *
  **/
 export interface OutgoingRegular extends OutgoingContext {
-  type: 'regular'
+  type: 'regular';
   /** ID чата, куда отправлять */
-  chatId: number | string
+  chatId: number | string;
   /** Текст сообщения */
-  text?: string
+  text?: string;
   /** Встроенная клавиатура */
-  keyboard?: KeyboardMarkup
+  keyboard?: KeyboardMarkup;
   /** URL фото */
-  photo?: string
+  photo?: string;
   /** URL документа */
-  document?: string
+  document?: string;
   /** Подпись к медиа */
-  caption?: string
+  caption?: string;
   /** Режим разметки: HTML или MarkdownV2 */
-  parseMode?: 'HTML' | 'MarkdownV2'
+  parseMode?: 'HTML' | 'MarkdownV2';
 }
 
 /**
@@ -95,11 +95,11 @@ export interface OutgoingRegular extends OutgoingContext {
  *
  **/
 export interface OutgoingRaw extends OutgoingContext {
-  type: 'raw'
+  type: 'raw';
   /** Название метода API */
-  method: string
+  method: string;
   /** Параметры вызова */
-  payload: Record<string, unknown>
+  payload: Record<string, unknown>;
 }
 
 /**
@@ -108,7 +108,7 @@ export interface OutgoingRaw extends OutgoingContext {
  * @since 0.4.8
  *
  **/
-export type Outgoing = OutgoingRegular | OutgoingRaw
+export type Outgoing = OutgoingRegular | OutgoingRaw;
 
 /**
  * Интерфейс хоста бота — точка интеграции с системой.
@@ -118,11 +118,11 @@ export type Outgoing = OutgoingRegular | OutgoingRaw
  **/
 export interface BotHost {
   /** Имя виртуального устройства */
-  readonly deviceName: string
+  readonly deviceName: string;
   /** Инициализация хоста (запуск таймеров, очередей) */
-  initialize(): void
+  initialize(): void;
   /** Постановка сообщения в очередь на отправку */
-  send(outgoing: Outgoing): void
+  send(outgoing: Outgoing): void;
 }
 
 /**
@@ -133,9 +133,9 @@ export interface BotHost {
  **/
 export interface ActionConfig<TPolicy> {
   /** Имя политики авторизации */
-  policy: TPolicy
+  policy: TPolicy;
   /** Описание действия (для справки) */
-  description?: string
+  description?: string;
 }
 
 /**
@@ -145,15 +145,15 @@ export interface ActionConfig<TPolicy> {
  *
  **/
 export type Config<TPolicy extends string, TValue extends string>
-  = Record<TValue, ActionConfig<TPolicy>>
+  = Record<TValue, ActionConfig<TPolicy>>;
 
 export interface HostOptions {
 
   /** Имя виртуального устройства */
-  deviceName: string
+  deviceName: string;
 
   /** Название устройства в интерфейсе Wiren Board. */
-  deviceTitle: WbRules.Title
+  deviceTitle: WbRules.Title;
 
   /**
    * Интервал опроса входящих обновлений (в миллисекундах).
@@ -161,7 +161,7 @@ export interface HostOptions {
    * По умолчанию — {@link DEFAULT_POLL_INTERVAL}
    *
    **/
-  pollInterval?: number
+  pollInterval?: number;
 
   /**
    * Интервал отправки исходящих сообщений (в миллисекундах).
@@ -169,7 +169,7 @@ export interface HostOptions {
    * По умолчанию — {@link DEFAULT_SEND_INTERVAL}
    *
    **/
-  sendInterval?: number
+  sendInterval?: number;
 
   /**
    * Интервал публикации входящих сообщений в MQTT (в миллисекундах).
@@ -177,7 +177,7 @@ export interface HostOptions {
    * По умолчанию — {@link DEFAULT_MQTT_INTERVAL}
    *
    **/
-  mqttInterval?: number
+  mqttInterval?: number;
 
 }
 
@@ -198,16 +198,16 @@ export interface AdapterOptions<
 > {
 
   /** Имя виртуального устройства */
-  deviceName: string
+  deviceName: string;
 
   /** Токен авторизации в API мессенджера */
-  token: string
+  token: string;
 
   /** Таймаут опроса (сек) */
-  pollTimeout?: number
+  pollTimeout?: number;
 
   /** Таймаут отправки (сек) */
-  sendTimeout?: number
+  sendTimeout?: number;
 
   /**
    * Максимальное количество обновлений, получаемых за один запрос.
@@ -215,13 +215,13 @@ export interface AdapterOptions<
    * По умолчанию — {@link DEFAULT_INCOMING_LIMIT}
    *
    **/
-  incomingLimit?: number
+  incomingLimit?: number;
 
   /** Конфигурация команд */
-  commands?: Config<TPolicy, TCommand>
+  commands?: Config<TPolicy, TCommand>;
 
   /** Конфигурация колбэков */
-  callbacks?: Config<TPolicy, TCallback>
+  callbacks?: Config<TPolicy, TCallback>;
 
 }
 
@@ -229,7 +229,7 @@ export type BotOptions<
   TPolicy extends string,
   TCommand extends string,
   TCallback extends string
-> = AdapterOptions<TPolicy, TCommand, TCallback> & HostOptions
+> = AdapterOptions<TPolicy, TCommand, TCallback> & HostOptions;
 
 /**
  * Фабрика создания адаптера.
@@ -237,7 +237,7 @@ export type BotOptions<
  * @since 0.4.8
  *
  **/
-export type BotAdapterFactory = (deviceName: string) => BotAdapter
+export type BotAdapterFactory = (deviceName: string) => BotAdapter;
 
 /**
  * Единый интерфейс для всех адаптеров мессенджеров.
@@ -255,12 +255,12 @@ export interface BotAdapter {
    * @param reject — при ошибке
    *
    **/
-  poll: (resolve: () => void, reject: () => void) => void
+  poll: (resolve: () => void, reject: () => void) => void;
 
   /** Отправляет сообщение через мессенджер. */
-  send: (regular: OutgoingRegular, context: { resolve: () => void, reject: () => void }) => void
+  send: (regular: OutgoingRegular, context: { resolve: () => void; reject: () => void }) => void;
 
   /** Отправляет произвольный запрос к API. */
-  sendRaw: (raw: OutgoingRaw, context: { resolve: () => void, reject: () => void }) => void
+  sendRaw: (raw: OutgoingRaw, context: { resolve: () => void; reject: () => void }) => void;
 
 }

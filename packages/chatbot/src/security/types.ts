@@ -4,7 +4,7 @@
  * @since 0.4.8
  *
  **/
-export type Access = boolean | number
+export type Access = boolean | number;
 
 /**
  * Карта доступа: соответствие между значением параметра и правом доступа.
@@ -12,7 +12,7 @@ export type Access = boolean | number
  * @since 0.4.8
  *
  **/
-export type AccessMap = Record<string, Access | undefined>
+export type AccessMap = Record<string, Access | undefined>;
 
 /**
  * Субъект доступа — информация о пользователе и чате.
@@ -22,13 +22,13 @@ export type AccessMap = Record<string, Access | undefined>
  **/
 export interface Subject {
   /** ID пользователя */
-  userId?: number
+  userId?: number;
   /** Имя пользователя */
-  username?: string
+  username?: string;
   /** ID чата */
-  chatId?: number
+  chatId?: number;
   /** Тип чата */
-  chatType?: 'private' | 'group' | 'supergroup' | 'channel'
+  chatType?: 'private' | 'group' | 'supergroup' | 'channel';
 }
 
 /**
@@ -37,7 +37,7 @@ export interface Subject {
  * @since 0.4.8
  *
  **/
-export type SubjectField = Expand<keyof Subject>
+export type SubjectField = Expand<keyof Subject>;
 
 /**
  * Конфигурация правила доступа.
@@ -46,7 +46,7 @@ export type SubjectField = Expand<keyof Subject>
  * @since 0.4.8
  *
  **/
-export type RuleConfig<TValue = Readonly<AccessMap>> = Partial<Record<SubjectField, TValue>>
+export type RuleConfig<TValue = Readonly<AccessMap>> = Partial<Record<SubjectField, TValue>>;
 
 /**
  * Функция проверки условия доступа.
@@ -54,7 +54,7 @@ export type RuleConfig<TValue = Readonly<AccessMap>> = Partial<Record<SubjectFie
  * @since 0.4.8
  *
  **/
-export type Requirement = (subject: Subject) => boolean
+export type Requirement = (subject: Subject) => boolean;
 
 /**
  * Политика доступа — функция, определяющая, разрешён ли доступ.
@@ -62,7 +62,7 @@ export type Requirement = (subject: Subject) => boolean
  * @since 0.4.8
  *
  **/
-export type Policy = (subject: Subject) => boolean
+export type Policy = (subject: Subject) => boolean;
 
 /**
  * Преобразует объединение строковых или числовых литералов в тип с ключами-литералами.
@@ -74,7 +74,7 @@ export type Policy = (subject: Subject) => boolean
  *
  **/
 export type Literalized<TValue extends string | number>
-  = { [K in TValue]: K }
+  = { [K in TValue]: K };
 
 /**
  * Построитель системы авторизации.
@@ -92,6 +92,6 @@ export interface AuthorizationBuilder<TPolicy extends string = never> {
    * @returns Запись: имя политики → массив правил
    *
    **/
-  build(): Record<TPolicy, readonly RuleConfig[]>
+  build(): Record<TPolicy, readonly RuleConfig[]>;
 
 }

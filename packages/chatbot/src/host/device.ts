@@ -38,7 +38,7 @@ export const TOPICS = {
    **/
   outgoing: 'outgoing',
 
-} as const
+} as const;
 
 /**
  * Настраивает виртуальное устройство для бота.
@@ -116,6 +116,6 @@ export function setupDevice(
         order: 4,
       },
     },
-  })
+  });
 
 }

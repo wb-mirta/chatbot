@@ -1,9 +1,9 @@
-import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants'
-import type { AuthorizationBuilder } from '#security/types'
-import { useBotStore, useAuthStore } from '#store'
-import type { BotAdapter, BotHost, HostOptions, Outgoing } from '#types'
-import { setupDevice, TOPICS } from './device'
-import { setupExchanger } from './exchanger'
+import { DEFAULT_MQTT_INTERVAL, DEFAULT_POLL_INTERVAL, DEFAULT_SEND_INTERVAL } from '#constants';
+import type { AuthorizationBuilder } from '#security/types';
+import { useBotStore, useAuthStore } from '#store';
+import type { BotAdapter, BotHost, HostOptions, Outgoing } from '#types';
+import { setupDevice, TOPICS } from './device';
+import { setupExchanger } from './exchanger';
 
 /**
  * Глобальный флаг, указывающий, была ли уже инициализирована система бота.
@@ -12,7 +12,7 @@ import { setupExchanger } from './exchanger'
  * за время жизни процесса wb-rules, даже если функция вызывается из нескольких скриптов.
  *
  **/
-let isInitialized = false
+let isInitialized = false;
 
 /**
  * Создаёт и настраивает хост бота — ядро системы, управляющее жизненным циклом.
@@ -58,10 +58,10 @@ export function defineBotHost(
     pollInterval = DEFAULT_POLL_INTERVAL,
     sendInterval = DEFAULT_SEND_INTERVAL,
     mqttInterval = DEFAULT_MQTT_INTERVAL,
-  } = options
+  } = options;
 
   // Хранилище состояния, привязанное к устройству
-  const store = useBotStore(deviceName)
+  const store = useBotStore(deviceName);
 
   /**
    * Инициализирует хост бота.
@@ -73,29 +73,29 @@ export function defineBotHost(
   function initialize() {
 
     if (isInitialized)
-      return
+      return;
 
-    isInitialized = true
+    isInitialized = true;
 
     // Повторная инициализация только при перезагрузке скрипта wb-rules,
     // в котором хост был впервые проинициализирован.
     //
     if (!store.claimHostOwnership(__filename))
-      return
+      return;
 
-    const authStore = useAuthStore(deviceName)
+    const authStore = useAuthStore(deviceName);
 
-    authStore.setup(auth)
+    authStore.setup(auth);
 
     // Создаём виртуальное устройство
-    setupDevice(deviceName, deviceTitle)
+    setupDevice(deviceName, deviceTitle);
 
     // Настройка приёма и отправки сообщений
     setupExchanger(deviceName, adapter, {
       pollInterval: pollInterval,
       sendInterval: sendInterval,
       mqttInterval: mqttInterval,
-    })
+    });
 
   }
 
@@ -110,7 +110,7 @@ export function defineBotHost(
    **/
   function send(outgoing: Outgoing): void {
 
-    dev[`${deviceName}/${TOPICS.outgoing}`] = JSON.stringify(outgoing)
+    dev[`${deviceName}/${TOPICS.outgoing}`] = JSON.stringify(outgoing);
 
   }
 
@@ -120,6 +120,6 @@ export function defineBotHost(
     initialize,
     send,
 
-  }
+  };
 
 }

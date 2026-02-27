@@ -1,14 +1,14 @@
-import { defineTelegramBot, defineAuthorization } from '@mirta/chatbot'
+import { defineTelegramBot, defineAuthorization } from '@mirta/chatbot';
 
-const token = process.env.APP_TELEGRAM_TOKEN
+const token = process.env.APP_TELEGRAM_TOKEN;
 
 if (!token)
-  throw new Error('APP_TELEGRAM_TOKEN is required')
+  throw new Error('APP_TELEGRAM_TOKEN is required');
 
-const allowedUserId = process.env.APP_TELEGRAM_USER
+const allowedUserId = process.env.APP_TELEGRAM_USER;
 
 if (!allowedUserId)
-  throw new Error('APP_TELEGRAM_USER is required')
+  throw new Error('APP_TELEGRAM_USER is required');
 
 /**
  * Конфигурация системы авторизации для Telegram-бота.
@@ -45,7 +45,7 @@ const auth = defineAuthorization(a => a
       .chatType('supergroup')
     )
   )
-)
+);
 
 /**
  * Функция для получения экземпляра Telegram-бота.
@@ -76,4 +76,4 @@ export const useTelegramBot = defineTelegramBot(auth, {
   callbacks: {
     hello: { policy: 'admin' },
   },
-})
+});

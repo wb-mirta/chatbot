@@ -1,5 +1,5 @@
-import { defineStore } from '@mirta/store'
-import type { Subject, SubjectField, RuleConfig, AccessMap, AuthorizationBuilder } from '#security/types'
+import { defineStore } from '@mirta/store';
+import type { Subject, SubjectField, RuleConfig, AccessMap, AuthorizationBuilder } from '#security/types';
 
 /**
  * Состояние хранилища авторизации.
@@ -10,7 +10,7 @@ import type { Subject, SubjectField, RuleConfig, AccessMap, AuthorizationBuilder
 interface AuthState extends Record<string | symbol, unknown> {
 
   /** Карта политик: имя → массив правил */
-  readonly policies: Record<string, readonly RuleConfig[] | undefined>
+  readonly policies: Record<string, readonly RuleConfig[] | undefined>;
 
 }
 
@@ -32,19 +32,19 @@ function checkPermission(
 ): boolean | null {
 
   if (!target)
-    return null
+    return null;
 
-  const value = accessMap[String(target)]
+  const value = accessMap[String(target)];
 
   // Правило неприменимо к субъекту
   if (value === undefined)
-    return null
+    return null;
 
   // Обратываем, как значение expiresAt
   if (typeof value === 'number')
-    return now < value
+    return now < value;
 
-  return value
+  return value;
 
 }
 
@@ -65,28 +65,28 @@ function evaluateRule(
   now: number
 ): boolean | null {
 
-  const conditions: boolean[] = []
+  const conditions: boolean[] = [];
 
   for (const field of Object.keys(rule) as SubjectField[]) {
 
-    const map = rule[field]
+    const map = rule[field];
 
     if (!map || Object.keys(map).length === 0)
-      continue
+      continue;
 
-    const checkResult = checkPermission(map, subject[field], now)
+    const checkResult = checkPermission(map, subject[field], now);
 
     if (checkResult === null)
-      continue
+      continue;
 
-    conditions.push(checkResult)
+    conditions.push(checkResult);
 
   }
 
   if (conditions.length === 0)
-    return null
+    return null;
 
-  return conditions.every(x => x)
+  return conditions.every(x => x);
 
 }
 
@@ -114,7 +114,7 @@ export const useAuthStore = defineStore('mirta-chatbot-auth', {
 
       this.$patch({
         policies: { ...auth.build() },
-      })
+      });
 
     },
 
@@ -131,33 +131,33 @@ export const useAuthStore = defineStore('mirta-chatbot-auth', {
      **/
     isAllowed(policyName: string, subject: Subject): boolean {
 
-      const rules = this.policies[policyName]
+      const rules = this.policies[policyName];
 
       if (!rules)
-        return false
+        return false;
 
-      const now = Date.now()
+      const now = Date.now();
 
-      let isAllowed = false
+      let isAllowed = false;
 
       for (const rule of rules) {
 
-        const checkResult = evaluateRule(rule, subject, now)
+        const checkResult = evaluateRule(rule, subject, now);
 
         // Правило не применимо к субъекту, пропускаем.
         if (checkResult === null)
-          continue
+          continue;
 
         // Сразу возвращаем false, если обнаружили запрет.
         if (!checkResult)
-          return false
+          return false;
 
-        isAllowed = true
+        isAllowed = true;
 
       }
 
-      return isAllowed
+      return isAllowed;
 
     },
   },
-})
+});

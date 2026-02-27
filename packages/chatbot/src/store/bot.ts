@@ -1,5 +1,5 @@
-import type { Incoming, Outgoing } from '#types'
-import { defineStore } from '@mirta/store'
+import type { Incoming, Outgoing } from '#types';
+import { defineStore } from '@mirta/store';
 
 /**
  * Хранилище состояния бота.
@@ -49,13 +49,13 @@ export const useBotStore = defineStore('mirta-chatbot', {
 
       // Если инициализатор стора - другой скрипт wb-rules, возвращаем false.
       if (this.hostFilename && this.hostFilename !== filename)
-        return false
+        return false;
 
       // Если инициализатор не установлен - устанавливаем его.
       if (!this.hostFilename)
-        this.hostFilename = filename
+        this.hostFilename = filename;
 
-      return true
+      return true;
 
     },
 
@@ -65,7 +65,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     enqueueIncoming(incoming: Incoming): void {
 
-      this.incoming.push(incoming)
+      this.incoming.push(incoming);
 
     },
 
@@ -77,7 +77,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     dequeueIncoming(): Incoming | undefined {
 
-      return this.incoming.shift()
+      return this.incoming.shift();
 
     },
 
@@ -87,8 +87,8 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     resetQueues() {
 
-      this.incoming = []
-      this.outgoing = []
+      this.incoming = [];
+      this.outgoing = [];
 
     },
 
@@ -98,7 +98,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     enqueueOutgoing(outgoing: Outgoing): void {
 
-      this.outgoing.push(outgoing)
+      this.outgoing.push(outgoing);
 
     },
 
@@ -110,7 +110,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     dequeueOutgoing(): Outgoing | undefined {
 
-      return this.outgoing.shift()
+      return this.outgoing.shift();
 
     },
 
@@ -120,7 +120,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     pollSuccess() {
 
-      this.stats.pollErrors = 0
+      this.stats.pollErrors = 0;
 
     },
 
@@ -130,7 +130,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     pollFail() {
 
-      this.stats.pollErrors += 1
+      this.stats.pollErrors += 1;
 
     },
 
@@ -140,7 +140,7 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     sendSuccess() {
 
-      this.stats.sendErrors = 0
+      this.stats.sendErrors = 0;
 
     },
 
@@ -150,8 +150,8 @@ export const useBotStore = defineStore('mirta-chatbot', {
      **/
     sendFail() {
 
-      this.stats.sendErrors += 1
+      this.stats.sendErrors += 1;
 
     },
   },
-})
+});

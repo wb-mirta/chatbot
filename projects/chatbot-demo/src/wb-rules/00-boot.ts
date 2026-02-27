@@ -1,4 +1,4 @@
-import { useTelegramBot } from '#wbm/bot-telegram'
+import { useTelegramBot } from '#wbm/bot-telegram';
 
 /**
  * Точка инициализации глобальных подсистем.
@@ -14,4 +14,4 @@ import { useTelegramBot } from '#wbm/bot-telegram'
  * Явное объявление устраняет неопределённость.
  **/
 
-useTelegramBot()
+useTelegramBot();

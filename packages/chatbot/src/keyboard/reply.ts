@@ -4,7 +4,7 @@ import type {
   ReplyKeyboardButton,
   ReplyKeyboardMarkup,
   ReplyKeyboardRemove
-} from './types'
+} from './types';
 
 /**
  * Билдер для настройки reply-кнопки.
@@ -29,20 +29,20 @@ interface ReplyButtonBuilder {
    * @since 0.4.12
    *
    **/
-  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>
+  style: (style: ButtonStyle, enabled?: boolean) => Omit<this, 'style'>;
 
   /**
    * Настраивает кнопку для запроса контакта.
    * @param value - Флаг включения запроса контакта.
    *
    **/
-  requestContact(value?: boolean): ButtonBuilder
+  requestContact(value?: boolean): ButtonBuilder;
 
   /** Настраивает кнопку для запроса геолокации.
    * @param value - Флаг включения запроса геолокации.
    *
    **/
-  requestLocation(value?: boolean): ButtonBuilder
+  requestLocation(value?: boolean): ButtonBuilder;
 
 }
 
@@ -59,7 +59,7 @@ interface ReplyRowBuilder {
   text(
     label: string,
     setup?: (b: ReplyButtonBuilder) => void
-  ): ReplyRowBuilder
+  ): ReplyRowBuilder;
 }
 
 /**
@@ -78,7 +78,7 @@ export interface ReplyKeyboardBuilder {
    * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
    *
    **/
-  oneTime(value?: boolean): ReplyKeyboardBuilder
+  oneTime(value?: boolean): ReplyKeyboardBuilder;
 
   /**
    * Устанавливает, должен ли размер клавиатуры подстраиваться под количество кнопок.
@@ -90,7 +90,7 @@ export interface ReplyKeyboardBuilder {
    * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
    *
    **/
-  resize(value?: boolean): ReplyKeyboardBuilder
+  resize(value?: boolean): ReplyKeyboardBuilder;
 
   /**
    * Добавляет строку кнопок к клавиатуре.
@@ -101,7 +101,7 @@ export interface ReplyKeyboardBuilder {
    * @returns Текущий экземпляр билдера для продолжения цепочки вызовов.
    *
    **/
-  row(setup: (r: ReplyRowBuilder) => void): ReplyKeyboardBuilder
+  row(setup: (r: ReplyRowBuilder) => void): ReplyKeyboardBuilder;
 
 }
 
@@ -131,33 +131,33 @@ export function replyKeyboard(
   setup: (builder: ReplyKeyboardBuilder) => void
 ): ReplyKeyboardMarkup {
 
-  let oneTime = false
-  let resize = true
+  let oneTime = false;
+  let resize = true;
 
   // Массив строк кнопок
-  const rows: ReplyKeyboardButton[][] = []
+  const rows: ReplyKeyboardButton[][] = [];
 
   // Билдер клавиатуры
   const builder: ReplyKeyboardBuilder = {
 
     oneTime(value) {
 
-      oneTime = value !== false
-      return this
+      oneTime = value !== false;
+      return this;
 
     },
 
     resize(value) {
 
-      resize = value !== false
-      return this
+      resize = value !== false;
+      return this;
 
     },
 
     row: (setupRow) => {
 
       // Кнопки текущей строки
-      const buttons: ReplyKeyboardButton[] = []
+      const buttons: ReplyKeyboardButton[] = [];
 
       // Билдер строки
       const rowBuilder: ReplyRowBuilder = {
@@ -171,7 +171,7 @@ export function replyKeyboard(
         text: (label, setupButton) => {
 
           // Создаём кнопку
-          const button: ReplyKeyboardButton = { text: label }
+          const button: ReplyKeyboardButton = { text: label };
 
           // Если есть настройки — применяем
           if (setupButton) {
@@ -183,70 +183,70 @@ export function replyKeyboard(
 
                 if (enabled) {
 
-                  button.style = style
+                  button.style = style;
 
                 }
                 else if (button.style === style) {
 
-                  delete button.style
+                  delete button.style;
 
                 }
 
-                return buttonBuilder
+                return buttonBuilder;
 
               },
 
               requestContact: (value = true) => {
 
-                button.request_contact = value
-                return buttonBuilder
+                button.request_contact = value;
+                return buttonBuilder;
 
               },
 
               requestLocation: (value = true) => {
 
-                button.request_location = value
-                return buttonBuilder
+                button.request_location = value;
+                return buttonBuilder;
 
               },
 
-            }
+            };
 
-            setupButton(buttonBuilder)
+            setupButton(buttonBuilder);
 
           }
 
           // Добавляем кнопку в строку
-          buttons.push(button)
-          return rowBuilder
+          buttons.push(button);
+          return rowBuilder;
 
         },
-      }
+      };
 
       // Применяем настройку строки
-      setupRow(rowBuilder)
+      setupRow(rowBuilder);
 
       // Сохраняем строку, если есть кнопки
       if (buttons.length > 0) {
 
-        rows.push(buttons)
+        rows.push(buttons);
 
       }
 
-      return builder
+      return builder;
 
     },
-  }
+  };
 
   // Запускаем процесс
-  setup(builder)
+  setup(builder);
 
   // Возвращаем результат
   return {
     keyboard: rows,
     resize_keyboard: resize,
     one_time_keyboard: oneTime,
-  }
+  };
 
 }
 
@@ -264,6 +264,6 @@ export function replyKeyboard(
  **/
 export function removeKeyboard(): ReplyKeyboardRemove {
 
-  return { remove_keyboard: true }
+  return { remove_keyboard: true };
 
 }

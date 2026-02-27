@@ -1,5 +1,5 @@
-import type { RuleConfig } from './types'
-import { createRule, type Rule } from './rule'
+import type { RuleConfig } from './types';
+import { createRule, type Rule } from './rule';
 
 /**
  * Конфигуратор политики доступа.
@@ -32,7 +32,7 @@ export interface Policy {
    * Условия внутри правила объединяются через "И".
    *
    **/
-  allow(setup: (rule: Rule) => void): Policy
+  allow(setup: (rule: Rule) => void): Policy;
 
   /**
    * Добавляет правило запрета.
@@ -40,7 +40,7 @@ export interface Policy {
    * Имеет приоритет над `allow`. Внутренние условия — через "И".
    *
    **/
-  deny(setup: (rule: Rule) => void): Policy
+  deny(setup: (rule: Rule) => void): Policy;
 
 }
 
@@ -59,7 +59,7 @@ export function createPolicy(
   setup: (policy: Policy) => void
 ): RuleConfig[] {
 
-  const rules: RuleConfig[] = []
+  const rules: RuleConfig[] = [];
 
   setup({
 
@@ -67,9 +67,9 @@ export function createPolicy(
 
       rules.push(
         createRule('allow', setupRule)
-      )
+      );
 
-      return this
+      return this;
 
     },
 
@@ -77,14 +77,14 @@ export function createPolicy(
 
       rules.push(
         createRule('deny', setupRule)
-      )
+      );
 
-      return this
+      return this;
 
     },
 
-  })
+  });
 
-  return rules
+  return rules;
 
 }

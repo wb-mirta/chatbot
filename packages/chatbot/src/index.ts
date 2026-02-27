@@ -1,13 +1,13 @@
-import { defineBotHost } from '#host/index'
-import { telegramAdapter } from '#adapters/telegram'
-import { createBot, type Bot } from '#bot'
+import { defineBotHost } from '#host/index';
+import { telegramAdapter } from '#adapters/telegram';
+import { createBot, type Bot } from '#bot';
 
-import type { AuthorizationBuilder } from '#security/types'
-import type { BotOptions } from '#types'
+import type { AuthorizationBuilder } from '#security/types';
+import type { BotOptions } from '#types';
 
-export { defineAuthorization } from '#security/authorization'
-export type { MessageBuilder } from '#bot'
-export type { ButtonStyle } from '#keyboard/types'
+export { defineAuthorization } from '#security/authorization';
+export type { MessageBuilder } from '#bot';
+export type { ButtonStyle } from '#keyboard/types';
 
 /**
  * Кэш экземпляра бота для обеспечения синглтона.
@@ -16,7 +16,7 @@ export type { ButtonStyle } from '#keyboard/types'
  * @since 0.4.8
  *
  **/
-const instances: Record<string, object | undefined> = {}
+const instances: Record<string, object | undefined> = {};
 
 // Polyfill для Object.entries (в случае отсутствия в среде)
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -24,19 +24,19 @@ if (!Object.entries) {
 
   Object.entries = function (obj: object) {
 
-    const ownProps = Object.keys(obj)
+    const ownProps = Object.keys(obj);
 
-    let i = ownProps.length
+    let i = ownProps.length;
 
-    const resArray = new Array(i) // preallocate the Array
+    const resArray = new Array(i); // preallocate the Array
 
     while (i--)
-      resArray[i] = [ownProps[i], obj[ownProps[i]]]
+      resArray[i] = [ownProps[i], obj[ownProps[i]]];
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return resArray
+    return resArray;
 
-  }
+  };
 
 }
 
@@ -82,12 +82,12 @@ export function defineTelegramBot<
     auth,
     telegramAdapter(options),
     options
-  )
+  );
 
   return function useTelegramBot() {
 
-    return (instances[options.deviceName] ??= createBot(host)) as Bot<TCommand, TCallback>
+    return (instances[options.deviceName] ??= createBot(host)) as Bot<TCommand, TCallback>;
 
-  }
+  };
 
 }

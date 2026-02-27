@@ -1,8 +1,8 @@
-import { isString, useEvent, type EventRaiser } from '@mirta/basics'
-import type { BotHost, Outgoing, Incoming } from '#types'
-import { TOPICS } from '#host/device'
-import { createMessageBuilder } from './message.builder'
-import type { CommandHandler, CallbackHandler, Bot, DoneOptions, MessageBuilder } from './types'
+import { isString, useEvent, type EventRaiser } from '@mirta/basics';
+import type { BotHost, Outgoing, Incoming } from '#types';
+import { TOPICS } from '#host/device';
+import { createMessageBuilder } from './message.builder';
+import type { CommandHandler, CallbackHandler, Bot, DoneOptions, MessageBuilder } from './types';
 
 /**
  * Создаёт функцию ответа для конкретного чата.
@@ -26,8 +26,8 @@ const createSendFunc = (host: BotHost, chatId: number | string) => (textOrMessag
   // Перегрузка: передано готовое сообщение (не строка)
   if (typeof textOrMessage !== 'string') {
 
-    host.send(textOrMessage)
-    return
+    host.send(textOrMessage);
+    return;
 
   }
 
@@ -39,9 +39,9 @@ const createSendFunc = (host: BotHost, chatId: number | string) => (textOrMessag
       chatId: chatId,
       text: textOrMessage,
       timestamp: Date.now(),
-    })
+    });
 
-    return
+    return;
 
   }
 
@@ -51,20 +51,20 @@ const createSendFunc = (host: BotHost, chatId: number | string) => (textOrMessag
     chatId: chatId,
     text: textOrMessage,
     timestamp: Date.now(),
-  }
+  };
 
-  log.debug('[Bot] Creating message')
+  log.debug('[Bot] Creating message');
 
   // Перегрузка: (text, setup)
-  const builder = createMessageBuilder(message)
+  const builder = createMessageBuilder(message);
 
   // Применяем пользовательские настройки
-  setup(builder)
+  setup(builder);
 
   // Отправляем сообщение через хост
-  host.send(message)
+  host.send(message);
 
-}
+};
 
 /**
  * Создаёт экземпляр чат-бота, привязанный к хосту.
@@ -103,11 +103,11 @@ export function createBot<
 >(host: BotHost): Bot<TCommand, TCallback> {
 
   // Инициализируем хост (запускает polling, настраивает таймеры)
-  host.initialize()
+  host.initialize();
 
   // Хранилище событий для команд и колбэков
-  const commandEvents: Record<string, EventRaiser<CommandHandler>> = {}
-  const callbackEvents: Record<string, EventRaiser<CallbackHandler>> = {}
+  const commandEvents: Record<string, EventRaiser<CommandHandler>> = {};
+  const callbackEvents: Record<string, EventRaiser<CallbackHandler>> = {};
 
   // Основное правило: реагирует на изменения во входящей очереди
   defineRule({
@@ -116,10 +116,10 @@ export function createBot<
 
       // Проверяем, что значение — строка (JSON)
       if (!isString(value))
-        return
+        return;
 
       // Парсим входящее сообщение
-      const context = JSON.parse(value) as Incoming
+      const context = JSON.parse(value) as Incoming;
 
       // Обработка команды
       if (context.type === 'command') {
@@ -128,14 +128,14 @@ export function createBot<
           commandEvents[context.command].raise(
             context,
             createSendFunc(host, context.chatId)
-          )
+          );
 
       }
       // Обработка колбэка
       else {
 
         if (!(context.data in callbackEvents))
-          return
+          return;
 
         // Вызываем обработчики колбэка
         // `done` — функция подтверждения нажатия кнопки
@@ -154,14 +154,14 @@ export function createBot<
                 url: options?.url,
               },
               timestamp: Date.now(),
-            })
+            });
 
-          })
+          });
 
       }
 
     },
-  })
+  });
 
   return {
 
@@ -172,11 +172,11 @@ export function createBot<
 
       // Лениво создаём событие
       if (!(name in commandEvents))
-        commandEvents[name] = useEvent<CommandHandler>()
+        commandEvents[name] = useEvent<CommandHandler>();
 
-      commandEvents[name].on(handler)
+      commandEvents[name].on(handler);
 
-      return this
+      return this;
 
     },
 
@@ -186,11 +186,11 @@ export function createBot<
     ) {
 
       if (!(name in callbackEvents))
-        callbackEvents[name] = useEvent<CallbackHandler>()
+        callbackEvents[name] = useEvent<CallbackHandler>();
 
-      callbackEvents[name].on(handler)
+      callbackEvents[name].on(handler);
 
-      return this
+      return this;
 
     },
 
@@ -200,10 +200,10 @@ export function createBot<
       setup?: (builder: MessageBuilder) => void
     ) {
 
-      const send = createSendFunc(host, chatId)
-      send(text, setup)
+      const send = createSendFunc(host, chatId);
+      send(text, setup);
 
     },
-  }
+  };
 
 }
