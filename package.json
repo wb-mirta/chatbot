@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "0.4.12",
+  "version": "0.5.0",
   "license": "Unlicense",
   "type": "module",
   "scripts": {
@@ -25,11 +25,11 @@
   "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@mirta/cli": "0.4.12",
-    "@mirta/globals": "0.4.12",
-    "@mirta/rollup": "0.4.12",
-    "@mirta/testing": "0.4.12",
-    "@mirta/tsconfig": "0.4.12",
+    "@mirta/cli": "0.5.0",
+    "@mirta/globals": "0.5.0",
+    "@mirta/rollup": "0.5.0",
+    "@mirta/testing": "0.5.0",
+    "@mirta/tsconfig": "0.5.0",
     "@stylistic/eslint-plugin": "^5.7.0",
     "@types/node": "^24.10.13",
     "@vitest/eslint-plugin": "^1.6.9",

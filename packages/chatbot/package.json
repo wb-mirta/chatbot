@@ -2,7 +2,7 @@
   "name": "@mirta/chatbot",
   "description": "Chat-based control for your automation scripts",
   "license": "Unlicense",
-  "version": "0.4.12",
+  "version": "0.5.0",
   "keywords": [
     "mirta",
     "wb-rules",
@@ -43,7 +43,7 @@
     "url": "https://github.com/wb-mirta/chatbot/issues"
   },
   "dependencies": {
-    "@mirta/basics": "~0.4.12",
-    "@mirta/store": "~0.4.12"
+    "@mirta/basics": "~0.5.0",
+    "@mirta/store": "~0.5.0"
   }
 }

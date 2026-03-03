@@ -1,3 +1,9 @@
+# [0.5.0](https://github.com/wb-mirta/chatbot/compare/v0.4.12...v0.5.0) (2026-03-03)
+
+- Version synchronized with the main framework.
+- Various maintenance tasks (chores).
+
+
 ## [0.4.12](https://github.com/wb-mirta/chatbot/compare/v0.4.8...v0.4.12) (2026-02-21)
 
 
