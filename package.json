@@ -24,19 +24,19 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^9.39.4",
     "@mirta/cli": "0.5.0",
     "@mirta/globals": "0.5.0",
     "@mirta/rollup": "0.5.0",
     "@mirta/testing": "0.5.0",
     "@mirta/tsconfig": "0.5.0",
     "@stylistic/eslint-plugin": "^5.7.0",
-    "@types/node": "^24.10.13",
+    "@types/node": "^24.12.0",
     "@vitest/eslint-plugin": "^1.6.9",
     "conventional-changelog-cli": "^5.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "lint-staged": "^16.2.7",
     "rollup": "^4.59.0",
     "simple-git-hooks": "^2.13.1",
@@ -53,5 +53,5 @@
     "packages/*",
     "projects/*"
   ],
-  "packageManager": "pnpm@10.29.3"
+  "packageManager": "pnpm@10.32.1"
 }
