@@ -12,20 +12,20 @@ importers:
         specifier: ^9.39.4
         version: 9.39.4
       '@mirta/cli':
-        specifier: 0.5.0
-        version: 0.5.0
+        specifier: 0.5.2
+        version: 0.5.2
       '@mirta/globals':
-        specifier: 0.5.0
-        version: 0.5.0
+        specifier: 0.5.2
+        version: 0.5.2
       '@mirta/rollup':
-        specifier: 0.5.0
-        version: 0.5.0(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)
+        specifier: 0.5.2
+        version: 0.5.2(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)
       '@mirta/testing':
-        specifier: 0.5.0
-        version: 0.5.0(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.0)(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)))
+        specifier: 0.5.2
+        version: 0.5.2(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.0)(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)))
       '@mirta/tsconfig':
-        specifier: 0.5.0
-        version: 0.5.0
+        specifier: 0.5.2
+        version: 0.5.2
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@9.39.4)
@@ -75,11 +75,11 @@ importers:
   packages/chatbot:
     dependencies:
       '@mirta/basics':
-        specifier: ~0.5.0
-        version: 0.5.0
+        specifier: ~0.5.2
+        version: 0.5.2
       '@mirta/store':
-        specifier: ~0.5.0
-        version: 0.5.0(@mirta/basics@0.5.0)(@mirta/polyfills@0.5.0)
+        specifier: ~0.5.2
+        version: 0.5.2(@mirta/basics@0.5.2)(@mirta/polyfills@0.5.2)
 
   projects/chatbot-demo:
     dependencies:
@@ -557,8 +557,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
-  '@babel/preset-env@7.29.0':
-    resolution: {integrity: sha512-fNEdfc0yi16lt6IZo2Qxk3knHVdfMYX33czNb4v8yWhemoBhibCpQK/uYHtSKIiO+p/zd3+8fYVXhQdOVV608w==}
+  '@babel/preset-env@7.29.2':
+    resolution: {integrity: sha512-DYD23veRYGvBFhcTY1iUvJnDNpuqNd/BzBwCvzOTKUnJjKg5kpUBh3/u9585Agdkgj+QuygG7jLfOPWMa2KVNw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -592,8 +592,8 @@ packages:
       conventional-commits-parser:
         optional: true
 
-  '@dotenvx/dotenvx@1.52.0':
-    resolution: {integrity: sha512-CaQcc8JvtzQhUSm9877b6V4Tb7HCotkcyud9X2YwdqtQKwgljkMRwU96fVYKnzN3V0Hj74oP7Es+vZ0mS+Aa1w==}
+  '@dotenvx/dotenvx@1.61.0':
+    resolution: {integrity: sha512-utL3cpZoFzflyqUkjYbxYujI6STBTmO5LFn4bbin/NZnRWN6wQ7eErhr3/Vpa5h/jicPFC6kTa42r940mQftJQ==}
     hasBin: true
 
   '@ecies/ciphers@0.2.5':
@@ -835,56 +835,56 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mirta/basics@0.5.0':
-    resolution: {integrity: sha512-hfwvLoEEjhBqEaNO8nIn11+paXIX8mGxYuWVD4EvZQJ7IHQ/F05lGPeEXEXZIs4iF2r/STtw+PLKIq4JAGyqSQ==}
+  '@mirta/basics@0.5.2':
+    resolution: {integrity: sha512-0x/XHu42AhO5OCVnppeRro3P5yuzEMmD2La1hS3a55F3cq9uqvZKr2X4V0vTz4TD5wRHFzmvY3oJs98yCV6Cmg==}
 
-  '@mirta/cli@0.5.0':
-    resolution: {integrity: sha512-vxuOBnzoEek4QyV1HUg61/52GqjBv5mtEN+5Vvyke6D5eRII5Ceyrfs9EsEAcThrmu2C/Sx6ia9Za9p4enWR/Q==}
+  '@mirta/cli@0.5.2':
+    resolution: {integrity: sha512-IhEB4uvtoPkkKloLJYKIFIdlDhtLk9FABuKOJ4BjTmWc8YvGBCwIy9re0hT4Rb/XRECkc+6kS/NRsNV42HU2BQ==}
     engines: {node: '>=24.12.0'}
     hasBin: true
 
-  '@mirta/env-loader@0.5.0':
-    resolution: {integrity: sha512-Fiuh8V7k9c/ofEF/pgfjljFIULTuymGtXyv/UICT+uJTJS4+jLF+ef+79BUhSG/tHyFmem96rpajRLzBdE3pww==}
+  '@mirta/env-loader@0.5.2':
+    resolution: {integrity: sha512-utRX9lLayxfqYWSCRBR1zEJT2py0d0RK5LdRcvG9QSlxjTELsADpngh9aDqS5CW1W9PZmZBg8pU8EMiNTRK35w==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/globals@0.5.0':
-    resolution: {integrity: sha512-HcOc8oLFLsGGe5Mk7X3n4OvBGIEUdxEeZDiUhYu8LLMXMZJtK7EYdBo4DlF2qi6AkXI1kDj698hHh4oDVhaufQ==}
+  '@mirta/globals@0.5.2':
+    resolution: {integrity: sha512-+lIGhd/oTGhHMyRaTpE0ChECOxjAy/icUP26QEvVT1JuM/aNvvSBrkC2wTBDCZ2OMdqX0IV2o/+9W4EBRikGzQ==}
 
-  '@mirta/i18n@0.5.0':
-    resolution: {integrity: sha512-Q2+YCuGprBfrf4WM2mib1tHv3ff/AT/KxKZPwlWkorM86qoZjBUv1JEjm5swF7q+Rq0V5lJB/zAW6SrxMvmPxw==}
+  '@mirta/i18n@0.5.2':
+    resolution: {integrity: sha512-ODa6bs3seXmf3oeUloqsg2tfDHgZeD8XTosjwxoMu/8xsSprqqkj+q0HLstR4UcRCWy65EH6rBZGzfJRsI/uuA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/package@0.5.0':
-    resolution: {integrity: sha512-gq26/min/Bf3ul866ngg+9BqdktjDCuRo4cPBc6Qu409NBoNY2pbAZU+BldwmWJUgaAKA5R+qHT0nZTZ3pAt/g==}
+  '@mirta/package@0.5.2':
+    resolution: {integrity: sha512-DYqkAb+19+TMQqjqMutlT2JFhA61ifLpbN2d1fgsylxUzt4Pmu+PIgarbQcaZeDausRkFpARsKzXXWhKU4HcZA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/polyfills@0.5.0':
-    resolution: {integrity: sha512-RJ6SI90CS4Dt4BqW7f9uvxx18RB8Er3jBOLgEuoKSWh+DNqDt4dD+dGZmyu/zMUEDhIf5Qu0q1q4usRG13g80A==}
+  '@mirta/polyfills@0.5.2':
+    resolution: {integrity: sha512-JihjjW8LL3QvdTrSk0TQZo3pJXA+ul33KFrgtBW5jrj8QeQkkEN41qo3Mp4DeiDFkOPulaMw1Om8l2Y4RWDEBQ==}
 
-  '@mirta/rollup@0.5.0':
-    resolution: {integrity: sha512-z8CO8mZ7ZWlKHZstMWbG6vWKT33QJ7qfnn6YVHc6bL4JhjWfm6gOyu7ukLhllfiNuhKF1KjrT2+S3mSK75NjQQ==}
+  '@mirta/rollup@0.5.2':
+    resolution: {integrity: sha512-2UYdS5siq5uEneDUdkljnzfOYU75no6SaXzhcKW1xG0xBKgVWGjlM0kqkdhM9EdxRv5gy87d3Z01+/z4dDNKiQ==}
     peerDependencies:
       rollup: '>= 4.52.5 < 5'
       typescript: '>= 5.8.3 < 6'
 
-  '@mirta/staged-args@0.5.0':
-    resolution: {integrity: sha512-7SHrd9hFCjiksb+b1dHa0Hdl0UDgL5pP1bCMe9MvOoaqr6QjU+05vAN39F45NyTROB1CyEfw4T1FgJgbgD91VQ==}
+  '@mirta/staged-args@0.5.2':
+    resolution: {integrity: sha512-UeQ/N+R5CGmaVA7RheS7yLa0di3EudLY6L6Xyy4sBM7X1SLf9ZMjW7jiRNA/FxzSHkFDFfyqBLy7THi5QE3qsg==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/store@0.5.0':
-    resolution: {integrity: sha512-OKm/cd/QBsLk8Aiawd2MTecFLSiQk8/0Ma4vxZbIoo16hLUpWltjWqj5YxrK9oiLAh3fM2ezyqZ8R1XHugOTww==}
+  '@mirta/store@0.5.2':
+    resolution: {integrity: sha512-r29vCyQUtv1jflogYTE1aobwf9XVBEJm0PxuD+r9FmqGciv/cur5X9hSS5w1tAJGQrIIG340yIRumZilNhYj8Q==}
     peerDependencies:
-      '@mirta/basics': 0.5.0
-      '@mirta/polyfills': 0.5.0
+      '@mirta/basics': 0.5.2
+      '@mirta/polyfills': 0.5.2
 
-  '@mirta/testing@0.5.0':
-    resolution: {integrity: sha512-XTJd2AOCeJLXjrdZyPHs5gaaCGSxUgRUdA3jNhUAoZzSZPvKKe4bAigHvDJc7SdtfO73BB2twlrwGXUNleMSmw==}
+  '@mirta/testing@0.5.2':
+    resolution: {integrity: sha512-se6c1v3yusH0X5g7KHEeh39ABlWEaeI4ikZY10OO7wAawQom8KiSgKoKeaCs9kK9v+6+AAmxlNrGmsw2t6qILg==}
 
-  '@mirta/tsconfig@0.5.0':
-    resolution: {integrity: sha512-kuIh89PywaVsSdLxL1tDhw6MQEs3VKH58oZqmeVQA2pjmf6Va+6klOOJIBP4YVIq9yNaHr6q4r82UOPqjkEcYw==}
+  '@mirta/tsconfig@0.5.2':
+    resolution: {integrity: sha512-Ylgy/HLbg7CRB6QHCjZm90Ug4SKU+yckbQfejPKbTxBGq1zWnvQlC3KambCnFotNI4cpUi2LCNByv7tNLGKrvQ==}
 
-  '@mirta/workspace@0.5.0':
-    resolution: {integrity: sha512-sWscrcdUzg9xf1Mqgh02cvN+vgi5sIkIG9prayw9vtvc79as8A5uyKIxajGT6Rfqwv7JvXG98FO2fJT3ZFypeQ==}
+  '@mirta/workspace@0.5.2':
+    resolution: {integrity: sha512-5g/AKihqObx/eHm0J3OvdB4n4ewAoaj9pi+85zCrpSlfI/dJAvRvnMWmVMA6BrAmflTR32V5NzxbqxRfUzwJTg==}
     engines: {node: '>=24.12.0'}
 
   '@noble/ciphers@1.3.0':
@@ -924,8 +924,8 @@ packages:
       rollup:
         optional: true
 
-  '@rollup/plugin-commonjs@29.0.0':
-    resolution: {integrity: sha512-U2YHaxR2cU/yAiwKJtJRhnyLk7cifnQw0zUpISsocBDoHDJn+HTV74ABqnwr5bEgWUwFZC9oFL6wLe21lHu5eQ==}
+  '@rollup/plugin-commonjs@29.0.2':
+    resolution: {integrity: sha512-S/ggWH1LU7jTyi9DxZOKyxpVd4hF/OZ0JrEbeLjXk/DFXwRny0tjD2c992zOUYQobLrVkRVMDdmHP16HKP7GRg==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0||^4.0.0
@@ -1919,8 +1919,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  mirta@0.5.0:
-    resolution: {integrity: sha512-Q+1mpCy3eMhYu61sZ9BsSdsCb9MbwpsQn2NzTN0cnwiFLntnfbCl15fTZLRIEFGu0yZpouqNJxtTA1J+GMGYGw==}
+  mirta@0.5.2:
+    resolution: {integrity: sha512-+skGygEFQ4fqv7kwj4Fm7/Prn49+E/rtDn3ae6qUnS3o3GYxwWUhBxlebgHpH7oV9COi9YfY0VC5Rj7oHfbQuA==}
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -2113,6 +2113,11 @@ packages:
 
   semver@7.7.3:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.4:
+    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -2437,6 +2442,14 @@ packages:
   yocto-queue@1.2.2:
     resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
+
+  yocto-spinner@1.1.0:
+    resolution: {integrity: sha512-/BY0AUXnS7IKO354uLLA2eRcWiqDifEbd6unXCsOxkFDAkhgUL3PH9X2bFoaU0YchnDXsF+iKleeTLJGckbXfA==}
+    engines: {node: '>=18.19'}
+
+  yoctocolors@2.1.2:
+    resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
+    engines: {node: '>=18'}
 
 snapshots:
 
@@ -2986,7 +2999,7 @@ snapshots:
       '@babel/helper-create-regexp-features-plugin': 7.28.5(@babel/core@7.29.0)
       '@babel/helper-plugin-utils': 7.28.6
 
-  '@babel/preset-env@7.29.0(@babel/core@7.29.0)':
+  '@babel/preset-env@7.29.2(@babel/core@7.29.0)':
     dependencies:
       '@babel/compat-data': 7.29.0
       '@babel/core': 7.29.0
@@ -3100,7 +3113,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.2.1
 
-  '@dotenvx/dotenvx@1.52.0':
+  '@dotenvx/dotenvx@1.61.0':
     dependencies:
       commander: 11.1.0
       dotenv: 17.2.3
@@ -3111,6 +3124,7 @@ snapshots:
       object-treeify: 1.1.33
       picomatch: 4.0.3
       which: 4.0.0
+      yocto-spinner: 1.1.0
 
   '@ecies/ciphers@0.2.5(@noble/ciphers@1.3.0)':
     dependencies:
@@ -3274,47 +3288,47 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mirta/basics@0.5.0': {}
+  '@mirta/basics@0.5.2': {}
 
-  '@mirta/cli@0.5.0':
+  '@mirta/cli@0.5.2':
     dependencies:
-      '@mirta/basics': 0.5.0
-      '@mirta/env-loader': 0.5.0
-      '@mirta/i18n': 0.5.0
-      '@mirta/package': 0.5.0
-      '@mirta/staged-args': 0.5.0
-      '@mirta/workspace': 0.5.0
+      '@mirta/basics': 0.5.2
+      '@mirta/env-loader': 0.5.2
+      '@mirta/i18n': 0.5.2
+      '@mirta/package': 0.5.2
+      '@mirta/staged-args': 0.5.2
+      '@mirta/workspace': 0.5.2
       chalk: 5.6.2
       jsonc-parser: 3.3.1
       p-map: 7.0.4
       prompts: 2.4.2
-      semver: 7.7.3
+      semver: 7.7.4
 
-  '@mirta/env-loader@0.5.0':
+  '@mirta/env-loader@0.5.2':
     dependencies:
-      '@dotenvx/dotenvx': 1.52.0
-      '@mirta/basics': 0.5.0
+      '@dotenvx/dotenvx': 1.61.0
+      '@mirta/basics': 0.5.2
 
-  '@mirta/globals@0.5.0': {}
+  '@mirta/globals@0.5.2': {}
 
-  '@mirta/i18n@0.5.0': {}
+  '@mirta/i18n@0.5.2': {}
 
-  '@mirta/package@0.5.0': {}
+  '@mirta/package@0.5.2': {}
 
-  '@mirta/polyfills@0.5.0': {}
+  '@mirta/polyfills@0.5.2': {}
 
-  '@mirta/rollup@0.5.0(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)':
+  '@mirta/rollup@0.5.2(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-transform-spread': 7.28.6(@babel/core@7.29.0)
-      '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
-      '@dotenvx/dotenvx': 1.52.0
-      '@mirta/basics': 0.5.0
-      '@mirta/env-loader': 0.5.0
-      '@mirta/package': 0.5.0
-      '@mirta/workspace': 0.5.0
+      '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
+      '@dotenvx/dotenvx': 1.61.0
+      '@mirta/basics': 0.5.2
+      '@mirta/env-loader': 0.5.2
+      '@mirta/package': 0.5.2
+      '@mirta/workspace': 0.5.2
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.29.0)(rollup@4.59.0)
-      '@rollup/plugin-commonjs': 29.0.0(rollup@4.59.0)
+      '@rollup/plugin-commonjs': 29.0.2(rollup@4.59.0)
       '@rollup/plugin-multi-entry': 7.1.0(rollup@4.59.0)
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.59.0)
       '@rollup/plugin-replace': 6.0.3(rollup@4.59.0)
@@ -3331,28 +3345,28 @@ snapshots:
       - supports-color
       - tslib
 
-  '@mirta/staged-args@0.5.0': {}
+  '@mirta/staged-args@0.5.2': {}
 
-  '@mirta/store@0.5.0(@mirta/basics@0.5.0)(@mirta/polyfills@0.5.0)':
+  '@mirta/store@0.5.2(@mirta/basics@0.5.2)(@mirta/polyfills@0.5.2)':
     dependencies:
-      '@mirta/basics': 0.5.0
-      '@mirta/polyfills': 0.5.0
+      '@mirta/basics': 0.5.2
+      '@mirta/polyfills': 0.5.2
 
-  '@mirta/testing@0.5.0(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.0)(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)))':
+  '@mirta/testing@0.5.2(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.0)(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)))':
     dependencies:
-      '@mirta/env-loader': 0.5.0
-      '@mirta/workspace': 0.5.0
-      mirta: 0.5.0
+      '@mirta/env-loader': 0.5.2
+      '@mirta/workspace': 0.5.2
+      mirta: 0.5.2
       vitest-mock-extended: 3.1.0(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.0)(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)))
     transitivePeerDependencies:
       - typescript
       - vitest
 
-  '@mirta/tsconfig@0.5.0': {}
+  '@mirta/tsconfig@0.5.2': {}
 
-  '@mirta/workspace@0.5.0':
+  '@mirta/workspace@0.5.2':
     dependencies:
-      '@mirta/package': 0.5.0
+      '@mirta/package': 0.5.2
       find-up: 8.0.0
 
   '@noble/ciphers@1.3.0': {}
@@ -3385,7 +3399,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@rollup/plugin-commonjs@29.0.0(rollup@4.59.0)':
+  '@rollup/plugin-commonjs@29.0.2(rollup@4.59.0)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.59.0)
       commondir: 1.0.1
@@ -4351,11 +4365,11 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  mirta@0.5.0:
+  mirta@0.5.2:
     dependencies:
-      '@mirta/basics': 0.5.0
-      '@mirta/globals': 0.5.0
-      '@mirta/polyfills': 0.5.0
+      '@mirta/basics': 0.5.2
+      '@mirta/globals': 0.5.2
+      '@mirta/polyfills': 0.5.2
 
   ms@2.1.3: {}
 
@@ -4559,6 +4573,8 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.7.3: {}
+
+  semver@7.7.4: {}
 
   shebang-command@2.0.0:
     dependencies:
@@ -4793,3 +4809,9 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.2.2: {}
+
+  yocto-spinner@1.1.0:
+    dependencies:
+      yoctocolors: 2.1.2
+
+  yoctocolors@2.1.2: {}
