@@ -43,7 +43,7 @@
     "url": "https://github.com/wb-mirta/chatbot/issues"
   },
   "dependencies": {
-    "@mirta/basics": "~0.5.0",
-    "@mirta/store": "~0.5.0"
+    "@mirta/basics": "~0.5.2",
+    "@mirta/store": "~0.5.2"
   }
 }
