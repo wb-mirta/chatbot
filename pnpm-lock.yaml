@@ -12,20 +12,20 @@ importers:
         specifier: ^9.39.4
         version: 9.39.4
       '@mirta/cli':
-        specifier: 0.5.2
-        version: 0.5.2
+        specifier: 0.5.3
+        version: 0.5.3
       '@mirta/globals':
-        specifier: 0.5.2
-        version: 0.5.2
+        specifier: 0.5.3
+        version: 0.5.3
       '@mirta/rollup':
-        specifier: 0.5.2
-        version: 0.5.2(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)
+        specifier: 0.5.3
+        version: 0.5.3(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)
       '@mirta/testing':
-        specifier: 0.5.2
-        version: 0.5.2(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))
+        specifier: 0.5.3
+        version: 0.5.3(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))
       '@mirta/tsconfig':
-        specifier: 0.5.2
-        version: 0.5.2
+        specifier: 0.5.3
+        version: 0.5.3
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@9.39.4)
@@ -75,11 +75,11 @@ importers:
   packages/chatbot:
     dependencies:
       '@mirta/basics':
-        specifier: ~0.5.2
-        version: 0.5.2
+        specifier: ~0.5.3
+        version: 0.5.3
       '@mirta/store':
-        specifier: ~0.5.2
-        version: 0.5.2(@mirta/basics@0.5.2)(@mirta/polyfills@0.5.2)
+        specifier: ~0.5.3
+        version: 0.5.3(@mirta/basics@0.5.3)(@mirta/polyfills@0.5.3)
 
   projects/chatbot-demo:
     dependencies:
@@ -92,6 +92,10 @@ packages:
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
     engines: {node: '>=6.9.0'}
+
+  '@babel/code-frame@8.0.0':
+    resolution: {integrity: sha512-dYYg153EyN2Ekbqw2zAsbd6/JR+9N2SEoC7YV2GyyqMM7x9bLDTjBD6XBhSMLH0wtIVyJj03jWNriQhaN+eoCw==}
+    engines: {node: ^22.18.0 || >=24.11.0}
 
   '@babel/compat-data@7.29.0':
     resolution: {integrity: sha512-T1NCJqT/j9+cn8fvkt7jtwbLBfLC/1y1c7NtCeXFRgzGTsafi68MRv8yzkYSapBnFA6L3U2VSc02ciDzoAJhJg==}
@@ -179,6 +183,10 @@ packages:
   '@babel/helper-validator-identifier@7.28.5':
     resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==}
     engines: {node: '>=6.9.0'}
+
+  '@babel/helper-validator-identifier@8.0.4':
+    resolution: {integrity: sha512-4wFaiLd0bVo4cIoTXI3zKI038NIWE/cr3jvBjejOVYVxV/m8Ltav1USiGzG1fmS5J2RhgEOgXNNK46cRPnRsrg==}
+    engines: {node: ^22.18.0 || >=24.11.0}
 
   '@babel/helper-validator-option@7.27.1':
     resolution: {integrity: sha512-YvjJow9FxbhFFKDSuFnVCe2WxXk1zWc22fFePVNEaWJEu8IrZVlda6N0uHwzZrUM1il7NC9Mlp4MaJYbYd9JSg==}
@@ -835,56 +843,56 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mirta/basics@0.5.2':
-    resolution: {integrity: sha512-0x/XHu42AhO5OCVnppeRro3P5yuzEMmD2La1hS3a55F3cq9uqvZKr2X4V0vTz4TD5wRHFzmvY3oJs98yCV6Cmg==}
+  '@mirta/basics@0.5.3':
+    resolution: {integrity: sha512-YjpjpCkDjFwTlKdokSzGxV/TCFm6a3s8rk6XVSb4o9QZtMLtgA7SUU2IAJPGB+VCCbnZfLRq+rfOYYDlRSty9g==}
 
-  '@mirta/cli@0.5.2':
-    resolution: {integrity: sha512-IhEB4uvtoPkkKloLJYKIFIdlDhtLk9FABuKOJ4BjTmWc8YvGBCwIy9re0hT4Rb/XRECkc+6kS/NRsNV42HU2BQ==}
+  '@mirta/cli@0.5.3':
+    resolution: {integrity: sha512-zg9uZvB7gqQavU6NNXpJnyjigOcwmQOq41TSvkU8CV564O1Mb2V6v3LK6SMfRQMYpnAjF8PDHGxGB5KiJ0Wuxw==}
     engines: {node: '>=24.12.0'}
     hasBin: true
 
-  '@mirta/env-loader@0.5.2':
-    resolution: {integrity: sha512-utRX9lLayxfqYWSCRBR1zEJT2py0d0RK5LdRcvG9QSlxjTELsADpngh9aDqS5CW1W9PZmZBg8pU8EMiNTRK35w==}
+  '@mirta/env-loader@0.5.3':
+    resolution: {integrity: sha512-XO6vDc7AOAvTiaQnXgB7vmMYDTh/HFZWgUeziEJk7q+mZgM5+ugjIyqtg4LJYFREAkHPKjTQmfmmJmFO0W6cfg==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/globals@0.5.2':
-    resolution: {integrity: sha512-+lIGhd/oTGhHMyRaTpE0ChECOxjAy/icUP26QEvVT1JuM/aNvvSBrkC2wTBDCZ2OMdqX0IV2o/+9W4EBRikGzQ==}
+  '@mirta/globals@0.5.3':
+    resolution: {integrity: sha512-/hy6zdQZGi6+cr/LZJM5jN+2GRs/qnwwsppf9Wn/4uFwaOZgzLt15sF3/PxUxu7sbEW1qQ2VzX1QMNd6pa+eoA==}
 
-  '@mirta/i18n@0.5.2':
-    resolution: {integrity: sha512-ODa6bs3seXmf3oeUloqsg2tfDHgZeD8XTosjwxoMu/8xsSprqqkj+q0HLstR4UcRCWy65EH6rBZGzfJRsI/uuA==}
+  '@mirta/i18n@0.5.3':
+    resolution: {integrity: sha512-x2Nqk1SXiKT9jyWAVTpdCZF7fO5bZRsDOH0LiuzAITM3hXAGnds58240N7+UKW/PGXiIdyDzAUM1uZTTc/Sf2w==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/package@0.5.2':
-    resolution: {integrity: sha512-DYqkAb+19+TMQqjqMutlT2JFhA61ifLpbN2d1fgsylxUzt4Pmu+PIgarbQcaZeDausRkFpARsKzXXWhKU4HcZA==}
+  '@mirta/package@0.5.3':
+    resolution: {integrity: sha512-8oB2XWoiHmyhv6MLoV0UZidrCWprDfAtMSyjhaAW4aDhkYwfkiuBPNF8PIU/HgB/JHnQEwxeyolDlkNsGUxTbA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/polyfills@0.5.2':
-    resolution: {integrity: sha512-JihjjW8LL3QvdTrSk0TQZo3pJXA+ul33KFrgtBW5jrj8QeQkkEN41qo3Mp4DeiDFkOPulaMw1Om8l2Y4RWDEBQ==}
+  '@mirta/polyfills@0.5.3':
+    resolution: {integrity: sha512-dDV1EP7GnO8BSx9JvMcEFAK6nZFngD5BdFgnrsVqqfaZoXFJ5wXnr3sHx64KbvgKklAqER9bQceBMkdIO1gEWw==}
 
-  '@mirta/rollup@0.5.2':
-    resolution: {integrity: sha512-2UYdS5siq5uEneDUdkljnzfOYU75no6SaXzhcKW1xG0xBKgVWGjlM0kqkdhM9EdxRv5gy87d3Z01+/z4dDNKiQ==}
+  '@mirta/rollup@0.5.3':
+    resolution: {integrity: sha512-TMJzUg8+2CULZNBkx5YIdltGPgp84cWw8sfNybAccJ6avmIwls5DODBBL090BvH9u/sr/2fLk2FT5bFZyE926w==}
     peerDependencies:
       rollup: '>= 4.52.5 < 5'
       typescript: '>= 5.8.3 < 6'
 
-  '@mirta/staged-args@0.5.2':
-    resolution: {integrity: sha512-UeQ/N+R5CGmaVA7RheS7yLa0di3EudLY6L6Xyy4sBM7X1SLf9ZMjW7jiRNA/FxzSHkFDFfyqBLy7THi5QE3qsg==}
+  '@mirta/staged-args@0.5.3':
+    resolution: {integrity: sha512-bssd/P2tlEw2Vd2abJ/DILcEXQ0ee/X964/2pEvsmQYN9gOqYDyvYBFY1zheWzNwgOS6Wxu9fu6McnCCpSK4XA==}
     engines: {node: '>=24.12.0'}
 
-  '@mirta/store@0.5.2':
-    resolution: {integrity: sha512-r29vCyQUtv1jflogYTE1aobwf9XVBEJm0PxuD+r9FmqGciv/cur5X9hSS5w1tAJGQrIIG340yIRumZilNhYj8Q==}
+  '@mirta/store@0.5.3':
+    resolution: {integrity: sha512-ddjBJXMPzwmz23GUNTDvThe4HlLOW53BiuubGIG7Km+JN3uMxDx74jpdRfCWJm70MtJWiphoDgj6AsYzvoVoKA==}
     peerDependencies:
-      '@mirta/basics': 0.5.2
-      '@mirta/polyfills': 0.5.2
+      '@mirta/basics': 0.5.3
+      '@mirta/polyfills': 0.5.3
 
-  '@mirta/testing@0.5.2':
-    resolution: {integrity: sha512-se6c1v3yusH0X5g7KHEeh39ABlWEaeI4ikZY10OO7wAawQom8KiSgKoKeaCs9kK9v+6+AAmxlNrGmsw2t6qILg==}
+  '@mirta/testing@0.5.3':
+    resolution: {integrity: sha512-J01J6WmbLOeKTPb3V8yOhKGMgBq6j6pRxotCndCRL4cv8TU+UWIC/xFxIzLDV3rUO3oNwpUlwmfF4h7WU3KHfQ==}
 
-  '@mirta/tsconfig@0.5.2':
-    resolution: {integrity: sha512-Ylgy/HLbg7CRB6QHCjZm90Ug4SKU+yckbQfejPKbTxBGq1zWnvQlC3KambCnFotNI4cpUi2LCNByv7tNLGKrvQ==}
+  '@mirta/tsconfig@0.5.3':
+    resolution: {integrity: sha512-U+r22y5FWt/5lMbtcN28ZOE7tXM7l/tBxWeO2eyx7mIYuvu3PKtmAyn0fuD9Gg2stawODjtfQDX5OJ6YYD0GRw==}
 
-  '@mirta/workspace@0.5.2':
-    resolution: {integrity: sha512-5g/AKihqObx/eHm0J3OvdB4n4ewAoaj9pi+85zCrpSlfI/dJAvRvnMWmVMA6BrAmflTR32V5NzxbqxRfUzwJTg==}
+  '@mirta/workspace@0.5.3':
+    resolution: {integrity: sha512-XN1pIEl1YAQrQK1hrc5ElzAYJWpb9jG9p2r7WvwPI8kqJTCu/C53WA1Oy8zRXs+lfE5NqBaLdgaCtHaR6QQC3g==}
     engines: {node: '>=24.12.0'}
 
   '@noble/ciphers@1.3.0':
@@ -1419,6 +1427,7 @@ packages:
   conventional-changelog-atom@5.0.0:
     resolution: {integrity: sha512-WfzCaAvSCFPkznnLgLnfacRAzjgqjLUjvf3MftfsJzQdDICqkOOpcMtdJF3wTerxSpv2IAAjX8doM3Vozqle3g==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-cli@5.0.0:
     resolution: {integrity: sha512-9Y8fucJe18/6ef6ZlyIlT2YQUbczvoQZZuYmDLaGvcSBP+M6h+LAvf7ON7waRxKJemcCII8Yqu5/8HEfskTxJQ==}
@@ -1429,6 +1438,7 @@ packages:
   conventional-changelog-codemirror@5.0.0:
     resolution: {integrity: sha512-8gsBDI5Y3vrKUCxN6Ue8xr6occZ5nsDEc4C7jO/EovFGozx8uttCAyfhRrvoUAWi2WMm3OmYs+0mPJU7kQdYWQ==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-conventionalcommits@8.0.0:
     resolution: {integrity: sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==}
@@ -1437,26 +1447,32 @@ packages:
   conventional-changelog-core@8.0.0:
     resolution: {integrity: sha512-EATUx5y9xewpEe10UEGNpbSHRC6cVZgO+hXQjofMqpy+gFIrcGvH3Fl6yk2VFKh7m+ffenup2N7SZJYpyD9evw==}
     engines: {node: '>=18'}
+    deprecated: Deprecated and no longer maintained. Please use conventional-changelog instead.
 
   conventional-changelog-ember@5.0.0:
     resolution: {integrity: sha512-RPflVfm5s4cSO33GH/Ey26oxhiC67akcxSKL8CLRT3kQX2W3dbE19sSOM56iFqUJYEwv9mD9r6k79weWe1urfg==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-eslint@6.0.0:
     resolution: {integrity: sha512-eiUyULWjzq+ybPjXwU6NNRflApDWlPEQEHvI8UAItYW/h22RKkMnOAtfCZxMmrcMO1OKUWtcf2MxKYMWe9zJuw==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-express@5.0.0:
     resolution: {integrity: sha512-D8Q6WctPkQpvr2HNCCmwU5GkX22BVHM0r4EW8vN0230TSyS/d6VQJDAxGb84lbg0dFjpO22MwmsikKL++Oo/oQ==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-jquery@6.0.0:
     resolution: {integrity: sha512-2kxmVakyehgyrho2ZHBi90v4AHswkGzHuTaoH40bmeNqUt20yEkDOSpw8HlPBfvEQBwGtbE+5HpRwzj6ac2UfA==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-jshint@5.0.0:
     resolution: {integrity: sha512-gGNphSb/opc76n2eWaO6ma4/Wqu3tpa2w7i9WYqI6Cs2fncDSI2/ihOfMvXveeTTeld0oFvwMVNV+IYQIk3F3g==}
     engines: {node: '>=18'}
+    deprecated: This preset is deprecated. Please use conventional-changelog-conventionalcommits or conventional-changelog-angular instead.
 
   conventional-changelog-preset-loader@5.0.0:
     resolution: {integrity: sha512-SetDSntXLk8Jh1NOAl1Gu5uLiCNSYenB5tm0YVeZKePRIgDW9lQImromTwLa3c/Gae298tsgOM+/CYT9XAl0NA==}
@@ -1572,6 +1588,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1691,13 +1708,13 @@ packages:
   git-raw-commits@5.0.0:
     resolution: {integrity: sha512-I2ZXrXeOc0KrCvC7swqtIFXFN+rbjnC7b2T943tvemIOVNl+XP8YnA9UVwqFhzzLClnSA60KR/qEjLpXzs73Qg==}
     engines: {node: '>=18'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-semver-tags@8.0.0:
     resolution: {integrity: sha512-N7YRIklvPH3wYWAR2vysaqGLPRcpwQ0GKdlqTiVN5w1UmCdaeY3K8s6DMKRCh54DDdzyt/OAB6C8jgVtb7Y2Fg==}
     engines: {node: '>=18'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   glob-parent@5.1.2:
@@ -1810,6 +1827,9 @@ packages:
     resolution: {integrity: sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ==}
     engines: {node: '>=16'}
 
+  js-tokens@10.0.0:
+    resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -1919,8 +1939,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  mirta@0.5.2:
-    resolution: {integrity: sha512-+skGygEFQ4fqv7kwj4Fm7/Prn49+E/rtDn3ae6qUnS3o3GYxwWUhBxlebgHpH7oV9COi9YfY0VC5Rj7oHfbQuA==}
+  mirta@0.5.3:
+    resolution: {integrity: sha512-XqmenfqcOVY0Ktg7NMXClsZHaxn/9mapFrMgUXyE3d2REGX4SNu6ZcfZ+PLI2bEQWUronU4bKo3aiEqSwlsU2g==}
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -2092,12 +2112,16 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
-  rollup-plugin-dts@6.3.0:
-    resolution: {integrity: sha512-d0UrqxYd8KyZ6i3M2Nx7WOMy708qsV/7fTHMHxCMCBOAe3V/U7OMPu5GkX8hC+cmkHhzGnfeYongl1IgiooddA==}
-    engines: {node: '>=16'}
+  rollup-plugin-dts@6.5.1:
+    resolution: {integrity: sha512-jODTXp3H7MK/Ur/ErtsrQ0G1GvaCmc3du+y5pNrdBMf6d7HlL2Nd/N6TkEr+f75CkUj01zEoEd7y2elH0eHi1Q==}
+    engines: {node: '>=20'}
     peerDependencies:
-      rollup: ^3.29.4 || ^4
-      typescript: ^4.5 || ^5.0
+      '@typescript/typescript6': ^6
+      rollup: ^3 || ^4
+      typescript: ^4.5 || ^5 || ^6 || ^7
+    peerDependenciesMeta:
+      '@typescript/typescript6':
+        optional: true
 
   rollup@4.59.0:
     resolution: {integrity: sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==}
@@ -2109,11 +2133,6 @@ packages:
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
-    hasBin: true
-
-  semver@7.7.3:
-    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
-    engines: {node: '>=10'}
     hasBin: true
 
   semver@7.7.4:
@@ -2360,10 +2379,10 @@ packages:
       yaml:
         optional: true
 
-  vitest-mock-extended@3.1.0:
-    resolution: {integrity: sha512-vCM0VkuocOUBwwqwV7JB7YStw07pqeKvEIrZnR8l3PtwYi6rAAJAyJACeC1UYNfbQWi85nz7EdiXWBFI5hll2g==}
+  vitest-mock-extended@3.1.1:
+    resolution: {integrity: sha512-IQBKkEYB5BW4eJ+8JHZRzrLkKIJu5zkLJsU6u8vB+skSXbES+Di86nrUIbXwEQivDXcR4APMZFSvt398+iqKYA==}
     peerDependencies:
-      typescript: 3.x || 4.x || 5.x
+      typescript: 3.x || 4.x || 5.x || 6.x
       vitest: '>=3.0.0'
 
   vitest-mock-extended@4.0.0:
@@ -2464,6 +2483,12 @@ snapshots:
       '@babel/helper-validator-identifier': 7.28.5
       js-tokens: 4.0.0
       picocolors: 1.1.1
+
+  '@babel/code-frame@8.0.0':
+    dependencies:
+      '@babel/helper-validator-identifier': 8.0.4
+      js-tokens: 10.0.0
+    optional: true
 
   '@babel/compat-data@7.29.0': {}
 
@@ -2597,6 +2622,9 @@ snapshots:
   '@babel/helper-string-parser@7.27.1': {}
 
   '@babel/helper-validator-identifier@7.28.5': {}
+
+  '@babel/helper-validator-identifier@8.0.4':
+    optional: true
 
   '@babel/helper-validator-option@7.27.1': {}
 
@@ -3114,7 +3142,7 @@ snapshots:
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)':
     dependencies:
       '@types/semver': 7.7.1
-      semver: 7.7.3
+      semver: 7.7.4
     optionalDependencies:
       conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.2.1
@@ -3294,45 +3322,45 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mirta/basics@0.5.2': {}
+  '@mirta/basics@0.5.3': {}
 
-  '@mirta/cli@0.5.2':
+  '@mirta/cli@0.5.3':
     dependencies:
-      '@mirta/basics': 0.5.2
-      '@mirta/env-loader': 0.5.2
-      '@mirta/i18n': 0.5.2
-      '@mirta/package': 0.5.2
-      '@mirta/staged-args': 0.5.2
-      '@mirta/workspace': 0.5.2
+      '@mirta/basics': 0.5.3
+      '@mirta/env-loader': 0.5.3
+      '@mirta/i18n': 0.5.3
+      '@mirta/package': 0.5.3
+      '@mirta/staged-args': 0.5.3
+      '@mirta/workspace': 0.5.3
       chalk: 5.6.2
       jsonc-parser: 3.3.1
       p-map: 7.0.4
       prompts: 2.4.2
       semver: 7.7.4
 
-  '@mirta/env-loader@0.5.2':
+  '@mirta/env-loader@0.5.3':
     dependencies:
       '@dotenvx/dotenvx': 1.61.0
-      '@mirta/basics': 0.5.2
+      '@mirta/basics': 0.5.3
 
-  '@mirta/globals@0.5.2': {}
+  '@mirta/globals@0.5.3': {}
 
-  '@mirta/i18n@0.5.2': {}
+  '@mirta/i18n@0.5.3': {}
 
-  '@mirta/package@0.5.2': {}
+  '@mirta/package@0.5.3': {}
 
-  '@mirta/polyfills@0.5.2': {}
+  '@mirta/polyfills@0.5.3': {}
 
-  '@mirta/rollup@0.5.2(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)':
+  '@mirta/rollup@0.5.3(rollup@4.59.0)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-transform-spread': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
       '@dotenvx/dotenvx': 1.61.0
-      '@mirta/basics': 0.5.2
-      '@mirta/env-loader': 0.5.2
-      '@mirta/package': 0.5.2
-      '@mirta/workspace': 0.5.2
+      '@mirta/basics': 0.5.3
+      '@mirta/env-loader': 0.5.3
+      '@mirta/package': 0.5.3
+      '@mirta/workspace': 0.5.3
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.29.0)(rollup@4.59.0)
       '@rollup/plugin-commonjs': 29.0.2(rollup@4.59.0)
       '@rollup/plugin-multi-entry': 7.1.0(rollup@4.59.0)
@@ -3344,35 +3372,36 @@ snapshots:
       find-up: 8.0.0
       magic-string: 0.30.21
       rollup: 4.59.0
-      rollup-plugin-dts: 6.3.0(rollup@4.59.0)(typescript@5.9.3)
+      rollup-plugin-dts: 6.5.1(rollup@4.59.0)(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
       - '@types/babel__core'
+      - '@typescript/typescript6'
       - supports-color
       - tslib
 
-  '@mirta/staged-args@0.5.2': {}
+  '@mirta/staged-args@0.5.3': {}
 
-  '@mirta/store@0.5.2(@mirta/basics@0.5.2)(@mirta/polyfills@0.5.2)':
+  '@mirta/store@0.5.3(@mirta/basics@0.5.3)(@mirta/polyfills@0.5.3)':
     dependencies:
-      '@mirta/basics': 0.5.2
-      '@mirta/polyfills': 0.5.2
+      '@mirta/basics': 0.5.3
+      '@mirta/polyfills': 0.5.3
 
-  '@mirta/testing@0.5.2(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))':
+  '@mirta/testing@0.5.3(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))':
     dependencies:
-      '@mirta/env-loader': 0.5.2
-      '@mirta/workspace': 0.5.2
-      mirta: 0.5.2
-      vitest-mock-extended: 3.1.0(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))
+      '@mirta/env-loader': 0.5.3
+      '@mirta/workspace': 0.5.3
+      mirta: 0.5.3
+      vitest-mock-extended: 3.1.1(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)))
     transitivePeerDependencies:
       - typescript
       - vitest
 
-  '@mirta/tsconfig@0.5.2': {}
+  '@mirta/tsconfig@0.5.3': {}
 
-  '@mirta/workspace@0.5.2':
+  '@mirta/workspace@0.5.3':
     dependencies:
-      '@mirta/package': 0.5.2
+      '@mirta/package': 0.5.3
       find-up: 8.0.0
 
   '@noble/ciphers@1.3.0': {}
@@ -3642,7 +3671,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.57.1
       debug: 4.4.3
       minimatch: 10.2.4
-      semver: 7.7.3
+      semver: 7.7.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.4.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -3901,7 +3930,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.8
       meow: 13.2.0
-      semver: 7.7.3
+      semver: 7.7.4
 
   conventional-changelog@6.0.0(conventional-commits-filter@5.0.0):
     dependencies:
@@ -4269,6 +4298,9 @@ snapshots:
 
   isexe@3.1.1: {}
 
+  js-tokens@10.0.0:
+    optional: true
+
   js-tokens@4.0.0: {}
 
   js-yaml@4.1.1:
@@ -4371,11 +4403,11 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  mirta@0.5.2:
+  mirta@0.5.3:
     dependencies:
-      '@mirta/basics': 0.5.2
-      '@mirta/globals': 0.5.2
-      '@mirta/polyfills': 0.5.2
+      '@mirta/basics': 0.5.3
+      '@mirta/globals': 0.5.3
+      '@mirta/polyfills': 0.5.3
 
   ms@2.1.3: {}
 
@@ -4390,7 +4422,7 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   npm-run-path@4.0.1:
@@ -4533,13 +4565,16 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  rollup-plugin-dts@6.3.0(rollup@4.59.0)(typescript@5.9.3):
+  rollup-plugin-dts@6.5.1(rollup@4.59.0)(typescript@5.9.3):
     dependencies:
+      '@jridgewell/remapping': 2.3.5
+      '@jridgewell/sourcemap-codec': 1.5.5
+      convert-source-map: 2.0.0
       magic-string: 0.30.21
       rollup: 4.59.0
       typescript: 5.9.3
     optionalDependencies:
-      '@babel/code-frame': 7.29.0
+      '@babel/code-frame': 8.0.0
 
   rollup@4.59.0:
     dependencies:
@@ -4577,8 +4612,6 @@ snapshots:
       queue-microtask: 1.2.3
 
   semver@6.3.1: {}
-
-  semver@7.7.3: {}
 
   semver@7.7.4: {}
 
@@ -4752,7 +4785,7 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.8.2
 
-  vitest-mock-extended@3.1.0(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2))):
+  vitest-mock-extended@3.1.1(typescript@5.9.3)(vitest@4.1.0(@types/node@24.12.2)(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2))):
     dependencies:
       ts-essentials: 10.1.1(typescript@5.9.3)
       typescript: 5.9.3
