@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.1",
     "@mirta/cli": "0.5.2",
     "@mirta/globals": "0.5.2",
     "@mirta/rollup": "0.5.2",
