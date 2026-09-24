@@ -32,7 +32,7 @@
     "@mirta/tsconfig": "0.5.2",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.12.2",
-    "@vitest/eslint-plugin": "^1.6.12",
+    "@vitest/eslint-plugin": "^1.6.27",
     "conventional-changelog-cli": "^5.0.0",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
